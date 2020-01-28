@@ -8,8 +8,8 @@ namespace robot {
 template <class T>
 class AbstractGroup{
   public:
-    virtual T* getLeft() = 0;//return array of left side of group
-    virtual T* getRight() = 0;
+    virtual T* getLeft() ;//return array of left side of group
+    virtual T* getRight() ;
 };
 
 class MotorGroup : public AbstractGroup<vex::motor>{
@@ -18,9 +18,10 @@ class MotorGroup : public AbstractGroup<vex::motor>{
     vex::motor *right;
 
   public:
-    MotorGroup(vex::motor _left[], vex::motor _right[]){
-      left = _left;
-      right = _right;
+    MotorGroup(vex::motor _left[], vex::motor _right[]) : 
+    left{_left}, right{_right}{
+      // left = _left;
+      // right = _right;
     }
 
     vex::motor* getLeft(){
@@ -40,9 +41,10 @@ class DigitalOutGroup : public AbstractGroup<vex::digital_out>{
     vex::digital_out *right;
 
   public:
-    DigitalOutGroup(vex::digital_out _left[], vex::digital_out _right[]){
-      left = _left;
-      right = _right;
+    DigitalOutGroup(vex::digital_out _left[], vex::digital_out _right[]) : 
+    left{_left}, right{_right}{
+      // left = _left;
+      // right = _right;
     }
 
     vex::digital_out* getLeft(){
@@ -64,8 +66,8 @@ class ControllerGroup : public AbstractGroup<vex::controller>{
     vex::controller *controllers;
 
   public:
-    ControllerGroup(vex::controller _controllers[]){
-      controllers = _controllers;
+    ControllerGroup(vex::controller _controllers[]) : controllers{_controllers}{
+      // controllers = _controllers;
     }
 
     vex::controller* getLeft(){
@@ -94,12 +96,12 @@ class Bot{
     Bot(util::Position& _pos, robot::ControllerGroup& _cg)
       : pos{_pos}, cg{_cg}
       {};
-    virtual void driver() = 0;
-    virtual void auton() = 0;
-    virtual void move_base(double power,
-           velocityUnits vel = velocityUnits::pct) = 0;
-    virtual void rotate_base(double power, velocityUnits vel = velocityUnits::pct) = 0;
-    virtual void grab(bool intake = true, float revs = 10.0) = 0;
+    virtual void driver();
+    virtual void auton();
+    virtual void move_base(double pow,
+           velocityUnits vel = velocityUnits::pct);
+    virtual void rotate_base(double pow, velocityUnits vel = velocityUnits::pct);
+    virtual void grab(bool intake = true, float revs = 10.0);
 };
 }
 

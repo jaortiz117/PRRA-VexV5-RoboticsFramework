@@ -78,7 +78,7 @@ void pre_auton(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-void autonomous(void) {
+void auton(void) {
   // ..........................................................................
   // Insert autonomous user code here.
   // ..........................................................................
@@ -121,7 +121,7 @@ void usercontrol(void) {
 //
 int main() {
   // Set up callbacks for autonomous and driver control periods.
-  Competition.autonomous(autonomous);
+  Competition.autonomous(auton);
   Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.

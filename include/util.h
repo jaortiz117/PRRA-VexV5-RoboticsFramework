@@ -3,6 +3,10 @@
 
 namespace util 
 {
+  template <typename T>
+int arr_length(T arr){
+  return sizeof(arr)/sizeof(*arr);
+}
   enum class Side{top, bottom};
   enum class Color{red, blue};
   class Position{

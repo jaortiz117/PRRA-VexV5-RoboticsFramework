@@ -1,29 +1,34 @@
 #include "movement.h"
+#include "util.h"
 #include "vex.h"
 
 using namespace auton;
 
-void Auton::move_group_L(robot::MotorGroup mg, double power,
+void Auton::move_group_L(robot::MotorGroup mg, double pow,
                       vex::velocityUnits units) {
   // assuming mg has same amount of motors on both sides
-  for (int i = 0; i < sizeof(mg.getLeft()); i++) {
-    mg.getLeft()[i].spin(vex::directionType::fwd, power, units);
+  for (int i = 0; i < util::arr_length<motor*>(mg.getLeft()); i++) {
+    mg.getLeft()[i].spin(vex::directionType::fwd, pow, units);
   }
 }
 
-void Auton::move_group_R(robot::MotorGroup mg, double power,
+void Auton::move_group_R(robot::MotorGroup mg, double pow,
                       vex::velocityUnits units) {
   // assuming mg has same amount of motors on both sides
-  for (int i = 0; i < sizeof(mg.getRight()); i++) {
-    mg.getRight()[i].spin(vex::directionType::rev, power, units);
+  for (int i = 0; i < util::arr_length<motor*>(mg.getRight()); i++) {
+    mg.getRight()[i].spin(vex::directionType::rev, pow, units);
   }
 }
 
-void Auton::move_group(robot::MotorGroup mg, double power,
+void Auton::move_group(robot::MotorGroup mg, double pow,
            velocityUnits vel){ // autonomous movement of base indefinetely
-  move_group_L(mg, power, vel);
-  move_group_R(mg, power, vel);
+  move_group_L(mg, pow, vel);
+  move_group_R(mg, pow, vel);
 }
+/*************************************
+TODO these functions have been copy pasted from older projects,
+they still  need to be translated into this library's design language
+*************************************/
 
 void Auton::move_group_for(robot::MotorGroup mg, float lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){
 // void motorRotateFor(vex::motor mL, vex::motor mR, float rotation, rotationUnits units, int speed, velocityUnits units_v){

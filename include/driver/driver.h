@@ -9,7 +9,7 @@ void base_arcade(robot::MotorGroup& mg, vex::controller::axis axis_x, vex::contr
 void mech(robot::MotorGroup& mg, vex::controller::axis axis);
 void mech(robot::MotorGroup& mg, vex::controller::button cw, vex::controller::button ccw);
 void digi_out(robot::DigitalOutGroup& dg, vex::controller::button toggle);
-void digi_out(robot::DigitalOutGroup& dg, vex::controller::button on, vex::controller::button off);
+void digi_out(robot::DigitalOutGroup& dg, vex::controller::button _on, vex::controller::button _off);
 }
 
 #endif

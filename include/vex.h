@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       vex.h                                                     */
@@ -7,6 +8,10 @@
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 //
+
+#ifndef VEX_H
+#define VEX_H
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,3 +29,5 @@
 
 #define repeat(iterations)                                                     \
   for (int iterator = 0; iterator < iterations; iterator++)
+
+#endif
