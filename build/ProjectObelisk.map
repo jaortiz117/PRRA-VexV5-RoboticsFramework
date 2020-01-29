@@ -71,8 +71,18 @@ Discarded input sections
  .ARM.exidx.text._Z9pre_autonv
                 0x00000000        0x8 build/src/main.o
  .group         0x00000000        0xc build/src/main.o
+ .text._ZN5robot15ControllerGroup7getLeftEv
+                0x00000000        0x8 build/src/main.o
+ .ARM.exidx.text._ZN5robot15ControllerGroup7getLeftEv
+                0x00000000        0x8 build/src/main.o
  .group         0x00000000        0xc build/src/main.o
+ .text._ZN5robot15ControllerGroup8getRightEv
+                0x00000000        0x8 build/src/main.o
+ .ARM.exidx.text._ZN5robot15ControllerGroup8getRightEv
+                0x00000000        0x8 build/src/main.o
  .group         0x00000000        0x8 build/src/main.o
+ .rodata._ZTVN5robot15ControllerGroupE
+                0x00000000       0x10 build/src/main.o
  .llvm_addrsig  0x00000000        0xa build/src/main.o
  .text          0x00000000        0x0 build/src/robot-config.o
  .data.RemoteControlCodeEnabled
@@ -151,12 +161,46 @@ Discarded input sections
  .llvm_addrsig  0x00000000        0x0 build/src/driver/driver.o
  .text          0x00000000        0x0 build/src/robot/big_bot.o
  .group         0x00000000        0xc build/src/robot/big_bot.o
+ .text._ZN5robot10MotorGroup7getLeftEv
+                0x00000000        0x8 build/src/robot/big_bot.o
+ .ARM.exidx.text._ZN5robot10MotorGroup7getLeftEv
+                0x00000000        0x8 build/src/robot/big_bot.o
  .group         0x00000000        0xc build/src/robot/big_bot.o
+ .text._ZN5robot10MotorGroup8getRightEv
+                0x00000000        0x8 build/src/robot/big_bot.o
+ .ARM.exidx.text._ZN5robot10MotorGroup8getRightEv
+                0x00000000        0x8 build/src/robot/big_bot.o
  .group         0x00000000        0xc build/src/robot/big_bot.o
+ .text._ZN5robot15DigitalOutGroup7getLeftEv
+                0x00000000        0x8 build/src/robot/big_bot.o
+ .ARM.exidx.text._ZN5robot15DigitalOutGroup7getLeftEv
+                0x00000000        0x8 build/src/robot/big_bot.o
  .group         0x00000000        0xc build/src/robot/big_bot.o
+ .text._ZN5robot15DigitalOutGroup8getRightEv
+                0x00000000        0x8 build/src/robot/big_bot.o
+ .ARM.exidx.text._ZN5robot15DigitalOutGroup8getRightEv
+                0x00000000        0x8 build/src/robot/big_bot.o
  .group         0x00000000        0x8 build/src/robot/big_bot.o
+ .rodata._ZTVN5robot10MotorGroupE
+                0x00000000       0x10 build/src/robot/big_bot.o
  .group         0x00000000        0x8 build/src/robot/big_bot.o
+ .rodata._ZTVN5robot15DigitalOutGroupE
+                0x00000000       0x10 build/src/robot/big_bot.o
  .llvm_addrsig  0x00000000        0x0 build/src/robot/big_bot.o
+ .text          0x00000000        0x0 build/src/robot/robot.o
+ .text._ZN5robot15DigitalOutGroup10get_singleEv
+                0x00000000       0x18 build/src/robot/robot.o
+ .ARM.exidx.text._ZN5robot15DigitalOutGroup10get_singleEv
+                0x00000000        0x8 build/src/robot/robot.o
+ .text._ZN5robot15ControllerGroup7get_allEv
+                0x00000000        0x8 build/src/robot/robot.o
+ .ARM.exidx.text._ZN5robot15ControllerGroup7get_allEv
+                0x00000000        0x8 build/src/robot/robot.o
+ .text._ZN5robot15ControllerGroup9get_firstEv
+                0x00000000       0x18 build/src/robot/robot.o
+ .ARM.exidx.text._ZN5robot15ControllerGroup9get_firstEv
+                0x00000000        0x8 build/src/robot/robot.o
+ .llvm_addrsig  0x00000000        0x0 build/src/robot/robot.o
  .text          0x00000000        0x0 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_startup.c.obj)
  .data          0x00000000        0x0 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_startup.c.obj)
  .bss           0x00000000        0x0 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_startup.c.obj)
@@ -2277,64 +2321,64 @@ Linker script and memory map
                 0x03800238                usercontrol()
  .text.main     0x03800278       0x68 build/src/main.o
                 0x03800278                main
- .text._ZN5robot15ControllerGroup7getLeftEv
-                0x038002e0        0x8 build/src/main.o
-                0x038002e0                robot::ControllerGroup::getLeft()
- .text._ZN5robot15ControllerGroup8getRightEv
-                0x038002e8        0x8 build/src/main.o
-                0x038002e8                robot::ControllerGroup::getRight()
  .text._GLOBAL__sub_I_main.cpp
-                0x038002f0       0xb8 build/src/main.o
+                0x038002e0       0xb8 build/src/main.o
  .text._Z11vexcodeInitv
-                0x038003a8        0x4 build/src/robot-config.o
-                0x038003a8                vexcodeInit()
+                0x03800398        0x4 build/src/robot-config.o
+                0x03800398                vexcodeInit()
  .text._GLOBAL__sub_I_robot_config.cpp
-                0x038003ac       0x68 build/src/robot-config.o
+                0x0380039c       0x68 build/src/robot-config.o
  .text._GLOBAL__sub_I_old_code.cpp
-                0x03800414       0xe0 build/src/old_code.o
+                0x03800404       0xe0 build/src/old_code.o
  .text._ZN6driver11base_arcadeERN5robot10MotorGroupEN3vex10controller4axisES5_
-                0x038004f4        0xc build/src/driver/driver.o
-                0x038004f4                driver::base_arcade(robot::MotorGroup&, vex::controller::axis, vex::controller::axis)
+                0x038004e4        0xc build/src/driver/driver.o
+                0x038004e4                driver::base_arcade(robot::MotorGroup&, vex::controller::axis, vex::controller::axis)
  .text._ZN6driver4mechERN5robot10MotorGroupEN3vex10controller4axisE
-                0x03800500        0xc build/src/driver/driver.o
-                0x03800500                driver::mech(robot::MotorGroup&, vex::controller::axis)
+                0x038004f0        0xc build/src/driver/driver.o
+                0x038004f0                driver::mech(robot::MotorGroup&, vex::controller::axis)
  .text._ZN6driver4mechERN5robot10MotorGroupEN3vex10controller6buttonES5_
-                0x0380050c       0x3c build/src/driver/driver.o
-                0x0380050c                driver::mech(robot::MotorGroup&, vex::controller::button, vex::controller::button)
+                0x038004fc       0x3c build/src/driver/driver.o
+                0x038004fc                driver::mech(robot::MotorGroup&, vex::controller::button, vex::controller::button)
  .text._ZN6driver8digi_outERN5robot15DigitalOutGroupEN3vex10controller6buttonES5_
-                0x03800548       0x7c build/src/driver/driver.o
-                0x03800548                driver::digi_out(robot::DigitalOutGroup&, vex::controller::button, vex::controller::button)
+                0x03800538       0x7c build/src/driver/driver.o
+                0x03800538                driver::digi_out(robot::DigitalOutGroup&, vex::controller::button, vex::controller::button)
  .text._ZN6BigBotC2ERN4util8PositionERN5robot15ControllerGroupE
-                0x038005c4      0x4e8 build/src/robot/big_bot.o
-                0x038005c4                BigBot::BigBot(util::Position&, robot::ControllerGroup&)
-                0x038005c4                BigBot::BigBot(util::Position&, robot::ControllerGroup&)
+                0x038005b4      0x4e8 build/src/robot/big_bot.o
+                0x038005b4                BigBot::BigBot(util::Position&, robot::ControllerGroup&)
+                0x038005b4                BigBot::BigBot(util::Position&, robot::ControllerGroup&)
  .text._ZN6BigBot6driverEv
-                0x03800aac      0x1c8 build/src/robot/big_bot.o
-                0x03800aac                BigBot::driver()
+                0x03800a9c      0x1c8 build/src/robot/big_bot.o
+                0x03800a9c                BigBot::driver()
  .text._ZN6BigBot5autonEv
-                0x03800c74        0x4 build/src/robot/big_bot.o
-                0x03800c74                BigBot::auton()
+                0x03800c64        0x4 build/src/robot/big_bot.o
+                0x03800c64                BigBot::auton()
  .text._ZN6BigBot9move_baseEdN3vex13velocityUnitsE
-                0x03800c78        0x4 build/src/robot/big_bot.o
-                0x03800c78                BigBot::move_base(double, vex::velocityUnits)
+                0x03800c68        0x4 build/src/robot/big_bot.o
+                0x03800c68                BigBot::move_base(double, vex::velocityUnits)
  .text._ZN6BigBot11rotate_baseEdN3vex13velocityUnitsE
-                0x03800c7c        0x4 build/src/robot/big_bot.o
-                0x03800c7c                BigBot::rotate_base(double, vex::velocityUnits)
+                0x03800c6c        0x4 build/src/robot/big_bot.o
+                0x03800c6c                BigBot::rotate_base(double, vex::velocityUnits)
  .text._ZN6BigBot4grabEbf
-                0x03800c80        0x4 build/src/robot/big_bot.o
-                0x03800c80                BigBot::grab(bool, float)
+                0x03800c70        0x4 build/src/robot/big_bot.o
+                0x03800c70                BigBot::grab(bool, float)
  .text._ZN5robot10MotorGroup7getLeftEv
-                0x03800c84        0x8 build/src/robot/big_bot.o
-                0x03800c84                robot::MotorGroup::getLeft()
+                0x03800c74        0x8 build/src/robot/robot.o
+                0x03800c74                robot::MotorGroup::getLeft()
  .text._ZN5robot10MotorGroup8getRightEv
-                0x03800c8c        0x8 build/src/robot/big_bot.o
-                0x03800c8c                robot::MotorGroup::getRight()
+                0x03800c7c        0x8 build/src/robot/robot.o
+                0x03800c7c                robot::MotorGroup::getRight()
  .text._ZN5robot15DigitalOutGroup7getLeftEv
-                0x03800c94        0x8 build/src/robot/big_bot.o
-                0x03800c94                robot::DigitalOutGroup::getLeft()
+                0x03800c84        0x8 build/src/robot/robot.o
+                0x03800c84                robot::DigitalOutGroup::getLeft()
  .text._ZN5robot15DigitalOutGroup8getRightEv
-                0x03800c9c        0x8 build/src/robot/big_bot.o
-                0x03800c9c                robot::DigitalOutGroup::getRight()
+                0x03800c8c        0x8 build/src/robot/robot.o
+                0x03800c8c                robot::DigitalOutGroup::getRight()
+ .text._ZN5robot15ControllerGroup7getLeftEv
+                0x03800c94        0x8 build/src/robot/robot.o
+                0x03800c94                robot::ControllerGroup::getLeft()
+ .text._ZN5robot15ControllerGroup8getRightEv
+                0x03800c9c        0x8 build/src/robot/robot.o
+                0x03800c9c                robot::ControllerGroup::getRight()
  .text.vexMain  0x03800ca4       0xb0 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_startup.c.obj)
                 0x03800ca4                vexMain
  .text.__vex_function_prolog
@@ -2806,18 +2850,18 @@ Linker script and memory map
                 0x03802a30                __rodata_start = .
  *(.rodata)
  *(.rodata.*)
- .rodata._ZTVN5robot15ControllerGroupE
-                0x03802a30       0x10 build/src/main.o
-                0x03802a30                vtable for robot::ControllerGroup
  .rodata._ZTV6BigBot
-                0x03802a40       0x1c build/src/robot/big_bot.o
-                0x03802a40                vtable for BigBot
+                0x03802a30       0x1c build/src/robot/big_bot.o
+                0x03802a30                vtable for BigBot
  .rodata._ZTVN5robot10MotorGroupE
-                0x03802a5c       0x10 build/src/robot/big_bot.o
-                0x03802a5c                vtable for robot::MotorGroup
+                0x03802a4c       0x10 build/src/robot/robot.o
+                0x03802a4c                vtable for robot::MotorGroup
  .rodata._ZTVN5robot15DigitalOutGroupE
-                0x03802a6c       0x10 build/src/robot/big_bot.o
-                0x03802a6c                vtable for robot::DigitalOutGroup
+                0x03802a5c       0x10 build/src/robot/robot.o
+                0x03802a5c                vtable for robot::DigitalOutGroup
+ .rodata._ZTVN5robot15ControllerGroupE
+                0x03802a6c       0x10 build/src/robot/robot.o
+                0x03802a6c                vtable for robot::ControllerGroup
  .rodata.str1.1
                 0x03802a7c       0x2e C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_startup.c.obj)
  *fill*         0x03802aaa        0x2 
@@ -3011,12 +3055,6 @@ Linker script and memory map
  .ARM.exidx.text.main
                 0x03802fdc        0x0 build/src/main.o
                                   0x8 (size before relaxing)
- .ARM.exidx.text._ZN5robot15ControllerGroup7getLeftEv
-                0x03802fdc        0x0 build/src/main.o
-                                  0x8 (size before relaxing)
- .ARM.exidx.text._ZN5robot15ControllerGroup8getRightEv
-                0x03802fdc        0x0 build/src/main.o
-                                  0x8 (size before relaxing)
  .ARM.exidx.text._GLOBAL__sub_I_main.cpp
                 0x03802fdc        0x0 build/src/main.o
                                   0x8 (size before relaxing)
@@ -3060,16 +3098,22 @@ Linker script and memory map
                 0x03802fdc        0x0 build/src/robot/big_bot.o
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN5robot10MotorGroup7getLeftEv
-                0x03802fdc        0x0 build/src/robot/big_bot.o
+                0x03802fdc        0x0 build/src/robot/robot.o
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN5robot10MotorGroup8getRightEv
-                0x03802fdc        0x0 build/src/robot/big_bot.o
+                0x03802fdc        0x0 build/src/robot/robot.o
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN5robot15DigitalOutGroup7getLeftEv
-                0x03802fdc        0x0 build/src/robot/big_bot.o
+                0x03802fdc        0x0 build/src/robot/robot.o
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN5robot15DigitalOutGroup8getRightEv
-                0x03802fdc        0x0 build/src/robot/big_bot.o
+                0x03802fdc        0x0 build/src/robot/robot.o
+                                  0x8 (size before relaxing)
+ .ARM.exidx.text._ZN5robot15ControllerGroup7getLeftEv
+                0x03802fdc        0x0 build/src/robot/robot.o
+                                  0x8 (size before relaxing)
+ .ARM.exidx.text._ZN5robot15ControllerGroup8getRightEv
+                0x03802fdc        0x0 build/src/robot/robot.o
                                   0x8 (size before relaxing)
  *(.gnu.linkonce.armexidix.*.*)
                 0x03802fdc                __exidx_end = .
@@ -3115,52 +3159,54 @@ Linker script and memory map
  .ARM.attributes
                 0x038030d8       0x3a build/src/robot/big_bot.o
  .ARM.attributes
-                0x03803112       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_startup.c.obj)
+                0x03803112       0x3a build/src/robot/robot.o
  .ARM.attributes
-                0x03803147       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_util.c.obj)
+                0x0380314c       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_startup.c.obj)
  .ARM.attributes
-                0x0380317c       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_apijump.c.obj)
+                0x03803181       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_util.c.obj)
  .ARM.attributes
-                0x038031b1       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_apiversions.c.obj)
+                0x038031b6       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_apijump.c.obj)
  .ARM.attributes
-                0x038031e6       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_global.cpp.obj)
+                0x038031eb       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_apiversions.c.obj)
  .ARM.attributes
-                0x0380321b       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_motor.cpp.obj)
+                0x03803220       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_global.cpp.obj)
  .ARM.attributes
-                0x03803250       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_controller.cpp.obj)
+                0x03803255       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_motor.cpp.obj)
  .ARM.attributes
-                0x03803285       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_task.cpp.obj)
+                0x0380328a       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_controller.cpp.obj)
  .ARM.attributes
-                0x038032ba       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_thread.cpp.obj)
+                0x038032bf       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_task.cpp.obj)
  .ARM.attributes
-                0x038032ef       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_event.cpp.obj)
+                0x038032f4       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_thread.cpp.obj)
  .ARM.attributes
-                0x03803324       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_mevent.cpp.obj)
+                0x03803329       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_event.cpp.obj)
  .ARM.attributes
-                0x03803359       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_brain.cpp.obj)
+                0x0380335e       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_mevent.cpp.obj)
  .ARM.attributes
-                0x0380338e       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_competition.cpp.obj)
+                0x03803393       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_brain.cpp.obj)
  .ARM.attributes
-                0x038033c3       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_triport.cpp.obj)
+                0x038033c8       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_competition.cpp.obj)
  .ARM.attributes
-                0x038033f8       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_color.cpp.obj)
+                0x038033fd       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_triport.cpp.obj)
  .ARM.attributes
-                0x0380342d       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_timer.cpp.obj)
+                0x03803432       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_color.cpp.obj)
  .ARM.attributes
-                0x03803462       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_apiuser.c.obj)
+                0x03803467       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_timer.cpp.obj)
  .ARM.attributes
-                0x03803497       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_device.cpp.obj)
+                0x0380349c       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_apiuser.c.obj)
  .ARM.attributes
-                0x038034cc       0x2b C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libc.a(lib_a-aeabi_memcpy.o)
+                0x038034d1       0x35 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(vex_device.cpp.obj)
  .ARM.attributes
-                0x038034f7       0x2b C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libc.a(lib_a-fini.o)
+                0x03803506       0x2b C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libc.a(lib_a-aeabi_memcpy.o)
  .ARM.attributes
-                0x03803522       0x2b C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libc.a(lib_a-impure.o)
+                0x03803531       0x2b C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libc.a(lib_a-fini.o)
  .ARM.attributes
-                0x0380354d       0x2b C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libc.a(lib_a-init.o)
+                0x0380355c       0x2b C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libc.a(lib_a-impure.o)
  .ARM.attributes
-                0x03803578       0x2b C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libc.a(lib_a-memcpy.o)
-                0x038035a3                __ARM.attributes_end = .
+                0x03803587       0x2b C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libc.a(lib_a-init.o)
+ .ARM.attributes
+                0x038035b2       0x2b C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libc.a(lib_a-memcpy.o)
+                0x038035dd                __ARM.attributes_end = .
 
 .sdata          0x03802ff0        0x0
                 0x03802ff0                __sdata_start = .
@@ -3341,6 +3387,7 @@ LOAD build/src/old_code.o
 LOAD build/src/auton/auton.o
 LOAD build/src/driver/driver.o
 LOAD build/src/robot/big_bot.o
+LOAD build/src/robot/robot.o
 START GROUP
 LOAD C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a
 LOAD C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libstdc++.a
@@ -3357,6 +3404,7 @@ OUTPUT(build/ProjectObelisk.elf elf32-littlearm)
  .comment       0x00000000       0x2e build/src/old_code.o
  .comment       0x00000000       0x2e build/src/driver/driver.o
  .comment       0x00000000       0x2e build/src/robot/big_bot.o
+ .comment       0x00000000       0x2e build/src/robot/robot.o
  .comment       0x0000002d       0x70 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_startup.c.obj)
                                  0x71 (size before relaxing)
  .comment       0x00000000       0x71 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5\libv5rt.a(v5_util.c.obj)
@@ -3389,6 +3437,8 @@ OUTPUT(build/ProjectObelisk.elf elf32-littlearm)
                 0x00000000        0x0 build/src/driver/driver.o
  .note.GNU-stack
                 0x00000000        0x0 build/src/robot/big_bot.o
+ .note.GNU-stack
+                0x00000000        0x0 build/src/robot/robot.o
 
 .debug_frame    0x00000000       0xb0
  .debug_frame   0x00000000       0x20 C:\Program Files (x86)\VEX Robotics\VEXcode V5 Text\sdk/vexv5/gcc/libs\libc.a(lib_a-aeabi_memcpy.o)

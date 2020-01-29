@@ -24,13 +24,9 @@ class MotorGroup : public AbstractGroup<vex::motor>{
       // right = _right;
     }
 
-    vex::motor* getLeft(){
-      return left;
-    }
+    vex::motor* getLeft();
 
-    vex::motor* getRight(){
-      return right;
-    }
+    vex::motor* getRight();
 };
 // class DigitalOutGroup;
 // class ControllerGroup;
@@ -47,17 +43,11 @@ class DigitalOutGroup : public AbstractGroup<vex::digital_out>{
       // right = _right;
     }
 
-    vex::digital_out* getLeft(){
-      return left;
-    }
+    vex::digital_out* getLeft();
 
-    vex::digital_out* getRight(){
-      return right;
-    }
+    vex::digital_out* getRight();
 
-    vex::digital_out get_single(){
-      return left[0];
-    }
+    vex::digital_out get_single();
 };
 
 
@@ -70,21 +60,13 @@ class ControllerGroup : public AbstractGroup<vex::controller>{
       // controllers = _controllers;
     }
 
-    vex::controller* getLeft(){
-      return controllers;
-    }
+    vex::controller* getLeft();
 
-    vex::controller* getRight(){
-      return controllers;
-    }
+    vex::controller* getRight();
 
-    vex::controller* get_all(){
-      return controllers;
-    }
+    vex::controller* get_all();
 
-    vex::controller get_first(){
-      return controllers[0];
-    }
+    vex::controller get_first();
 };
 
 // class Bot;
