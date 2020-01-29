@@ -4,31 +4,22 @@
 
 using namespace auton;
 
-void Auton::move_group_L(vex::motor_group mg, double pow,
-                      vex::velocityUnits units) {
-  // assuming mg has same amount of motors on both sides
-  // for (int i = 0; i < util::arr_length(mg.getLeft()); i++) {
-  //   mg.getLeft()[i].spin(vex::directionType::fwd, pow, units);
-  // }
 
-  mg.spin(directionType::fwd,  pow, units);
-}
-
-void Auton::move_group_R(vex::motor_group mg, double pow,
+void Auton::move_group(vex::motor_group mg, double pow,
                       vex::velocityUnits units) {
   // assuming mg has same amount of motors on both sides
   // for (int i = 0; i < util::arr_length(mg.getRight()); i++) {
   //   mg.getRight()[i].spin(vex::directionType::rev, pow, units);
   // }
 
-    mg.spin(directionType::rev,  pow, units);
+    mg.spin(directionType::fwd,  pow, units);
 
 }
 
-void Auton::move_group(vex::motor_group left_mg, vex::motor_group right_mg, double pow,
+void Auton::move_group_double(vex::motor_group left_mg, vex::motor_group right_mg, double pow,
            velocityUnits vel){ // autonomous movement of base indefinetely
-  move_group_L(left_mg, pow, vel);
-  move_group_R(right_mg, pow, vel);
+  move_group(left_mg, pow, vel);
+  move_group(right_mg, pow, vel);
 }
 /*************************************
 TODO these functions have been copy pasted from older projects,

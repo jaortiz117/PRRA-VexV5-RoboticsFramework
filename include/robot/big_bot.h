@@ -2,6 +2,8 @@
 #define BIGBOT_H
 
 #include "robot.h"
+#include "movement.h"
+#include "vex.h"
 
 //Whoever uses library only needs to make this file to create their robot instance (inheriting from robot class)
 class BigBot : public robot::Bot{
@@ -9,11 +11,11 @@ class BigBot : public robot::Bot{
 
   motor BaseLeft1 = motor(PORT5, ratio18_1, false);
   motor BaseLeft2 = motor(PORT12, ratio18_1, false);
-  motor BaseLeft3 = motor(PORT15, ratio18_1, false);
-  motor BaseRight1 = motor(PORT4, ratio18_1, false);
+  motor BaseLeft3 = motor(PORT15, ratio18_1, true);
+  motor BaseRight1 = motor(PORT4, ratio18_1, true);
   motor BaseRight2 = motor(PORT9, ratio18_1, false);
-  motor BaseRight3 = motor(PORT10, ratio18_1, false);
-  motor RampL = motor(PORT14, ratio18_1, false);
+  motor BaseRight3 = motor(PORT10, ratio18_1, true);
+  motor RampL = motor(PORT14, ratio18_1, true);
   motor RampR = motor(PORT20, ratio18_1, false);
   motor RollerL1 = motor(PORT1, ratio18_1, false);
   motor RollerL2 = motor(PORT2, ratio18_1, false);
@@ -35,6 +37,8 @@ class BigBot : public robot::Bot{
   // vex::digital_out digi[1] = {Piston};
   // robot::DigitalOutGroup pist = robot::DigitalOutGroup(digi, digi);
   // robot::DigitalOutGroup piston_group = pist;
+
+  auton::Auton aut = auton::Auton(pos);
 
   public:
     BigBot(util::Position& _pos);

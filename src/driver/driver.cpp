@@ -15,7 +15,7 @@ void driver::base_arcade(vex::motor_group left_mg, vex::motor_group right_mg, ve
   //   mg.getRight()[i].spin(directionType::fwd, ((axis_y.value() - axis_x.value()) * 2),
   //                velocityUnits::pct);
   // }
-
+  // Brain.Screen.print(axis_x.value());
   //Left
     left_mg.spin(directionType::fwd, ((axis_y.value() + axis_x.value()) * 2),
                  velocityUnits::pct);
@@ -40,7 +40,7 @@ void driver::mech(vex::motor_group left_mg, vex::motor_group right_mg, vex::cont
     left_mg.spin(directionType::fwd,  Controller1.Axis2.value(), velocityUnits::pct);
    
     //Right
-    right_mg.spin(directionType::rev,  Controller1.Axis2.value(), velocityUnits::pct);
+    right_mg.spin(directionType::fwd,  Controller1.Axis2.value(), velocityUnits::pct);
 }
 
 void driver::mech(vex::motor_group left_mg, vex::motor_group right_mg, vex::controller::button cw, vex::controller::button ccw){

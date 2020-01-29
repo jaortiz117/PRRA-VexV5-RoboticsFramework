@@ -12,15 +12,17 @@ BigBot::BigBot(util::Position& _pos) : Bot(_pos){};
 void BigBot::driver(){
   movement::base_arcade(base_left, base_right, Controller1.Axis4, Controller1.Axis3);
   movement::mech(ramp_l, ramp_r, Controller1.Axis2);//ramp
-  movement::mech(rollers_l, rollers_r, Controller1.ButtonA, Controller1.ButtonB);//rollers
+  movement::mech(rollers_l, rollers_r, Controller1.ButtonR2, Controller1.ButtonR1);//rollers
   movement::digi_out(Piston, Controller1.ButtonUp, Controller1.ButtonDown);//transmission
 }
 
 void BigBot::auton() {
+  move_base(50);
   //TODO
 }
 
 void BigBot::move_base(double pow, velocityUnits vel) {
+  aut.move_group_double(base_left, base_right, pow, vel);
   //TODO
 }
 
