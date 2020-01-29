@@ -4,33 +4,38 @@
 
 using namespace auton;
 
-void Auton::move_group_L(robot::MotorGroup mg, double pow,
+void Auton::move_group_L(vex::motor_group mg, double pow,
                       vex::velocityUnits units) {
   // assuming mg has same amount of motors on both sides
-  for (int i = 0; i < util::arr_length(mg.getLeft()); i++) {
-    mg.getLeft()[i].spin(vex::directionType::fwd, pow, units);
-  }
+  // for (int i = 0; i < util::arr_length(mg.getLeft()); i++) {
+  //   mg.getLeft()[i].spin(vex::directionType::fwd, pow, units);
+  // }
+
+  mg.spin(directionType::fwd,  pow, units);
 }
 
-void Auton::move_group_R(robot::MotorGroup mg, double pow,
+void Auton::move_group_R(vex::motor_group mg, double pow,
                       vex::velocityUnits units) {
   // assuming mg has same amount of motors on both sides
-  for (int i = 0; i < util::arr_length(mg.getRight()); i++) {
-    mg.getRight()[i].spin(vex::directionType::rev, pow, units);
-  }
+  // for (int i = 0; i < util::arr_length(mg.getRight()); i++) {
+  //   mg.getRight()[i].spin(vex::directionType::rev, pow, units);
+  // }
+
+    mg.spin(directionType::rev,  pow, units);
+
 }
 
-void Auton::move_group(robot::MotorGroup mg, double pow,
+void Auton::move_group(vex::motor_group left_mg, vex::motor_group right_mg, double pow,
            velocityUnits vel){ // autonomous movement of base indefinetely
-  move_group_L(mg, pow, vel);
-  move_group_R(mg, pow, vel);
+  move_group_L(left_mg, pow, vel);
+  move_group_R(right_mg, pow, vel);
 }
 /*************************************
 TODO these functions have been copy pasted from older projects,
 they still  need to be translated into this library's design language
 *************************************/
 
-void Auton::move_group_for(robot::MotorGroup mg, float lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){
+void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, float lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){
 // void motorRotateFor(vex::motor mL, vex::motor mR, float rotation, rotationUnits units, int speed, velocityUnits units_v){
 //     mL.resetRotation();
 //     mR.resetRotation();

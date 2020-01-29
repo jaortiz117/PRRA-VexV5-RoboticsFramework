@@ -41,11 +41,10 @@ competition Competition;
 
 // define your global instances of motors and other devices here
 
+
 //Global instances of robot
-vex::controller controllers[1] = {Controller1};
-ControllerGroup CG = ControllerGroup(controllers);//i think a controller group may not be necessary since there are always at most only 2 controllers
 Position POS = Position(Side::top, Color::red);
-BigBot BIGGIE = BigBot(POS, CG);
+BigBot BIGGIE = BigBot(POS);
 
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
@@ -97,23 +96,43 @@ void auton(void) {
 /*---------------------------------------------------------------------------*/
 
 //temp
- motor RampL = motor(PORT14, ratio18_1, false);
-  motor RampR = motor(PORT20, ratio18_1, false);
+//  motor RampL = motor(PORT14, ratio18_1, false);
+//   motor RampR = motor(PORT20, ratio18_1, false);
 
-vex::motor ramp_l[1]= {RampL};
-  vex::motor ramp_r[1]= {RampR};
-  robot::MotorGroup ramp_g = robot::MotorGroup(ramp_l, ramp_r);
+// class MotorGroup{
+//   private:
+//     vex::motor *left;
+//     vex::motor *right;
 
-void temp_mech(robot::MotorGroup& mg, vex::controller::axis axis){
+//   public:
+//     MotorGroup(vex::motor _left[], vex::motor _right[]) : 
+//     left{_left}, right{_right}{}
 
-  for (int i = 0; i < arr_length(mg.getLeft()); i++){
-    //Left
-    mg.getRight()[i].spin(directionType::fwd,  axis.value(), velocityUnits::pct);
+//     vex::motor* getLeft();
+
+//     vex::motor* getRight();
+// };
+
+// // MotorGroup
+// vex::motor* MotorGroup::getLeft() { return left; }
+
+// vex::motor* MotorGroup::getRight() { return right; }
+
+// vex::motor ramp_l[1]= {RampL};
+//   vex::motor ramp_r[1]= {RampR};
+  // vex::motor_group ramp_gl= vex::motor_group(RampL);
+  // vex::motor_group ramp_gr = vex::motor_group(RampR);
+
+// void temp_mech(MotorGroup mg, vex::controller::axis axis){
+
+//   for (int i = 0; i < arr_length(mg.getLeft()); i++){
+//     //Left
+//     mg.getRight()[i].spin(directionType::fwd,  axis.value(), velocityUnits::pct);
    
-    //Right
-    mg.getLeft()[i].spin(directionType::rev,  axis.value(), velocityUnits::pct);
-  }
-}
+//     //Right
+//     mg.getLeft()[i].spin(directionType::rev,  axis.value(), velocityUnits::pct);
+//   }
+// }
 
 //^^ temp
 
@@ -130,8 +149,15 @@ void usercontrol(void) {
     // ........................................................................
 
 
-    // BIGGIE.driver();
-    temp_mech(ramp_g, CG.get_first().Axis2);
+    BIGGIE.driver();
+    // temp_mech(ramp_g, Controller1.Axis2);
+    // for (int i = 0; i < arr_length(ramp_g.getLeft()); i++){
+    //Left
+    // ramp_gl.spin(directionType::fwd,  Controller1.Axis2.value(), velocityUnits::pct);
+   
+    // //Right
+    // ramp_gr.spin(directionType::rev,  Controller1.Axis2.value(), velocityUnits::pct);
+  // }
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.

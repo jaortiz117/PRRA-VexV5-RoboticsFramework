@@ -23,27 +23,21 @@ class BigBot : public robot::Bot{
   triport t = triport( PORT22 );
   digital_out Piston = led(t.A);
 
-  vex::motor base_left[3]= {BaseLeft1, BaseLeft2, BaseLeft3};
-  vex::motor base_right[3]= {BaseRight1, BaseRight2, BaseRight3};
-  robot::MotorGroup base = robot::MotorGroup(base_left, base_right);
-  robot::MotorGroup base_group = base;
+  vex::motor_group base_left= motor_group(BaseLeft1, BaseLeft2, BaseLeft3);
+  vex::motor_group base_right= motor_group(BaseRight1, BaseRight2, BaseRight3);
 
-  vex::motor ramp_l[1]= {RampL};
-  vex::motor ramp_r[1]= {RampR};
-  robot::MotorGroup ramp = robot::MotorGroup(ramp_l, ramp_r);
-  robot::MotorGroup ramp_group = ramp;
+  vex::motor_group ramp_l= motor_group(RampL);
+  vex::motor_group ramp_r= motor_group(RampR);
 
-  vex::motor rollers_l[2]= {RollerL1, RollerL2};
-  vex::motor rollers_r[2]= {RollerR1, RollerR2};
-  robot::MotorGroup roll = robot::MotorGroup(rollers_l, rollers_r);
-  robot::MotorGroup rollers_group = roll;
+  vex::motor_group rollers_l= motor_group(RollerL1, RollerL2);
+  vex::motor_group rollers_r= motor_group(RollerR1, RollerR2);
 
-  vex::digital_out digi[1] = {Piston};
-  robot::DigitalOutGroup pist = robot::DigitalOutGroup(digi, digi);
-  robot::DigitalOutGroup piston_group = pist;
+  // vex::digital_out digi[1] = {Piston};
+  // robot::DigitalOutGroup pist = robot::DigitalOutGroup(digi, digi);
+  // robot::DigitalOutGroup piston_group = pist;
 
   public:
-    BigBot(util::Position& _pos, robot::ControllerGroup& _cg);
+    BigBot(util::Position& _pos);
     void driver() override;
     void auton() override;
     void move_base(double pow,
