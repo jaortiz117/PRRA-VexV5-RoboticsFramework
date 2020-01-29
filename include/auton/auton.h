@@ -24,7 +24,10 @@ private:
   void mech_rotate(robot::MotorGroup mg, float lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units);//speed dictates if cw or ccw
   // void mech_ccw(robot::MotorGroup mg, float lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units);
   void group_stop(robot::MotorGroup mg, brakeType brake = brakeType::brake);//stops mg
-  void digital_assign(robot::DigitalOutGroup dg, bool val);
+  // void digital_assign(robot::DigitalOutGroup dg, bool val);//on hold
+
+  //TODO
+
 };
 } // namespace auton
 

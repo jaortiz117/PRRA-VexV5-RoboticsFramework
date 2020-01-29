@@ -7,7 +7,7 @@ using namespace auton;
 void Auton::move_group_L(robot::MotorGroup mg, double pow,
                       vex::velocityUnits units) {
   // assuming mg has same amount of motors on both sides
-  for (int i = 0; i < util::arr_length<motor*>(mg.getLeft()); i++) {
+  for (int i = 0; i < util::arr_length(mg.getLeft()); i++) {
     mg.getLeft()[i].spin(vex::directionType::fwd, pow, units);
   }
 }
@@ -15,7 +15,7 @@ void Auton::move_group_L(robot::MotorGroup mg, double pow,
 void Auton::move_group_R(robot::MotorGroup mg, double pow,
                       vex::velocityUnits units) {
   // assuming mg has same amount of motors on both sides
-  for (int i = 0; i < util::arr_length<motor*>(mg.getRight()); i++) {
+  for (int i = 0; i < util::arr_length(mg.getRight()); i++) {
     mg.getRight()[i].spin(vex::directionType::rev, pow, units);
   }
 }
@@ -63,7 +63,7 @@ void Auton::move_group_for(robot::MotorGroup mg, float lim, vex::rotationUnits r
 // }
 }
 
-void Auton::mech_rotate(robot::MotorGroup mg, float lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){//speed dictates if cw or ccw
+// void Auton::mech_rotate(robot::MotorGroup mg, float lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){//speed dictates if cw or ccw
 // void rotateAlt(float revs, double speed){//+ is to cw, - to ccw
 //     if(revs < 0){
 //         speed = -speed;
@@ -85,7 +85,7 @@ void Auton::mech_rotate(robot::MotorGroup mg, float lim, vex::rotationUnits rot_
     
 //     baseStop(brakeType::brake);
 // }
-}
+// }
 
 //TODO define remaining methods from header file
 //      Most of these methods can reuse the definitions from old_code.cpp
