@@ -46,7 +46,10 @@ class BigBot : public robot::Bot{
     void auton() override;
     void move_base(double pow,
            velocityUnits vel = velocityUnits::pct) override;
+    void move_base(double pow, float lim,
+           velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::deg) override;
     void rotate_base(double pow, velocityUnits vel = velocityUnits::pct) override;
+    void rotate_base(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::deg) override;
     void grab(bool intake = true, float revs = 10.0) override;
 };
 
