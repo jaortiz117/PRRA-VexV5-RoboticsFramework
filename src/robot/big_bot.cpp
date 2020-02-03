@@ -9,6 +9,10 @@ using namespace vex;
 //Most of the code for movement has already been done  in other files and motors are designate in big_bot header file
 BigBot::BigBot(util::Position& _pos) : Bot(_pos){};
 
+double BigBot::gear_convert(double input){
+  return input*(5/3);
+}
+
 void BigBot::driver(){
   movement::base_arcade(base_left, base_right, Controller1.Axis4, Controller1.Axis3);
   movement::mech(ramp_l, ramp_r, Controller1.Axis2);//ramp
@@ -17,7 +21,12 @@ void BigBot::driver(){
 }
 
 void BigBot::auton() {
-  move_base(50);
+  // move_base(50);
+  // rotate_base(50, 1.0);
+  aut.move_group_for(base_left, base_right, gear_convert(2), rotationUnits::rev, 50, velocityUnits::pct);//TODO in move_base
+
+  //TODO make conversion for gears in lim for all internal functions
+
   //TODO
 }
 
@@ -26,17 +35,22 @@ void BigBot::move_base(double pow, velocityUnits vel) {
 }
 
 //TODO other move_base
+void BigBot::move_base(double pow, float lim,
+           velocityUnits vel, rotationUnits rot){
+             //TODO
+           }
 
 void BigBot::rotate_base(double pow, velocityUnits vel) {
-  aut.move_group(base_left, 100, velocityUnits::pct);
-  aut.move_group(base_right, -100, velocityUnits::pct);
+  pow = gear_convert(pow);
+  aut.move_group(base_left, pow, velocityUnits::pct);
+  aut.move_group(base_right, -pow, velocityUnits::pct);
 }
 
 void BigBot::rotate_base(double pow, float lim, 
 velocityUnits vel, rotationUnits rot) {
   // aut.move_group(base_left, 100, velocityUnits::pct);
   // aut.move_group(base_right, -100, velocityUnits::pct);
-
+  pow = gear_convert(pow);
   aut.mech_rotate(base_left, base_right, lim, rot, pow, vel);
 }
 

@@ -33,7 +33,7 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, 
         dir  = -dir;
     
     lim = abs(lim);
-   while((lim - abs((left_mg.rotation(rot_units) + right_mg.rotation(rot_units))/2)) == 0){
+   while((lim - abs((left_mg.rotation(rot_units) + right_mg.rotation(rot_units))/2)) >= 0){
        //find encoder difference
        double dVel = abs(left_mg.velocity(vel_units)) - abs(right_mg.velocity(vel_units));
        
@@ -69,8 +69,15 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, 
 
 // Moves motor groups in separete directions, speed sing dictates direction
     void Auton::mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units) { 
-      left_mg.rotateFor(fwd, lim, rot_units, -speed, vel_units, false); //to change direction, change sing of input speed
-      right_mg.rotateFor(fwd, lim, rot_units, speed, vel_units);
+    //   left_mg.resetRotation();
+    // right_mg.resetRotation();
+    //   if(lim < 0){
+    //     speed = -speed;
+    // }
+      left_mg.rotateFor(lim, rot_units, abs(speed), vel_units, false); //to change direction, change sign of input speed
+      right_mg.rotateFor(-lim, rot_units, abs(speed), vel_units);
+
+      group_stop(left_mg, right_mg);
     }
 
 //TODO define remaining methods from header file

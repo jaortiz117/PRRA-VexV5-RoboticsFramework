@@ -79,9 +79,9 @@ public:
   virtual void auton();
   virtual void move_base(double pow, velocityUnits vel = velocityUnits::pct);
   virtual void move_base(double pow, float lim,
-           velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::deg);
+           velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev);
   virtual void rotate_base(double pow, velocityUnits vel = velocityUnits::pct);
-  virtual void rotate_base(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::deg);
+  virtual void rotate_base(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev);
   virtual void grab(bool intake = true, float revs = 10.0);
 };
 } // namespace robot
