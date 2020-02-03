@@ -143,6 +143,10 @@ Discarded input sections
                 0x00000000       0x2c build/src/auton/auton.o
  .ARM.exidx.text._ZN5auton5Auton10group_stopEN3vex11motor_groupES2_NS1_9brakeTypeE
                 0x00000000        0x8 build/src/auton/auton.o
+ .text._ZN5auton5Auton14move_group_forEN3vex6bumperENS1_11motor_groupES3_dNS1_13velocityUnitsE
+                0x00000000       0xc0 build/src/auton/auton.o
+ .ARM.exidx.text._ZN5auton5Auton14move_group_forEN3vex6bumperENS1_11motor_groupES3_dNS1_13velocityUnitsE
+                0x00000000        0x8 build/src/auton/auton.o
  .llvm_addrsig  0x00000000        0x0 build/src/auton/auton.o
  .text          0x00000000        0x0 build/src/driver/driver.o
  .text._ZN6driver8digi_outEN3vex11digital_outENS0_10controller6buttonE

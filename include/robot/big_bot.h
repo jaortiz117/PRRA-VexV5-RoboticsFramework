@@ -21,9 +21,11 @@ class BigBot : public robot::Bot{
   motor RollerL2 = motor(PORT2, ratio18_1, false);
   motor RollerR1 = motor(PORT18, ratio18_1, false);
   motor RollerR2 = motor(PORT19, ratio18_1, false);
-  // led Piston = led(Brain.ThreeWirePort.A);
+
+  //triports
   triport t = triport( PORT22 );
-  digital_out Piston = led(t.A);
+  digital_out Piston = led(t.B);
+  bumper ramp_btn = bumper(t.A);
 
   vex::motor_group base_left= motor_group(BaseLeft1, BaseLeft2, BaseLeft3);
   vex::motor_group base_right= motor_group(BaseRight1, BaseRight2, BaseRight3);
