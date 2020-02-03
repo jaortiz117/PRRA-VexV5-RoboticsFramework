@@ -23,12 +23,24 @@ void BigBot::auton() {
 
 void BigBot::move_base(double pow, velocityUnits vel) {
   aut.move_group_double(base_left, base_right, pow, vel);
-  //TODO
 }
 
+//TODO other move_base
+
 void BigBot::rotate_base(double pow, velocityUnits vel) {
-  //TODO
+  aut.move_group(base_left, 100, velocityUnits::pct);
+  aut.move_group(base_right, -100, velocityUnits::pct);
 }
+
+void BigBot::rotate_base(double pow, float lim, 
+velocityUnits vel, rotationUnits rot) {
+  // aut.move_group(base_left, 100, velocityUnits::pct);
+  // aut.move_group(base_right, -100, velocityUnits::pct);
+
+  aut.mech_rotate(base_left, base_right, lim, rot, pow, vel);
+}
+
+//TODO other rotate_base
 
 void BigBot::grab(bool intake, float revs) {
   //TODO

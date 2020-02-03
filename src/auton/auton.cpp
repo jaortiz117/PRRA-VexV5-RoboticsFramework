@@ -8,9 +8,6 @@ using namespace auton;
 void Auton::move_group(vex::motor_group mg, double pow,
                       vex::velocityUnits units) {
   // assuming mg has same amount of motors on both sides
-  // for (int i = 0; i < util::arr_length(mg.getRight()); i++) {
-  //   mg.getRight()[i].spin(vex::directionType::rev, pow, units);
-  // }
 
     mg.spin(directionType::fwd,  pow, units);
 
@@ -26,7 +23,7 @@ TODO these functions have been copy pasted from older projects,
 they still  need to be translated into this library's design language
 *************************************/
 
-void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, float lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){
+void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){
 // void motorRotateFor(vex::motor mL, vex::motor mR, float rotation, rotationUnits units, int speed, velocityUnits units_v){
     left_mg.resetRotation();
     right_mg.resetRotation();
@@ -70,29 +67,17 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, 
 // }
 }
 
-// void Auton::mech_rotate(robot::MotorGroup mg, float lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){//speed dictates if cw or ccw
-// void rotateAlt(float revs, double speed){//+ is to cw, - to ccw
-//     if(revs < 0){
-//         speed = -speed;
-//     }
-//     //left
-//     //moveBaseL(speed, velocityUnits::pct);
-//     LMWheel.spin(directionType::fwd, speed, velocityUnits::pct);
-//     LFWheel.spin(directionType::fwd, speed, velocityUnits::pct);
-//     LBWheel.startRotateFor(revs, rotationUnits::rev, abs(speed), velocityUnits::pct);
-    
-//     Brain.Screen.printAt(1,40,"Encoder val: %f", RBWheel.rotation(rotationUnits::rev));
-//     Brain.Screen.clearScreen();
-    
-//     //right
-//     //cant use function becuase we need to use encoders
-//     RMWheel.spin(directionType::fwd, -speed, velocityUnits::pct);
-//     RFWheel.spin(directionType::fwd, -speed, velocityUnits::pct);
-//     RBWheel.rotateFor(-revs, rotationUnits::rev, abs(speed), velocityUnits::pct);
-    
-//     baseStop(brakeType::brake);
-// }
-// }
+// Moves motor groups in separete directions, speed sing dictates direction
+    void Auton::mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units) { 
+      left_mg.rotateFor(fwd, lim, rot_units, -speed, vel_units, false); //to change direction, change sing of input speed
+      right_mg.rotateFor(fwd, lim, rot_units, speed, vel_units);
+    }
 
 //TODO define remaining methods from header file
 //      Most of these methods can reuse the definitions from old_code.cpp
+
+// Stops motor groups, depending on brake type can be used for base or arm
+    void Auton::group_stop(vex::motor_group left_mg, vex::motor_group right_mg, brakeType brake_type) {
+      left_mg.stop(brake_type);
+      right_mg.stop(brake_type);
+    }
