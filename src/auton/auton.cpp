@@ -28,34 +28,45 @@ they still  need to be translated into this library's design language
 
 void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, float lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){
 // void motorRotateFor(vex::motor mL, vex::motor mR, float rotation, rotationUnits units, int speed, velocityUnits units_v){
-//     mL.resetRotation();
-//     mR.resetRotation();
+    left_mg.resetRotation();
+    right_mg.resetRotation();
     
-//     double dir = 1;
-//     if(rotation < 0)
-//         dir  = -dir;
+    double dir = 1;
+    if(lim < 0)
+        dir  = -dir;
     
-//     rotation = std::abs(rotation);
-//    while((rotation - abs((mL.rotation(units) + mR.rotation(units))/2)) == 0){
-//        //find encoder difference
-//        double dVel = abs(mL.velocity(units_v)) - abs(mR.velocity(units_v));
+    lim = abs(lim);
+   while((lim - abs((left_mg.rotation(rot_units) + right_mg.rotation(rot_units))/2)) == 0){
+       //find encoder difference
+       double dVel = abs(left_mg.velocity(vel_units)) - abs(right_mg.velocity(vel_units));
        
-//        //depending on which motor is slower substract the speed difference from faster motor
-//        if(dVel > 0){//mL faster
-//            moveBaseL(dir*(speed - dVel), units_v);
-//            moveBaseR(dir*speed, units_v);
-//        }
-//        else if(dVel < 0){//mR faster
-//            moveBaseL(dir*speed, units_v);
-//            moveBaseR(dir*(speed - dVel), units_v);
-//        }
-//        else{//speed is equal
-//            moveBaseL(dir*speed, units_v);
-//            moveBaseR(dir*speed, units_v);
-//        }
+       //depending on which motor is slower substract the speed difference from faster motor
+       if(dVel > 0){//mL faster
+          //  moveBaseL(dir*(speed - dVel), units_v);
+          //  moveBaseR(dir*speed, units_v);
+
+           move_group(left_mg, dir*(speed - dVel), vel_units);
+           move_group(right_mg, dir*speed, vel_units);
+       }
+       else if(dVel < 0){//mR faster
+          //  moveBaseL(dir*speed, units_v);
+          //  moveBaseR(dir*(speed - dVel), units_v);
+
+           move_group(left_mg, dir*(speed - dVel), vel_units);
+           move_group(left_mg, dir*speed, vel_units);
+       }
+       else{//speed is equal
+          //  moveBaseL(dir*speed, units_v);
+          //  moveBaseR(dir*speed, units_v);
+
+           move_group(left_mg, dir*speed, vel_units);
+           move_group(left_mg, dir*speed, vel_units);
+       }
        
-//        task::sleep(5);
-//    }
+       task::sleep(5);
+   }
+
+   group_stop(left_mg, right_mg);
 // }
 }
 
