@@ -73,6 +73,8 @@ void Auton::move_group_for(vex::bumper bump, vex::motor_group left_mg, vex::moto
     move_group(left_mg, speed, vel_units);
     move_group(right_mg,speed, vel_units);
   }
+
+  group_stop(left_mg, right_mg);
 }
 
 // Moves motor groups in separete directions, speed sing dictates direction
