@@ -55,7 +55,7 @@ class BigBot : public robot::Bot{
     void rotate_base(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev) override;
     void grab(bool intake = true, float revs = 10.0) override;
     double gear_convert(double input);
-    void move_ramp(vex::bumper bump, double speed, velocityUnits vel);
+    void move_ramp(double speed, velocityUnits vel = velocityUnits::pct);
 };
 
 #endif

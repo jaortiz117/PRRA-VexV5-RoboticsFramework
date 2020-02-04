@@ -21,10 +21,11 @@ void BigBot::driver(){
 }
 
 void BigBot::auton() {
-  util::gyro_calibrate(g_sensor);
+  // util::gyro_calibrate(g_sensor);
   // move_base(50);
   // rotate_base(50, 1.0);
-  aut.move_group_for(base_left, base_right, gear_convert(2), rotationUnits::rev, 50, velocityUnits::pct);//TODO in move_base
+  // aut.move_group_for(base_left, base_right, gear_convert(2), rotationUnits::rev, 50, velocityUnits::pct);//TODO in move_base
+  move_ramp(-50);
 
   //TODO make conversion for gears in lim for all internal functions
 
@@ -61,8 +62,8 @@ void BigBot::grab(bool intake, float revs) {
   //TODO
 }
 
-void BigBot::move_ramp(vex::bumper bump, double speed, velocityUnits vel) {
-  if(speed > 0) { // move forward, stop with encoder
+void BigBot::move_ramp(double speed, velocityUnits vel) {
+  if(speed >= 0) { // move forward, stop with encoder
     if(ramp_l.rotation(rotationUnits::rev) < 2) {
       aut.move_group_double(ramp_l, ramp_r, speed);
     } 
@@ -77,9 +78,9 @@ void BigBot::move_ramp(vex::bumper bump, double speed, velocityUnits vel) {
     }
   } 
   else if(speed < 0) { // move backwards, stop with bumper
-    aut.move_group_for(bump, ramp_l, ramp_r, speed, vel);
+    aut.move_group_for(ramp_btn, ramp_l, ramp_r, speed, vel);
   } 
-  else { // hold lift
-    aut.group_stop(ramp_l, ramp_r, brakeType::hold);
-  }
+  // else { // hold lift
+  //   aut.group_stop(ramp_l, ramp_r, brakeType::hold);
+  // }
 }
