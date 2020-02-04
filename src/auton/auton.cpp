@@ -90,6 +90,10 @@ void Auton::move_group_for(vex::bumper bump, vex::motor_group left_mg, vex::moto
       group_stop(left_mg, right_mg);
     }
 
+void Auton::mech_rotate(vex::gyro sensor, vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){
+  //TODO
+}
+
 //TODO define remaining methods from header file
 //      Most of these methods can reuse the definitions from old_code.cpp
 

@@ -12,6 +12,8 @@ namespace util
 //   return sizeof(arr) / sizeof(*arr);
 // }
 
+  void gyro_calibrate(vex::gyro sensor);
+
   enum class Side{top, bottom};
   enum class Color{red, blue};
   class Position{

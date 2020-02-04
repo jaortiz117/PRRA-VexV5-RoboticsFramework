@@ -31,6 +31,9 @@ namespace auton {
     
     // Moves motor groups in separete directions, speed sing dictates direction
     void mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units);
+    
+    //uses gyro to rotate
+    void mech_rotate(vex::gyro sensor, vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units);
   
     // Stops motor groups, depending on brake type can be used for base or arm
     void group_stop(vex::motor_group left_mg, vex::motor_group right_mg, brakeType brake_type = brakeType::brake);
