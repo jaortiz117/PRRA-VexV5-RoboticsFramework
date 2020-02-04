@@ -21,6 +21,7 @@ void BigBot::driver(){
 }
 
 void BigBot::auton() {
+  util::gyro_calibrate(g_sensor);
   // move_base(50);
   // rotate_base(50, 1.0);
   aut.move_group_for(base_left, base_right, gear_convert(2), rotationUnits::rev, 50, velocityUnits::pct);//TODO in move_base

@@ -50,14 +50,14 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, 
           //  moveBaseR(dir*(speed - dVel), units_v);
 
            move_group(left_mg, dir*(speed - dVel), vel_units);
-           move_group(left_mg, dir*speed, vel_units);
+           move_group(right_mg, dir*speed, vel_units);
        }
        else{//speed is equal
           //  moveBaseL(dir*speed, units_v);
           //  moveBaseR(dir*speed, units_v);
 
            move_group(left_mg, dir*speed, vel_units);
-           move_group(left_mg, dir*speed, vel_units);
+           move_group(right_mg, dir*speed, vel_units);
        }
        
        task::sleep(5);
@@ -72,6 +72,8 @@ void Auton::move_group_for(vex::bumper bump, vex::motor_group left_mg, vex::moto
   while(bump.value() == orig_val){
     move_group(left_mg, speed, vel_units);
     move_group(right_mg,speed, vel_units);
+    
+    task::sleep(5);
   }
 
   group_stop(left_mg, right_mg);
@@ -91,7 +93,20 @@ void Auton::move_group_for(vex::bumper bump, vex::motor_group left_mg, vex::moto
     }
 
 void Auton::mech_rotate(vex::gyro sensor, vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){
-  //TODO
+  sensor.resetRotation();
+    
+    double dir = 1;
+    if(lim < 0)
+        dir  = -dir;
+    
+    lim = abs(lim);
+   while((lim - abs(sensor.value(rot_units))) > 0){
+           move_group(left_mg, dir*speed, vel_units);
+           move_group(right_mg, -dir*speed, vel_units);
+       task::sleep(5);
+   }
+
+   group_stop(left_mg, right_mg);
 }
 
 //TODO define remaining methods from header file

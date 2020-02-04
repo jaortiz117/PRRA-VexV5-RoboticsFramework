@@ -26,6 +26,7 @@ class BigBot : public robot::Bot{
   triport t = triport( PORT22 );
   digital_out Piston = led(t.B);
   bumper ramp_btn = bumper(t.A);
+  gyro g_sensor = gyro(t.H);
 
   vex::motor_group base_left= motor_group(BaseLeft1, BaseLeft2, BaseLeft3);
   vex::motor_group base_right= motor_group(BaseRight1, BaseRight2, BaseRight3);
