@@ -67,7 +67,7 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, 
 // }
 }
 
-void Auton::move_group_for(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, double speed, vex::velocityUnits vel_units){
+void Auton::move_group_for_bumper(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, double speed, vex::velocityUnits vel_units){
   // int orig_val = bump.value();
   bumper bump = bumper(sensor_port);
   while(!bump.pressing()){
@@ -96,15 +96,17 @@ void Auton::move_group_for(vex::triport::port &sensor_port, vex::motor_group lef
       group_stop(left_mg, right_mg);
     }
 
-void Auton::mech_rotate(vex::gyro sensor, vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){
-  sensor.resetRotation();
+void Auton::mech_rotate_gyro(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){
+  gyro sensor = gyro(sensor_port);
+  
+  sensor.resetHeading();
     
     double dir = 1;
     if(lim < 0)
         dir  = -dir;
     
     lim = abs(lim);
-   while((lim - abs(sensor.value(rot_units))) > 0){
+   while((lim - abs(sensor.heading(rot_units))) > 0){
            move_group(left_mg, dir*speed, vel_units);
            move_group(right_mg, -dir*speed, vel_units);
        task::sleep(5);
