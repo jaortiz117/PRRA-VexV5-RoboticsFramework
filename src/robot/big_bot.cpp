@@ -60,3 +60,26 @@ velocityUnits vel, rotationUnits rot) {
 void BigBot::grab(bool intake, float revs) {
   //TODO
 }
+
+void BigBot::move_ramp(vex::bumper bump, double speed, velocityUnits vel) {
+  if(speed > 0) { // move forward, stop with encoder
+    if(ramp_l.rotation(rotationUnits::rev) < 2) {
+      aut.move_group_double(ramp_l, ramp_r, speed);
+    } 
+    else if(ramp_l.rotation(rotationUnits::rev) < 3) {
+      aut.move_group_double(ramp_l, ramp_r, speed/2);
+    } 
+    else if(ramp_l.rotation(rotationUnits::rev) <= 4) {
+      aut.move_group_double(ramp_l, ramp_r, speed/4);
+    } 
+    else {
+      aut.group_stop(ramp_l, ramp_r, brakeType::hold);
+    }
+  } 
+  else if(speed < 0) { // move backwards, stop with bumper
+    aut.move_group_for(bump, ramp_l, ramp_r, speed, vel);
+  } 
+  else { // hold lift
+    aut.group_stop(ramp_l, ramp_r, brakeType::hold);
+  }
+}
