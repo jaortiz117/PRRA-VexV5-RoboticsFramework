@@ -78,7 +78,7 @@ void BigBot::move_ramp(double speed, velocityUnits vel) {
     }
   } 
   else if(speed < 0) { // move backwards, stop with bumper
-    aut.move_group_for(ramp_btn, ramp_l, ramp_r, speed, vel);
+    aut.move_group_for(Brain.ThreeWirePort.A, ramp_l, ramp_r, speed, vel);
   } 
   // else { // hold lift
   //   aut.group_stop(ramp_l, ramp_r, brakeType::hold);

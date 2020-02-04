@@ -27,7 +27,7 @@ namespace auton {
     void move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units);
     
     //moves motor group in same dir stopping on a switch
-    void move_group_for(vex::bumper bump, vex::motor_group left_mg, vex::motor_group right_mg, double speed, vex::velocityUnits vel_units);
+    void move_group_for(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, double speed, vex::velocityUnits vel_units);
     
     // Moves motor groups in separete directions, speed sing dictates direction
     void mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units);

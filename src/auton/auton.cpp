@@ -67,14 +67,15 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, 
 // }
 }
 
-void Auton::move_group_for(vex::bumper bump, vex::motor_group left_mg, vex::motor_group right_mg, double speed, vex::velocityUnits vel_units){
+void Auton::move_group_for(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, double speed, vex::velocityUnits vel_units){
   // int orig_val = bump.value();
+  bumper bump = bumper(sensor_port);
   while(!bump.pressing()){
   // while(1){
+      Brain.Screen.setCursor(1,1);
       Brain.Screen.print(bump.value());
 
     move_group(left_mg, speed, vel_units);
-    move_group(right_mg,speed, vel_units);
     
     task::sleep(5);
   }
