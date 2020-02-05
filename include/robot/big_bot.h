@@ -29,7 +29,7 @@ class BigBot : public robot::Bot{
 
   digital_out Piston = led(t.B);
   // bumper ramp_btn = bumper(t.A);
-  // gyro g_sensor = gyro(t.H);
+  gyro g_sensor = gyro(t.H);
 
   vex::motor_group base_left= motor_group(BaseLeft1, BaseLeft2, BaseLeft3);
   vex::motor_group base_right= motor_group(BaseRight1, BaseRight2, BaseRight3);
@@ -55,7 +55,7 @@ class BigBot : public robot::Bot{
     void move_base(double pow, float lim,
            velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev) override;
     void rotate_base(double pow, velocityUnits vel = velocityUnits::pct) override;
-    void rotate_base(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev) override;
+    void rotate_base(double pow, float lim, velocityUnits vel = velocityUnits::pct) override;
     void grab(bool intake = true, float revs = 10.0) override;
     double gear_convert(double input);
     void move_ramp(double speed, velocityUnits vel = velocityUnits::pct);
