@@ -22,9 +22,9 @@ void BigBot::driver(){
 
 void BigBot::auton() {
   // aut.move_group_for(base_left, base_right, gear_convert(2), rotationUnits::rev, 50, velocityUnits::pct);//TODO in move_base
-  aut.mech_rotate_gyro(t.H, base_left, base_right, 90, 50, velocityUnits::pct);//cw
+  aut.mech_rotate_gyro(t.H, base_left, base_right, -90, 50, velocityUnits::pct);//cw
   task::sleep(1000);
-  aut.mech_rotate_gyro(t.H, base_left, base_right, -90, 50, velocityUnits::pct);//ccw
+  aut.mech_rotate_gyro(t.H, base_left, base_right, 90, 50, velocityUnits::pct);//ccw
 
   //TODO make conversion for gears in lim for all internal functions
   //TODO
