@@ -144,7 +144,7 @@ void Auton::mech_rotate_gyro(vex::triport::port &sensor_port,
     }
   }
 
-  group_stop(left_mg, right_mg);
+  group_stop(left_mg, right_mg, brakeType::hold);
 }
 
 // TODO define remaining methods from header file
