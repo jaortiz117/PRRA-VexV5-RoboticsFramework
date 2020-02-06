@@ -31,14 +31,4 @@ namespace util
 };
 }
 
-/*****************************
-PID implementation (will be a class that is instantiated whenever a function uses PID)
-
-https://www.teachmemicro.com/arduino-pid-control-tutorial/
-
-This only needs to have something t return a 0 once the PID has been 
-within acceptable range of desired val for x amount of time. So it returns a 0 once it ends
-
-******************************/
-
 #endif
