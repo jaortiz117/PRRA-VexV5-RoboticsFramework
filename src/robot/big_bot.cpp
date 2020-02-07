@@ -32,7 +32,6 @@ void BigBot::auton() {
 
 void BigBot::move_base(double pow, velocityUnits vel) {
   aut.move_group_double(base_left, base_right, pow, vel);
-  //TODO
 }
 
 void BigBot::move_base(double pow, float lim,
@@ -56,7 +55,7 @@ velocityUnits vel) {
 }
 
 void BigBot::grab(bool intake, float revs) {
-  //TODO
+  aut.move_group_for(rollers_l, rollers_r, revs, rotationUnits::rev, 100, velocityUnits::pct);
 }
 
 void BigBot::move_ramp(double speed, velocityUnits vel) {
