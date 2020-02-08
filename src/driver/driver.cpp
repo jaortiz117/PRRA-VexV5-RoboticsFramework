@@ -16,13 +16,12 @@ void driver::base_arcade(vex::motor_group left_mg, vex::motor_group right_mg, ve
   //                velocityUnits::pct);
   // }
   // Brain.Screen.print(axis_x.value());
+
   //Left
-    left_mg.spin(directionType::fwd, ((axis_y.value() + axis_x.value()) * 2),
-                 velocityUnits::pct);
+  left_mg.spin(directionType::fwd, ((axis_y.value() + axis_x.value()) * 2), velocityUnits::pct);
    
-    //Right
-    right_mg.spin(directionType::fwd, ((axis_y.value() - axis_x.value()) * 2),
-                 velocityUnits::pct);
+  //Right
+  right_mg.spin(directionType::fwd, ((axis_y.value() - axis_x.value()) * 2), velocityUnits::pct);
   
 }
 
@@ -37,51 +36,27 @@ void driver::mech(vex::motor_group left_mg, vex::motor_group right_mg, vex::cont
   // }
 
   //Left
-    left_mg.spin(directionType::fwd,  Controller1.Axis2.value(), velocityUnits::pct);
+  left_mg.spin(directionType::fwd,  Controller1.Axis2.value(), velocityUnits::pct);
    
-    //Right
-    right_mg.spin(directionType::fwd,  Controller1.Axis2.value(), velocityUnits::pct);
+  //Right
+  right_mg.spin(directionType::fwd,  Controller1.Axis2.value(), velocityUnits::pct);
 }
 
 void driver::mech(vex::motor_group left_mg, vex::motor_group right_mg, vex::controller::button cw, vex::controller::button ccw){
-    //assuming mg has same amount of motors on both sides
+  //assuming mg has same amount of motors on both sides
     
-    if(cw.pressing()){
-      // for (int i = 0; i < util::arr_length(mg.getLeft()); i++){
-      //   mg.getLeft()[i].spin(directionType::fwd, 100, velocityUnits::pct);
-      //   mg.getRight()[i].spin(directionType::rev, 100, velocityUnits::pct);
-      // }
-
-      //Left
+  if(cw.pressing()){
     left_mg.spin(directionType::fwd,  100, velocityUnits::pct);
-   
-    //Right
     right_mg.spin(directionType::rev,  100, velocityUnits::pct);
-    }
-    else if(ccw.pressing()){
-      // for (int i = 0; i < util::arr_length(mg.getLeft()); i++){
-      //   mg.getLeft()[i].spin(directionType::rev, 100, velocityUnits::pct);
-      //   mg.getRight()[i].spin(directionType::fwd, 100, velocityUnits::pct);
-      // }
-
-      //Left
+  }
+  else if(ccw.pressing()){
     left_mg.spin(directionType::rev,  100, velocityUnits::pct);
-   
-    //Right
     right_mg.spin(directionType::fwd,  100, velocityUnits::pct);
-    }
-    else{
-      // for (int i = 0; i < util::arr_length(mg.getLeft()); i++){
-      //   mg.getLeft()[i].stop(brakeType::brake);
-      //   mg.getRight()[i].stop(brakeType::brake);
-      // }
-
-      //Left
+  }
+  else{
     left_mg.stop(brakeType::brake);
-   
-    //Right
     right_mg.stop(brakeType::brake);
-    }
+  }
 }
 
 void driver::mech(vex::motor_group mg, vex::controller::button cw, vex::controller::button ccw){
