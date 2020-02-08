@@ -9,26 +9,26 @@ class SmallBot : public robot::Bot{
   private:
 
     //TODO Configure rotation-------------------------------------------------------------------------
-  motor BaseLeft1 = motor(PORT3, ratio18_1, false);
-  motor BaseLeft2 = motor(PORT4, ratio18_1, false);
-  motor BaseRight1 = motor(PORT1, ratio18_1, false);
-  motor BaseRight2 = motor(PORT2, ratio18_1, false);
-  motor LiftLeft = motor(PORT10, ratio18_1, false);
-  motor LiftRight = motor(PORT9, ratio18_1, false);
-  motor Ramp = motor(PORT6, ratio18_1, false);
-  motor RollersLeft = motor(PORT8, ratio18_1, false);
-  motor RollersRight = motor(PORT7, ratio18_1, false);
+  motor baseLeft1 = motor(PORT3, ratio18_1, false);
+  motor baseLeft2 = motor(PORT4, ratio18_1, false);
+  motor baseRight1 = motor(PORT1, ratio18_1, false);
+  motor baseRight2 = motor(PORT2, ratio18_1, false);
+  motor liftLeft = motor(PORT10, ratio18_1, false);
+  motor liftRight = motor(PORT9, ratio18_1, false);
+  motor rampMotor = motor(PORT6, ratio18_1, false);
+  motor rollersLeft = motor(PORT8, ratio18_1, false);
+  motor rollersRight = motor(PORT7, ratio18_1, false);
 
-  vex::motor_group base_left = motor_group(BaseLeft1, BaseRight2);
-  vex::motor_group base_right = motor_group(BaseRight1, BaseRight2);
+  vex::motor_group base_left = motor_group(baseLeft1, baseLeft2);
+  vex::motor_group base_right = motor_group(baseRight1, baseRight2);
 
-  vex::motor_group lift_left = motor_group(LiftLeft);
-  vex::motor_group lift_right = motor_group(LiftRight);
+  vex::motor_group lift_left = motor_group(liftLeft);
+  vex::motor_group lift_right = motor_group(liftRight);
 
-  vex::motor_group ramp = motor_group(Ramp);
+  vex::motor_group ramp = motor_group(rampMotor);
 
-  vex::motor_group rollers_left = motor_group(RollersLeft);
-  vex::motor_group rollers_right = motor_group(RollersRight);
+  vex::motor_group rollers_left = motor_group(rollersLeft);
+  vex::motor_group rollers_right = motor_group(rollersRight);
 
   //TODO Comfigure piston ----------------------------------------------------------------------------
   triport t = triport(PORT22);
