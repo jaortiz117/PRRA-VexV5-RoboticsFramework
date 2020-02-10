@@ -21,11 +21,10 @@ void BigBot::driver(){
 }
 
 void BigBot::auton() {
-  // aut.move_group_for(base_left, base_right, gear_convert(2), rotationUnits::rev, 50, velocityUnits::pct);//TODO in move_base
-  aut.mech_rotate_gyro(t.H, base_left, base_right, -90, 50, velocityUnits::pct);//cw
-  task::sleep(1000);
-  aut.mech_rotate_gyro(t.H, base_left, base_right, 90, 50, velocityUnits::pct);//ccw
 
+  aut.move_group_for_sonar(sonar_l, base_left, 5.0, distanceUnits::in, 50, velocityUnits::pct);
+  task::sleep(1000);
+  aut.move_group_for_sonar(sonar_r, base_right, 5.0, distanceUnits::in, 50, velocityUnits::pct);
   //TODO make conversion for gears in lim for all internal functions
   //TODO
 }
@@ -43,6 +42,7 @@ void BigBot::rotate_base(double pow, velocityUnits vel) {
   pow = gear_convert(pow);
   aut.move_group(base_left, pow, velocityUnits::pct);
   aut.move_group(base_right, -pow, velocityUnits::pct);
+  
 }
 
 void BigBot::rotate_base(double pow, float lim, 
@@ -51,6 +51,11 @@ velocityUnits vel) {
   // aut.move_group(base_right, -100, velocityUnits::pct);
   pow = gear_convert(pow);
   aut.mech_rotate(base_left, base_right, lim, rotationUnits::rev, pow, vel);
+
+//when ready to use gyro
+  // aut.mech_rotate_gyro(t.H, base_left, base_right, -90, 50, velocityUnits::pct);//cw
+  // task::sleep(1000);
+  // aut.mech_rotate_gyro(t.H, base_left, base_right, 90, 50, velocityUnits::pct);//ccw
 
 }
 
@@ -80,5 +85,3 @@ void BigBot::move_ramp(double speed, velocityUnits vel) {
   //   aut.group_stop(ramp_l, ramp_r, brakeType::hold);
   // }
 }
-
-//test
