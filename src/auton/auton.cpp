@@ -93,7 +93,7 @@ void Auton::move_group_for_bumper(vex::triport::port &sensor_port,
 // moves motor group in same dir stopping on a distance (sonar ports need to be
 // connected one next to the other)
 void Auton::move_group_for_sonar(vex::triport::port &sensor_port,
-                                 vex::motor_group mg, double lim,
+                                 vex::motor_group mg, int dir, double lim,
                                  vex::distanceUnits units, double speed,
                                  vex::velocityUnits vel_units) {
   vex::sonar sensor = vex::sonar(sensor_port);
@@ -103,7 +103,7 @@ void Auton::move_group_for_sonar(vex::triport::port &sensor_port,
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print(sensor.value());
 
-    move_group(mg, speed, vel_units);
+    move_group(mg, dir*speed, vel_units);
 
     task::sleep(5);
   }
@@ -115,7 +115,7 @@ void Auton::move_group_for_sonar(vex::triport::port &sensor_port,
 // connected one next to the other)
 void Auton::move_group_for_sonar(vex::triport::port &sensor_port,
                                  vex::motor_group left_mg,
-                                 vex::motor_group right_mg, double lim,
+                                 vex::motor_group right_mg, int dir, double lim,
                                  vex::distanceUnits units, double speed,
                                  vex::velocityUnits vel_units) {
   vex::sonar sensor = vex::sonar(sensor_port);
@@ -125,8 +125,8 @@ void Auton::move_group_for_sonar(vex::triport::port &sensor_port,
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print(sensor.value());
 
-    move_group(left_mg, speed, vel_units);
-    move_group(right_mg, speed, vel_units);
+    move_group(left_mg, dir*speed, vel_units);
+    move_group(right_mg, dir*speed, vel_units);
 
     task::sleep(5);
   }
@@ -139,7 +139,7 @@ void Auton::move_group_for_sonar(vex::triport::port &sensor_port,
 void Auton::move_group_for_dual_sonar(vex::triport::port &sensor_port,
                                       vex::triport::port &sensor_port_2,
                                       vex::motor_group left_mg,
-                                      vex::motor_group right_mg, double lim,
+                                      vex::motor_group right_mg, int dir, double lim,
                                       vex::distanceUnits units, double speed,
                                       vex::velocityUnits vel_units) {
 
@@ -149,16 +149,16 @@ void Auton::move_group_for_dual_sonar(vex::triport::port &sensor_port,
   // The gist of the trick is passing the lambda function as the callback
   // argument and providing a captureless thunk as the callback function pointer
 
-  auto left = [this, &sensor_port, left_mg, lim, units, speed, vel_units]() {
-    move_group_for_sonar(sensor_port, left_mg, lim, units, speed, vel_units);
+  auto left = [this, &sensor_port, left_mg, dir, lim, units, speed, vel_units]() {
+    move_group_for_sonar(sensor_port, left_mg, dir, lim, units, speed, vel_units);
   };
   auto left_thunk = [](void *arg) { // note thunk is captureless
     (*static_cast<decltype(left) *>(arg))();
   };
 
-  auto right = [this, &sensor_port_2, right_mg, lim, units, speed,
+  auto right = [this, &sensor_port_2, right_mg, dir, lim, units, speed,
                 vel_units]() {
-    move_group_for_sonar(sensor_port_2, right_mg, lim, units, speed, vel_units);
+    move_group_for_sonar(sensor_port_2, right_mg, dir, lim, units, speed, vel_units);
   };
   auto right_thunk = [](void *arg) { // note thunk is captureless
     (*static_cast<decltype(right) *>(arg))();
