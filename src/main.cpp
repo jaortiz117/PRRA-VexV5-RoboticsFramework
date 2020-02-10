@@ -95,46 +95,6 @@ void autonomous(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-//temp
-//  motor RampL = motor(PORT14, ratio18_1, false);
-//   motor RampR = motor(PORT20, ratio18_1, false);
-
-// class MotorGroup{
-//   private:
-//     vex::motor *left;
-//     vex::motor *right;
-
-//   public:
-//     MotorGroup(vex::motor _left[], vex::motor _right[]) : 
-//     left{_left}, right{_right}{}
-
-//     vex::motor* getLeft();
-
-//     vex::motor* getRight();
-// };
-
-// // MotorGroup
-// vex::motor* MotorGroup::getLeft() { return left; }
-
-// vex::motor* MotorGroup::getRight() { return right; }
-
-// vex::motor ramp_l[1]= {RampL};
-//   vex::motor ramp_r[1]= {RampR};
-  // vex::motor_group ramp_gl= vex::motor_group(RampL);
-  // vex::motor_group ramp_gr = vex::motor_group(RampR);
-
-// void temp_mech(MotorGroup mg, vex::controller::axis axis){
-
-//   for (int i = 0; i < arr_length(mg.getLeft()); i++){
-//     //Left
-//     mg.getRight()[i].spin(directionType::fwd,  axis.value(), velocityUnits::pct);
-   
-//     //Right
-//     mg.getLeft()[i].spin(directionType::rev,  axis.value(), velocityUnits::pct);
-//   }
-// }
-
-//^^ temp
 
 void usercontrol(void) {
   // User control code here, inside the loop
@@ -150,14 +110,6 @@ void usercontrol(void) {
 
 
     BIGGIE.driver();
-    // temp_mech(ramp_g, Controller1.Axis2);
-    // for (int i = 0; i < arr_length(ramp_g.getLeft()); i++){
-    //Left
-    // ramp_gl.spin(directionType::fwd,  Controller1.Axis2.value(), velocityUnits::pct);
-   
-    // //Right
-    // ramp_gr.spin(directionType::rev,  Controller1.Axis2.value(), velocityUnits::pct);
-  // }
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
