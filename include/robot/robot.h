@@ -81,7 +81,7 @@ public:
   virtual void move_base(double pow, float lim,
            velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev);
   virtual void rotate_base(double pow, velocityUnits vel = velocityUnits::pct);
-  virtual void rotate_base(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev);
+  virtual void rotate_base(double pow, float lim, velocityUnits vel = velocityUnits::pct);//if in encoder: rev, if gyro: deg
   virtual void grab(bool intake = true, float revs = 10.0);
 };
 } // namespace robot
