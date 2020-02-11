@@ -21,7 +21,7 @@ namespace pid{
     unsigned int current_time, previous_time;
     double elapsed_time;
     double error;
-    double last_error;
+    double last_error = 0;
     double cm_error, rate_error;
 
     public:

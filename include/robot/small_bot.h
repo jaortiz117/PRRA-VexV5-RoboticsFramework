@@ -41,7 +41,7 @@ class SmallBot : public robot::Bot{
   //TODO Configure gyro -----------------------------------------------------------------------------
   triport::port gyro_port = t.H;
   
-  auton::Auton aut = auton::Auton(pos);
+  auton::Auton aut = auton::Auton(pos, 1, 5, 3);
 
   public:
     SmallBot(util::Position& _pos);
