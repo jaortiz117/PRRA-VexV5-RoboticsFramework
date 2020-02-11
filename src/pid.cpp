@@ -22,5 +22,13 @@ double PID::compute(double curr_val, double desired){
   last_error = error;          // remember current error
   previous_time = current_time; // remember current time
 
+  if(abs(curr_val - desired) < epsilon){
+    return 0;
+  }
+
+  //control the limit
+  if(out > 100) out = 100;
+  if(out < -100) out = -100;
+
   return out; // have function return the PID output
 }

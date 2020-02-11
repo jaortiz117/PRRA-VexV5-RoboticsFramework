@@ -46,7 +46,7 @@ class BigBot : public robot::Bot{
   // robot::DigitalOutGroup pist = robot::DigitalOutGroup(digi, digi);
   // robot::DigitalOutGroup piston_group = pist;
 
-  auton::Auton aut = auton::Auton(pos);
+  auton::Auton aut = auton::Auton(pos, 2, 5, 1);
 
   public:
     BigBot(util::Position& _pos);

@@ -8,9 +8,12 @@ namespace auton {
   class Auton {
     private:
       util::Position& pos;
+      double kp;
+    double ki;
+    double kd;
     public:
-      Auton(util::Position& _pos)
-        : pos{_pos}{
+      Auton(util::Position& _pos, double _kp, double _ki, double _kd) : 
+    kp{_kp},ki{_ki},kd{_kd}, pos{_pos}{
 
       };
     util::Position& get_pos(){

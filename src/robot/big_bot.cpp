@@ -26,9 +26,11 @@ void BigBot::auton() {
   // task::sleep(1000);
   // aut.move_group_for_sonar(sonar_r, base_right, -1, 5.0, distanceUnits::in, 15, velocityUnits::pct);
   // aut.move_group_for_sonar(sonar_r, base_left, base_right, -1, 5.0, distanceUnits::in, 15, velocityUnits::pct);
-  aut.move_group_for_dual_sonar(sonar_l, sonar_r, base_left, base_right, -1, 5.0, distanceUnits::in, 15, velocityUnits::pct);
+  // aut.move_group_for_dual_sonar(sonar_l, sonar_r, base_left, base_right, -1, 5.0, distanceUnits::in, 15, velocityUnits::pct);
   //TODO make conversion for gears in lim for all internal functions
   //TODO
+
+  aut.move_group_for(rollers_l, rollers_r, 360, rotationUnits::deg, 100, velocityUnits::pct);
 }
 
 void BigBot::move_base(double pow, velocityUnits vel) {
@@ -37,7 +39,7 @@ void BigBot::move_base(double pow, velocityUnits vel) {
 
 void BigBot::move_base(double pow, float lim,
            velocityUnits vel, rotationUnits rot){
-               aut.move_group_for(base_left, base_right, gear_convert(lim), rot, pow, vel);//TODO in move_base
+               aut.move_group_for(base_left, base_right, gear_convert(lim), rot, pow, vel);
            }
 
 void BigBot::rotate_base(double pow, velocityUnits vel) {
