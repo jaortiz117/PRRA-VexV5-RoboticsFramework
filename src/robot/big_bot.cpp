@@ -22,9 +22,11 @@ void BigBot::driver(){
 
 void BigBot::auton() {
 
-  aut.move_group_for_sonar(sonar_l, base_left, -1, 5.0, distanceUnits::in, 50, velocityUnits::pct);
-  task::sleep(1000);
-  aut.move_group_for_sonar(sonar_r, base_right, -1, 5.0, distanceUnits::in, 50, velocityUnits::pct);
+  // aut.move_group_for_sonar(sonar_l, base_left, -1, 5.0, distanceUnits::in, 15, velocityUnits::pct);
+  // task::sleep(1000);
+  // aut.move_group_for_sonar(sonar_r, base_right, -1, 5.0, distanceUnits::in, 15, velocityUnits::pct);
+  // aut.move_group_for_sonar(sonar_r, base_left, base_right, -1, 5.0, distanceUnits::in, 15, velocityUnits::pct);
+  aut.move_group_for_dual_sonar(sonar_l, sonar_r, base_left, base_right, -1, 5.0, distanceUnits::in, 15, velocityUnits::pct);
   //TODO make conversion for gears in lim for all internal functions
   //TODO
 }
