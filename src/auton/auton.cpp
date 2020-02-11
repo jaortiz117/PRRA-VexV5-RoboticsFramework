@@ -98,14 +98,13 @@ void Auton::move_group_for_sonar(vex::triport::port &sensor_port,
                                  vex::velocityUnits vel_units) {
   vex::sonar sensor = vex::sonar(sensor_port);
 
-  while (sensor.distance(units) < lim) {
-    // while(1){
+  while (abs(sensor.distance(units) - lim) > 0) {
     Brain.Screen.setCursor(1, 1);
-    Brain.Screen.print(sensor.value());
+    Brain.Screen.print(sensor.distance(units));
 
     move_group(mg, dir*speed, vel_units);
 
-    task::sleep(5);
+    this_thread::sleep_for(5);
   }
 
   group_stop(mg, mg);
@@ -120,15 +119,14 @@ void Auton::move_group_for_sonar(vex::triport::port &sensor_port,
                                  vex::velocityUnits vel_units) {
   vex::sonar sensor = vex::sonar(sensor_port);
 
-  while (sensor.distance(units) < lim) {
-    // while(1){
+  while (abs(sensor.distance(units) - lim) > 0) {
     Brain.Screen.setCursor(1, 1);
-    Brain.Screen.print(sensor.value());
+    Brain.Screen.print(sensor.distance(units));
 
     move_group(left_mg, dir*speed, vel_units);
     move_group(right_mg, dir*speed, vel_units);
 
-    task::sleep(5);
+    this_thread::sleep_for(5);
   }
 
   group_stop(left_mg, right_mg);
