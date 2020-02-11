@@ -40,8 +40,11 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg,
 
   PID pid = PID(kp, ki, kd);
   double output = pid.compute((left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2, lim);
+  Brain.Screen.setCursor(1, 1);
+    Brain.Screen.print(output);
   while(output != 0){
     double curr_speed = speed * (output/100);
+    Brain.Screen.print(output);
     move_group_double(left_mg, right_mg, dir*curr_speed, vel_units);
     output = pid.compute((left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2, lim);
   }

@@ -30,7 +30,7 @@ void BigBot::auton() {
   //TODO make conversion for gears in lim for all internal functions
   //TODO
 
-  aut.move_group_for(rollers_l, rollers_r, 360, rotationUnits::deg, 100, velocityUnits::pct);
+  aut.move_group_for(base_left, base_right, 3, rotationUnits::rev, 75, velocityUnits::pct);
 }
 
 void BigBot::move_base(double pow, velocityUnits vel) {
@@ -51,15 +51,11 @@ void BigBot::rotate_base(double pow, velocityUnits vel) {
 
 void BigBot::rotate_base(double pow, float lim, 
 velocityUnits vel) {
-  // aut.move_group(base_left, 100, velocityUnits::pct);
-  // aut.move_group(base_right, -100, velocityUnits::pct);
   pow = gear_convert(pow);
-  aut.mech_rotate(base_left, base_right, lim, rotationUnits::rev, pow, vel);
-
-//when ready to use gyro
-  // aut.mech_rotate_gyro(t.H, base_left, base_right, -90, 50, velocityUnits::pct);//cw
-  // task::sleep(1000);
-  // aut.mech_rotate_gyro(t.H, base_left, base_right, 90, 50, velocityUnits::pct);//ccw
+  // aut.mech_rotate(base_left, base_right, lim, rotationUnits::rev, pow, vel);//using encoders
+  
+  //using gyro
+  aut.mech_rotate_gyro(t.H, base_left, base_right, lim, pow, vel);
 
 }
 
