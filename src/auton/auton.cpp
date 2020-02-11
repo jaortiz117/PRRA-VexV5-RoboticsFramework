@@ -237,9 +237,3 @@ void Auton::group_stop(vex::motor_group left_mg, vex::motor_group right_mg, brak
 void Auton::activate_piston(vex::digital_out dg, bool direction) {
   dg.set(direction);
 }
-
-void Auton::score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right) {
-  Auton::move_group_for(b_left, b_right, 400, rotationUnits::deg, 20, velocityUnits::pct);
-  Auton::move_group_for(r_left, r_right, 800, rotationUnits::deg, 20, velocityUnits::pct);
-
-}
