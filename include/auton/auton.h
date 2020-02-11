@@ -46,7 +46,11 @@ namespace auton {
     
     //uses gyro to rotate
     void mech_rotate_gyro(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, double deg, double speed, vex::velocityUnits vel_units);
-  
+  void mech_rotate_dual_gyro(vex::triport::port &sensor_port,vex::triport::port &sensor_port_2,
+                             vex::motor_group left_mg,
+                             vex::motor_group right_mg, double deg,
+                             double speed, vex::velocityUnits vel_units);
+                             
     // Stops motor groups, depending on brake type can be used for base or arm
     void group_stop(vex::motor_group left_mg, vex::motor_group right_mg, brakeType brake_type = brakeType::brake);
     

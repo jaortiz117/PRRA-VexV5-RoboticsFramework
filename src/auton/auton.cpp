@@ -234,6 +234,54 @@ void Auton::mech_rotate_gyro(vex::triport::port &sensor_port,
   group_stop(left_mg, right_mg, brakeType::hold);
 }
 
+void Auton::mech_rotate_dual_gyro(vex::triport::port &sensor_port,vex::triport::port &sensor_port_2,
+                             vex::motor_group left_mg,
+                             vex::motor_group right_mg, double deg,
+                             double speed, vex::velocityUnits vel_units) {
+
+  gyro sensor = gyro(sensor_port);
+  gyro sensor_2 = gyro(sensor_port_2);
+  util::gyro_calibrate(sensor);
+  util::gyro_calibrate(sensor_2);
+  task::sleep(1000); // jic
+  sensor.resetHeading();
+  sensor_2.resetHeading();
+  // sensor.setHeading(0.0, rot_units);
+
+  if (deg < 0) { // ccw
+    deg = 360 + deg;
+    sensor.setHeading(359.0, rotationUnits::deg);
+    sensor_2.setHeading(359.0, rotationUnits::deg);
+
+    while ((sensor.heading(rotationUnits::deg) + sensor_2.heading(rotationUnits::deg))/2 >= deg) {
+      move_group(left_mg, -speed, vel_units);
+      move_group(right_mg, speed, vel_units);
+
+      Brain.Screen.setCursor(1, 1);
+      Brain.Screen.print(sensor.heading(rotationUnits::deg));
+      Brain.Screen.setCursor(2, 1);
+      Brain.Screen.print(sensor_2.heading(rotationUnits::deg));
+
+      task::sleep(5);
+    }
+  } else { // cw
+    // if(rot_units == rotationUnits::deg) sensor.setHeading(359.0, rot_units);
+    while ((sensor.heading(rotationUnits::deg) + sensor_2.heading(rotationUnits::deg))/2 <= deg) {
+      move_group(left_mg, speed, vel_units);
+      move_group(right_mg, -speed, vel_units);
+
+      Brain.Screen.setCursor(1, 1);
+      Brain.Screen.print(sensor.heading(rotationUnits::deg));
+      Brain.Screen.setCursor(2, 1);
+      Brain.Screen.print(sensor_2.heading(rotationUnits::deg));
+
+      task::sleep(5);
+    }
+  }
+
+  group_stop(left_mg, right_mg, brakeType::hold);
+}
+
 // Stops motor groups, depending on brake type can be used for base or arm
 void Auton::group_stop(vex::motor_group left_mg, vex::motor_group right_mg,
                        brakeType brake_type) {
