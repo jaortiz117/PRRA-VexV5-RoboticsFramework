@@ -84,17 +84,17 @@ void Auton::move_group_for_bumper(vex::triport::port &sensor_port, vex::motor_gr
 }
 
 // Moves motor groups in separete directions, speed sing dictates direction
-    void Auton::mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units) { 
-    //   left_mg.resetRotation();
-    // right_mg.resetRotation();
-    //   if(lim < 0){
-    //     speed = -speed;
-    // }
-      left_mg.rotateFor(lim, rot_units, abs(speed), vel_units, false); //to change direction, change sign of input speed
-      right_mg.rotateFor(-lim, rot_units, abs(speed), vel_units);
+void Auton::mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units) { 
+//   left_mg.resetRotation();
+// right_mg.resetRotation();
+//   if(lim < 0){
+//     speed = -speed;
+// }
+  left_mg.rotateFor(lim, rot_units, abs(speed), vel_units, false); //to change direction, change sign of input speed
+  right_mg.rotateFor(-lim, rot_units, abs(speed), vel_units);
 
-      group_stop(left_mg, right_mg);
-    }
+  group_stop(left_mg, right_mg);
+}
 
 void Auton::mech_rotate_gyro(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units){
   gyro sensor = gyro(sensor_port);
@@ -119,7 +119,11 @@ void Auton::mech_rotate_gyro(vex::triport::port &sensor_port, vex::motor_group l
 //      Most of these methods can reuse the definitions from old_code.cpp
 
 // Stops motor groups, depending on brake type can be used for base or arm
-    void Auton::group_stop(vex::motor_group left_mg, vex::motor_group right_mg, brakeType brake_type) {
-      left_mg.stop(brake_type);
-      right_mg.stop(brake_type);
-    }
+void Auton::group_stop(vex::motor_group left_mg, vex::motor_group right_mg, brakeType brake_type) {
+  left_mg.stop(brake_type);
+  right_mg.stop(brake_type);
+}
+
+void Auton::activate_piston(vex::digital_out dg, bool direction) {
+  dg.set(direction);
+}

@@ -6,33 +6,53 @@ using namespace robot;
 using namespace vex;
 
 //Whoever uses this library would only have to implement these methods for their robot to work
-//Most of the code for movement has already been done  in other files and motors are designate in big_bot header file
+//Most of the code for movement has already been done  in other files and motors are designate in small_bot header file
 SmallBot::SmallBot(util::Position& _pos) : Bot(_pos){};
 
 void SmallBot::driver() {
-  movement::base_arcade(base_left, base_right, Controller1.Axis4, Controller1.Axis3); //base
+  movement::base_arcade(base_left, base_right, Controller1.Axis3, Controller1.Axis4, directionType::rev); //base
   movement::mech(lift_left, lift_right, Controller1.Axis2); //lift
   movement::mech(ramp, Controller1.ButtonL2, Controller1.ButtonL1); //ramp
   movement::mech(rollers_left, rollers_right, Controller1.ButtonR2, Controller1.ButtonR1); //rollers
-  movement::digi_out(Piston, Controller1.ButtonUp, Controller1.ButtonDown); //transmission
+  movement::digi_out(shift, Controller1.ButtonUp, Controller1.ButtonDown); //transmission
+  movement::digi_out(shoot, Controller1.ButtonX, Controller1.ButtonB); //shoot
+  movement::score(base_left, base_right, rollers_left, rollers_right, Controller1.ButtonA);
 }
-
-// for back axis3
-// sides axis1
-// lift  L1 L2
-// rollers R1 R2
-// ramp axis2
 
 void SmallBot::auton() {
   // TODO
   aut.group_stop(base_left, base_right);
 }
 
-// TODO
-// void move_base(double pow, velocityUnits vel = velocityUnits::pct) override;
-// void move_base(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev) override;
-// void rotate_base(double pow, velocityUnits vel = velocityUnits::pct) override;
-// void rotate_base(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev) override;
-// void move_lift(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev);
-// void grab(bool intake = true, float revs = 10.0) override;
-// double gear_convert(double input);
+void SmallBot::move_base(double pow, velocityUnits vel) {
+  aut.move_group_double(base_left, base_right, pow, vel);
+  aut.group_stop(base_left, base_right, brake);
+}
+
+void SmallBot::move_base(double pow, float lim, velocityUnits vel, rotationUnits rot) {
+  aut.move_group_for(base_left, base_right, lim, rot, pow, vel);
+  aut.group_stop(base_left, base_right, brake);
+}
+
+void SmallBot::rotate_base(double pow, velocityUnits vel) {
+  // TODO
+}
+
+void SmallBot::rotate_base(double pow, float lim, velocityUnits vel, rotationUnits rot) {
+  aut.mech_rotate_gyro(gyro_port, base_left, base_right, lim, rot, pow, vel);
+  aut.group_stop(base_left, base_left);
+}
+
+void SmallBot::move_lift(double pow, float lim, velocityUnits vel, rotationUnits rot) {
+  aut.move_group_for(base_left, base_right, lim, rot, lim, vel);
+  aut.group_stop(lift_left, lift_right, hold);
+}
+
+void SmallBot::grab(bool intake, float revs) {
+  // TODO
+}
+
+double SmallBot::gear_convert(double input) {
+  // TODO
+  return -1.0;
+}
