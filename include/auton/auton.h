@@ -33,13 +33,13 @@ namespace auton {
     void move_group_for_bumper(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, double speed, vex::velocityUnits vel_units);
     
     //moves motor group in same dir stopping on a distance (sonar ports need to be connected one next to the other)
-    void move_group_for_sonar(vex::triport::port &sensor_port, vex::motor_group mg, int dir, double lim, vex::distanceUnits units, double speed, vex::velocityUnits vel_units);
+    void move_group_for_sonar(vex::triport::port &sensor_port, vex::motor_group mg, double lim, vex::distanceUnits units, double speed, vex::velocityUnits vel_units);
 
     //moves motor group in same dir stopping on a distance (sonar ports need to be connected one next to the other)
     void move_group_for_sonar(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, int dir, double lim, vex::distanceUnits units, double speed, vex::velocityUnits vel_units);
 
     //moves motor group in same dir stopping on a distance (sonar ports need to be connected one next to the other)
-    void move_group_for_dual_sonar(vex::triport::port &sensor_port, vex::triport::port &sensor_port_2, vex::motor_group left_mg, vex::motor_group right_mg, int dir, double lim, vex::distanceUnits units, double speed, vex::velocityUnits vel_units);
+    void move_group_for_dual_sonar(vex::triport::port &sensor_port, vex::triport::port &sensor_port_2, vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::distanceUnits units, double speed, vex::velocityUnits vel_units);
     
     // Moves motor groups in separete directions, speed sign dictates direction
     void mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units);
@@ -50,7 +50,7 @@ namespace auton {
                              vex::motor_group left_mg,
                              vex::motor_group right_mg, double deg,
                              double speed, vex::velocityUnits vel_units);
-                             
+
     // Stops motor groups, depending on brake type can be used for base or arm
     void group_stop(vex::motor_group left_mg, vex::motor_group right_mg, brakeType brake_type = brakeType::brake);
     
