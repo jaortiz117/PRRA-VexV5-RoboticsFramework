@@ -29,6 +29,7 @@
 #include "vex.h"
 #include "util.h"
 #include "robot/big_bot.h"
+#include "robot/small_bot.h"
 
 // #include "old_code.cpp"
 
@@ -44,7 +45,8 @@ competition Competition;
 
 //Global instances of robot
 Position POS = Position(Side::top, Color::red);
-BigBot BIGGIE = BigBot(POS);
+// BigBot BIGGIE = BigBot(POS);
+SmallBot KOBE = SmallBot(POS);
 
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
@@ -82,7 +84,8 @@ void autonomous(void) {
   // Insert autonomous user code here.
   // ..........................................................................
 
-  BIGGIE.auton();
+  //BIGGIE.auton();
+  KOBE.auton();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -109,7 +112,16 @@ void usercontrol(void) {
     // ........................................................................
 
 
-    BIGGIE.driver();
+    //BIGGIE.driver();
+    KOBE.driver();
+    // temp_mech(ramp_g, Controller1.Axis2);
+    // for (int i = 0; i < arr_length(ramp_g.getLeft()); i++){
+    //Left
+    // ramp_gl.spin(directionType::fwd,  Controller1.Axis2.value(), velocityUnits::pct);
+   
+    // //Right
+    // ramp_gr.spin(directionType::rev,  Controller1.Axis2.value(), velocityUnits::pct);
+  // }
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.

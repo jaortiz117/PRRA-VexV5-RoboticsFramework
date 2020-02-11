@@ -53,6 +53,9 @@ namespace auton {
 
     // Stops motor groups, depending on brake type can be used for base or arm
     void group_stop(vex::motor_group left_mg, vex::motor_group right_mg, brakeType brake_type = brakeType::brake);
+
+    // Moves piston
+    void activate_piston(vex::digital_out dg, bool direction);
     
     
     // void digital_assign(robot::DigitalOutGroup dg, bool val);//on hold

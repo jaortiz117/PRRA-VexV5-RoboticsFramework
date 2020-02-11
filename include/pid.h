@@ -32,7 +32,6 @@ namespace pid{
 
     double compute(double curr_val, double desired);
   };
-  
 }
 
 #endif
