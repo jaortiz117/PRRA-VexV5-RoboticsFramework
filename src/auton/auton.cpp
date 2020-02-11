@@ -179,7 +179,6 @@ void Auton::move_group_for_dual_sonar(vex::triport::port &sensor_port,
 }
 
 // Moves motor groups in separete directions, speed sing dictates direction
-<<<<<<< HEAD
 void Auton::mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units) { 
 //   left_mg.resetRotation();
 // right_mg.resetRotation();
@@ -187,31 +186,13 @@ void Auton::mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, dou
 //     speed = -speed;
 // }
   left_mg.rotateFor(lim, rot_units, abs(speed), vel_units, false); //to change direction, change sign of input speed
-=======
-void Auton::mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg,
-                        double lim, vex::rotationUnits rot_units, double speed,
-                        vex::velocityUnits vel_units) {
-  //   left_mg.resetRotation();
-  // right_mg.resetRotation();
-  //   if(lim < 0){
-  //     speed = -speed;
-  // }
-  left_mg.rotateFor(lim, rot_units, abs(speed), vel_units,
-                    false); // to change direction, change sign of input speed
->>>>>>> 7fb4f20949a554c91fd0a2fc4aacba71d99b6bd1
+
   right_mg.rotateFor(-lim, rot_units, abs(speed), vel_units);
 
   group_stop(left_mg, right_mg);
 }
-<<<<<<< HEAD
-=======
 
-void Auton::mech_rotate_gyro(vex::triport::port &sensor_port,
-                             vex::motor_group left_mg,
-                             vex::motor_group right_mg, double deg,
-                             double speed, vex::velocityUnits vel_units) {
->>>>>>> 7fb4f20949a554c91fd0a2fc4aacba71d99b6bd1
-
+void Auton::mech_rotate_gyro(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, double deg, double speed, vex::velocityUnits vel_units) {
   gyro sensor = gyro(sensor_port);
   util::gyro_calibrate(sensor);
   task::sleep(1000); // jic
@@ -248,7 +229,6 @@ void Auton::mech_rotate_gyro(vex::triport::port &sensor_port,
 }
 
 // Stops motor groups, depending on brake type can be used for base or arm
-<<<<<<< HEAD
 void Auton::group_stop(vex::motor_group left_mg, vex::motor_group right_mg, brakeType brake_type) {
   left_mg.stop(brake_type);
   right_mg.stop(brake_type);
@@ -263,10 +243,3 @@ void Auton::score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_
   Auton::move_group_for(r_left, r_right, 800, rotationUnits::deg, 20, velocityUnits::pct);
 
 }
-=======
-void Auton::group_stop(vex::motor_group left_mg, vex::motor_group right_mg,
-                       brakeType brake_type) {
-  left_mg.stop(brake_type);
-  right_mg.stop(brake_type);
-}
->>>>>>> 7fb4f20949a554c91fd0a2fc4aacba71d99b6bd1
