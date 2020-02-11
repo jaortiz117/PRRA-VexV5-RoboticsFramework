@@ -86,14 +86,14 @@ void driver::digi_out(vex::digital_out dg, vex::controller::button _on, vex::con
   }
 }
 
-void driver::score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right, vex::controller::button toggle) {
-  if (toggle.pressing()) {
+// void driver::score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right, vex::controller::button toggle) {
+//   if (toggle.pressing()) {
     
-    b_left.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
-    b_right.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
+//     b_left.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
+//     b_right.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
 
-    r_left.rotateFor(directionType::rev, 800, rotationUnits::deg, 20, velocityUnits::pct, false);
-    r_right.rotateFor(directionType::fwd, 800, rotationUnits::deg, 20, velocityUnits::pct);
+//     r_left.rotateFor(directionType::rev, 800, rotationUnits::deg, 20, velocityUnits::pct, false);
+//     r_right.rotateFor(directionType::fwd, 800, rotationUnits::deg, 20, velocityUnits::pct);
 
-  }
-}
+//   }
+// }

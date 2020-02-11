@@ -16,7 +16,10 @@ void SmallBot::driver() {
   movement::mech(rollers_left, rollers_right, Controller1.ButtonR2, Controller1.ButtonR1); //rollers
   movement::digi_out(shift, Controller1.ButtonUp, Controller1.ButtonDown); //transmission
   movement::digi_out(shoot, Controller1.ButtonX, Controller1.ButtonB); //shoot
-  movement::score(base_left, base_right, rollers_left, rollers_right, Controller1.ButtonA);
+  //movement::score(base_left, base_right, rollers_left, rollers_right, Controller1.ButtonA);
+  if (Controller1.ButtonA.pressing()) {
+    aut.score(base_left, base_right, rollers_right, rollers_right);
+  }
 }
 
 void SmallBot::auton() {
@@ -31,7 +34,6 @@ void SmallBot::move_base(double pow, velocityUnits vel) {
 
 void SmallBot::move_base(double pow, float lim, velocityUnits vel, rotationUnits rot) {
   aut.move_group_for(base_left, base_right, lim, rot, pow, vel);
-  aut.group_stop(base_left, base_right, brake);
 }
 
 void SmallBot::rotate_base(double pow, velocityUnits vel) {

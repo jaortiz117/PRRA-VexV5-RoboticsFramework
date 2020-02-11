@@ -41,6 +41,8 @@ namespace auton {
     // Moves piston
     void activate_piston(vex::digital_out dg, bool direction);
     
+    // moves rollers and base simultaneously
+    void score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right);
     
     // void digital_assign(robot::DigitalOutGroup dg, bool val);//on hold
 
