@@ -114,14 +114,6 @@ void usercontrol(void) {
 
     BIGGIE.driver();
     // KOBE.driver();
-    // temp_mech(ramp_g, Controller1.Axis2);
-    // for (int i = 0; i < arr_length(ramp_g.getLeft()); i++){
-    //Left
-    // ramp_gl.spin(directionType::fwd,  Controller1.Axis2.value(), velocityUnits::pct);
-   
-    // //Right
-    // ramp_gr.spin(directionType::rev,  Controller1.Axis2.value(), velocityUnits::pct);
-  // }
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
