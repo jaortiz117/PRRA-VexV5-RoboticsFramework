@@ -16,7 +16,7 @@ void SmallBot::driver() {
   movement::mech(rollers_left, rollers_right, Controller1.ButtonR2, Controller1.ButtonR1); //rollers
   movement::digi_out(shift, Controller1.ButtonUp, Controller1.ButtonDown); //transmission
   movement::digi_out(shoot, Controller1.ButtonX, Controller1.ButtonB); //shoot
-  movement::score(base_left, base_right, rollers_left, rollers_right, Controller1.ButtonA);
+  score(base_left, base_right, rollers_left, rollers_right, Controller1.ButtonA, 50);
 }
 
 void SmallBot::auton() {
@@ -54,17 +54,24 @@ void SmallBot::grab(bool intake, float revs) {
 
 double SmallBot::gear_convert(double input) {
   // TODO
-  return -1.0;
+  return input;
 }
 
-void SmallBot::score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right, vex::controller::button toggle) {
+void SmallBot::score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right, vex::controller::button toggle, double pow, velocityUnits v_units) {
   if (toggle.pressing()) {
     
-    b_left.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
-    b_right.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
+    // b_left.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
+    // b_right.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
 
-    r_left.rotateFor(directionType::rev, 800, rotationUnits::deg, 20, velocityUnits::pct, false);
-    r_right.rotateFor(directionType::fwd, 800, rotationUnits::deg, 20, velocityUnits::pct);
+    // r_left.rotateFor(directionType::rev, 800, rotationUnits::deg, 20, velocityUnits::pct, false);
+    // r_right.rotateFor(directionType::fwd, 800, rotationUnits::deg, 20, velocityUnits::pct);
+
+    b_left.spin(directionType::rev, pow, v_units);
+    b_right.spin(directionType::rev, pow, v_units);
+
+    r_left.spin(directionType::fwd, 100, velocityUnits::pct);
+    r_right.spin(directionType::fwd, 100, velocityUnits::pct);
 
   }
+  //since we are also calling these motor groups in other functions within the drive method we dont need to add brakes here
 }
