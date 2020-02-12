@@ -54,6 +54,7 @@ class SmallBot : public robot::Bot{
     void move_lift(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev);
     void grab(bool intake = true, float revs = 10.0) override;
     double gear_convert(double input);
+    void score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right, vex::controller::button toggle);
 };
 
 #endif

@@ -56,3 +56,15 @@ double SmallBot::gear_convert(double input) {
   // TODO
   return -1.0;
 }
+
+void SmallBot::score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right, vex::controller::button toggle) {
+  if (toggle.pressing()) {
+    
+    b_left.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
+    b_right.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
+
+    r_left.rotateFor(directionType::rev, 800, rotationUnits::deg, 20, velocityUnits::pct, false);
+    r_right.rotateFor(directionType::fwd, 800, rotationUnits::deg, 20, velocityUnits::pct);
+
+  }
+}
