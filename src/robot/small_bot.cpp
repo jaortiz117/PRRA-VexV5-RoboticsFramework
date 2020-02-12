@@ -34,14 +34,14 @@ void SmallBot::move_base(double pow, float lim, velocityUnits vel, rotationUnits
   aut.group_stop(base_left, base_right, brake);
 }
 
-// void SmallBot::rotate_base(double pow, velocityUnits vel) {
-//   // TODO
-// }
+void SmallBot::rotate_base(double pow, velocityUnits vel) {
+  // TODO
+}
 
-// void SmallBot::rotate_base(double pow, float lim, velocityUnits vel, rotationUnits rot) {
-//   aut.mech_rotate_gyro(gyro_port, base_left, base_right, lim, pow, vel);
-//   aut.group_stop(base_left, base_left);
-// }
+void SmallBot::rotate_base(double pow, float lim, velocityUnits vel, rotationUnits rot) {
+  aut.mech_rotate_gyro(gyro_port, base_left, base_right, lim, pow, vel);
+  aut.group_stop(base_left, base_left);
+}
 
 void SmallBot::move_lift(double pow, float lim, velocityUnits vel, rotationUnits rot) {
   aut.move_group_for(base_left, base_right, lim, rot, lim, vel);

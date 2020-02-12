@@ -50,7 +50,7 @@ class SmallBot : public robot::Bot{
     void move_base(double pow, velocityUnits vel = velocityUnits::pct) override;
     void move_base(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev) override;
     void rotate_base(double pow, velocityUnits vel = velocityUnits::pct) override;
-    void rotate_base(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev);
+    void rotate_base(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev) override;
     void move_lift(double pow, float lim, velocityUnits vel = velocityUnits::pct, rotationUnits rot = rotationUnits::rev);
     void grab(bool intake = true, float revs = 10.0) override;
     double gear_convert(double input);
