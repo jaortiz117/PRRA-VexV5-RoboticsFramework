@@ -27,7 +27,7 @@ namespace pid{
     double cm_error=0, rate_error;
 
     public:
-    PID(double _kp, double _ki, double _kd) : 
+    PID(double _kp = 1, double _ki = 1, double _kd = 1) : 
     kp{_kp},ki{_ki},kd{_kd}{};
 
     double compute(double curr_val, double desired);
