@@ -5,6 +5,7 @@
 using namespace robot;
 using namespace vex;
 
+
 //Whoever uses this library would only have to implement these methods for their robot to work
 //Most of the code for movement has already been done  in other files and motors are designate in big_bot header file
 BigBot::BigBot(util::Position& _pos) : Bot(_pos){};
@@ -17,16 +18,65 @@ void BigBot::driver(){
 }
 
 void BigBot::auton() {
+  //open ramp
+  move_ramp(100);
+  move_ramp(-100);
+  task::sleep(PAUSE);
 
-  // aut.move_group_for_dual_sonar(sonar_l, sonar_r, base_left, base_right, 5.0, distanceUnits::in, 15, velocityUnits::pct);
+  //move front to get 4 cubes
+  move_base(100, 4.0);
+  task::sleep(PAUSE);
+  aut.move_group_double(rollers_l, rollers_r, 100);
+  for(int i=0; i<4; i++){
+    move_base(30, 0.5);
+    task::sleep(PAUSE);
+  }
+  aut.group_stop(rollers_l, rollers_r);
 
-  //TODO
-task::sleep(1000);
-  // aut.move_group_for(base_left, base_right, gear_convert(3), rotationUnits::rev, 75, velocityUnits::pct);
-  // aut.move_group_for_dual_sonar(sonar_l, sonar_r, base_left, base_right, 8.0, distanceUnits::in, 50, velocityUnits::pct);
-  rotate_base(30, 90);
-  task::sleep(1000);
-  rotate_base(30, -90);
+  //move back a bit
+  move_base(100, 6.0);
+  task::sleep(PAUSE);
+
+  //turn to face away from other bot
+  rotate_base(50, 90);//these rotates can leverage the position object
+  task::sleep(PAUSE);
+
+  //move forward 1 tile
+  move_base(100, 1.0);
+  task::sleep(PAUSE);
+
+  //turn to face the cubes
+  rotate_base(50, -90);
+  task::sleep(PAUSE);
+
+  //move front to grab 4 cubes
+  move_base(100, 1.0);
+  task::sleep(PAUSE);
+  aut.move_group_double(rollers_l, rollers_r, 100);
+  for(int i=0; i<4; i++){
+    move_base(30, 0.5);
+    task::sleep(PAUSE);
+  }
+  aut.group_stop(rollers_l, rollers_r);
+
+  //turn facing the wall
+  rotate_base(50, 180);
+  task::sleep(PAUSE);
+
+  //move front towards wall
+  move_base(100, 4.0);
+  task::sleep(PAUSE);
+
+  //turn towards corner
+  rotate_base(50, 90);
+  task::sleep(PAUSE);
+
+  //move front to get into scoring position
+  move_base(40, 1.0);
+  task::sleep(PAUSE);
+
+  //move ramp to score
+  move_ramp(70);
 }
 
 void BigBot::move_base(double pow, velocityUnits vel) {
