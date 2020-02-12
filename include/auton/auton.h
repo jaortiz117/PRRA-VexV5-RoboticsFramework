@@ -12,7 +12,7 @@ namespace auton {
     double ki;
     double kd;
     public:
-      Auton(util::Position& _pos, double _kp, double _ki, double _kd) : 
+      Auton(util::Position& _pos, double _kp=1, double _ki=1, double _kd=1) : 
     kp{_kp},ki{_ki},kd{_kd}, pos{_pos}{
 
       };
