@@ -44,8 +44,7 @@ void BigBot::rotate_base(double pow, velocityUnits vel) {
   aut.move_group(base_right, -pow, velocityUnits::pct);
 }
 
-void BigBot::rotate_base(double pow, float lim,
-velocityUnits vel) {
+void BigBot::rotate_base(double pow, float lim, velocityUnits vel) {
   pow = gear_convert(pow);
   // aut.mech_rotate(base_left, base_right, lim, rotationUnits::rev, pow, vel);//using encoders
 

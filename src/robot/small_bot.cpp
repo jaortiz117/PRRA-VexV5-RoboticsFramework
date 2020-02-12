@@ -38,7 +38,7 @@ void SmallBot::rotate_base(double pow, velocityUnits vel) {
   // TODO
 }
 
-void SmallBot::rotate_base(double pow, float lim, velocityUnits vel, rotationUnits rot) {
+void SmallBot::rotate_base(double pow, float lim, velocityUnits vel) {
   aut.mech_rotate_gyro(gyro_port, base_left, base_right, lim, pow, vel);
   aut.group_stop(base_left, base_left);
 }
