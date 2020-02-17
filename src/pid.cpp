@@ -4,7 +4,7 @@
 using namespace pid;
 
 //adapted from https://www.teachmemicro.com/arduino-pid-control-tutorial/
-double PID::compute(double curr_val, double desired){
+float PID::compute(float curr_val, float desired){
 
   //this will continualy output a value. 
   //We need to use epsilon to have it output 0 if within epsilon
@@ -19,18 +19,23 @@ double PID::compute(double curr_val, double desired){
   rate_error = (error - last_error); // compute derivative
   // rate_error = (error - last_error) / elapsed_time; // compute derivative
 
-  double out = kp * error + ki * cm_error + kd * rate_error; // PID output
+  float out = kp * error + ki * cm_error + kd * rate_error; // PID output
 
   last_error = error;          // remember current error
   // previous_time = current_time; // remember current time
-
+  Brain.Screen.setCursor(5, 1);
+  Brain.Screen.print(curr_val);
+  Brain.Screen.setCursor(5, 10);
+  Brain.Screen.print((float)desired);
+  Brain.Screen.setCursor(5, 20);
+  Brain.Screen.print(out);
   if(abs(curr_val - desired) < epsilon){
-    return 0;
+    return 0.0;
   }
 
   //control the limit
-  if(out > 100) out = 100;
-  if(out < -100) out = -100;
+  if(out > 100.0) out = 100.0;
+  if(out < -100.0) out = -100.0;
 
   return out; // have function return the PID output
 }

@@ -24,61 +24,71 @@ void BigBot::auton() {
   task::sleep(PAUSE);
 
   //move front to get 4 cubes
-  move_base(100, 2.0);
-  task::sleep(PAUSE);
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
+  move_base(35, 5.6);
+  task::sleep(1000);
 
-  for(int i=0; i<4; i++){
-    move_base(30, 0.5);
-    task::sleep(PAUSE);
-  }
   aut.group_stop(rollers_l, rollers_r);
 
-  //move back a bit
-  move_base(100, 6.0);
+  //turn to face post
+  rotate_base(40, -15);//these rotates can leverage the position object
+  task::sleep(100);
+
+  // //move back a bit
+  // move_base(20, -1.0);
+  // task::sleep(PAUSE);
+
+  //move front to get cubes on post
+  aut.move_group(rollers_l, 100);
+  aut.move_group(rollers_r, -100);
+  move_base(50.0, 3.2);
   task::sleep(PAUSE);
 
-  //turn to face away from other bot
-  rotate_base(50, 90);//these rotates can leverage the position object
-  task::sleep(PAUSE);
-
-  //move forward 1 tile
-  move_base(100, 1.0);
-  task::sleep(PAUSE);
-
-  //turn to face the cubes
-  rotate_base(50, -90);
-  task::sleep(PAUSE);
-
-  //move front to grab 4 cubes
-  move_base(100, 1.0);
-  task::sleep(PAUSE);
-  grab();
-  for(int i=0; i<4; i++){
-    move_base(30, 0.5);
-    task::sleep(PAUSE);
-  }
   aut.group_stop(rollers_l, rollers_r);
 
-  //turn facing the wall
-  rotate_base(50, 180);
+  //mover un poco atras
+  move_base(50, -2);
   task::sleep(PAUSE);
 
-  //move front towards wall
-  move_base(100, 4.0);
+  //rota to other cube
+  rotate_base(40,17);
+  task::sleep(500);
+
+  //coger cubo en frente
+  aut.move_group(rollers_l, 100);
+  aut.move_group(rollers_r, -100);
+  move_base(50, 3.6);
+  task::sleep(1000);
+
+  aut.group_stop(rollers_l, rollers_r);
+  //mover hacia atras
+  move_base(50, -5.5);
+  task::sleep(350);
+
+  //rotate right
+  rotate_base(35,45);
   task::sleep(PAUSE);
 
-  //turn towards corner
-  rotate_base(50, 90);
+  //mover un poco atras
+  move_base(50, -4);
   task::sleep(PAUSE);
 
-  //move front to get into scoring position
-  move_base(40, 1.0);
+  //rotate left
+  rotate_base(35, -45);
   task::sleep(PAUSE);
 
-  //move ramp to score
-  move_ramp(70);
+  //crash with wall
+  move_base(50, -2.5);
+  task::sleep(PAUSE);
+
+  //move front to get 4 cubes
+  aut.move_group(rollers_l, 100);
+  aut.move_group(rollers_r, -100);
+  move_base(35, 5.6);
+  task::sleep(1000);
+
+  aut.group_stop(rollers_l, rollers_r);
 }
 
 void BigBot::move_base(double pow, velocityUnits vel) {
@@ -139,14 +149,16 @@ void BigBot::move_ramp(double speed, velocityUnits vel) {
 
 void BigBot::open_ramp(){
   //set on toque the base
-  aut.activate_piston(Piston, true);
+  aut.activate_piston(Piston, false);
   //intake out
   aut.move_group(rollers_l,-100);
-  aut.move_group(rollers_r, 100);
+  aut.move_group(rollers_r,100);
 
   //piston for ramp
   aut.activate_piston(ramp_piston, true);
-  task::sleep(1000);
+  task::sleep(2000);
+
+  aut.activate_piston(ramp_piston, false);
 
   aut.group_stop(rollers_l, rollers_r);
 }

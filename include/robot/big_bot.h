@@ -27,11 +27,12 @@ class BigBot : public robot::Bot{
   triport::port bump_port = t.A;
   triport::port gyro_port = t.H;
   triport::port gyro_port2 = t.G;
+  triport::port Piston = t.B;
+  triport::port ramp_piston = t.C;
   // triport::port sonar_l = t.C;
   triport::port sonar_r = t.E;
 
-  digital_out Piston = led(t.B);
-  digital_out ramp_piston = led(t.C);
+  // digital_out ramp_piston = led(t.C);
   // bumper ramp_btn = bumper(t.A);
   // gyro g_sensor = gyro(t.H);
 
@@ -48,7 +49,7 @@ class BigBot : public robot::Bot{
   // robot::DigitalOutGroup pist = robot::DigitalOutGroup(digi, digi);
   // robot::DigitalOutGroup piston_group = pist;
 
-  auton::Auton aut = auton::Auton(pos, 4, 2, 7);
+  auton::Auton aut = auton::Auton(pos, 4.0, 2.0, 7.0);
 
   public:
     BigBot(util::Position& _pos);

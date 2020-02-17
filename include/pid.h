@@ -15,22 +15,22 @@ within acceptable range of desired val for x amount of time. So it returns a 0 o
 namespace pid{
   class PID{
     private:
-    double kp;
-    double ki;
-    double kd;
-    double epsilon = 0.5;
+    float kp;
+    float ki;
+    float kd;
+    float epsilon = 0.05;
 
     // unsigned int current_time, previous_time = vex::timer::system();
     // double elapsed_time;
-    double error;
-    double last_error = 0;
-    double cm_error=0, rate_error;
+    float error;
+    float last_error = 0.0;
+    float cm_error= 0.0, rate_error;
 
     public:
-    PID(double _kp = 1, double _ki = 1, double _kd = 1) : 
+    PID(float _kp = 1.0, float _ki = 1.0, float _kd = 1.0) : 
     kp{_kp},ki{_ki},kd{_kd}{};
 
-    double compute(double curr_val, double desired);
+    float compute(float curr_val, float desired);
   };
 }
 

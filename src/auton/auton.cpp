@@ -17,7 +17,7 @@ void Auton::move_group_double(
     vex::motor_group left_mg, vex::motor_group right_mg, double pow,
     velocityUnits vel, bool rotate) { // autonomous movement of base indefinetely
   move_group(left_mg, pow, vel);
-  
+
   if(rotate) pow = -pow;
   move_group(right_mg, pow, vel);
 }
@@ -32,7 +32,9 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg,
   // void motorRotateFor(vex::motor mL, vex::motor mR, float rotation,
   // rotationUnits units, int speed, velocityUnits units_v){
   left_mg.resetRotation();
+  left_mg.resetPosition();
   right_mg.resetRotation();
+  right_mg.resetPosition();
 
   double dir = 1;
   if (lim < 0)
@@ -41,14 +43,23 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg,
   lim = abs(lim);
 
   PID pid = PID(kp, ki, kd);
-  double output = pid.compute((left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2, lim);
-  Brain.Screen.setCursor(1, 1);
-    // Brain.Screen.print(output);
-  while(output != 0){
+  float output = pid.compute(dir*(left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2, (float)lim);
+  Brain.Screen.setCursor(2, 1);
+  Brain.Screen.print(output);
+  while(output != 0.0){
+  // while(lim - ((left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2) > 0){
     double curr_speed = speed * (output/100);
-    // Brain.Screen.print(output);
-    move_group_double(left_mg, right_mg, dir*curr_speed, vel_units);
-    output = pid.compute((left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2, lim);
+
+    Brain.Screen.setCursor(1, 1);
+    Brain.Screen.print(curr_speed);
+
+    if(dir<0){
+      curr_speed = -1 * abs(curr_speed);
+    }
+    move_group_double(left_mg, right_mg, curr_speed, vel_units);
+    output = pid.compute(dir*(left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2, (float)lim);
+    Brain.Screen.setCursor(2, 1);
+    Brain.Screen.print(output);
   }
 
   // while (
@@ -213,7 +224,7 @@ void Auton::mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, dou
 void Auton::mech_rotate_gyro(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, double deg, double speed, vex::velocityUnits vel_units) {
   gyro sensor = gyro(sensor_port);
   util::gyro_calibrate(sensor);
-  task::sleep(1000); // jic
+  task::sleep(500); // jic
   sensor.resetHeading();
   // sensor.setHeading(0.0, rot_units);
 
@@ -255,7 +266,7 @@ void Auton::mech_rotate_dual_gyro(vex::triport::port &sensor_port,vex::triport::
   gyro sensor_2 = gyro(sensor_port_2);
   util::gyro_calibrate(sensor);
   util::gyro_calibrate(sensor_2);
-  task::sleep(1000); // jic
+  task::sleep(500); // jic
   sensor.resetHeading();
   sensor_2.resetHeading();
   // sensor.setHeading(0.0, rot_units);
@@ -300,6 +311,7 @@ void Auton::group_stop(vex::motor_group left_mg, vex::motor_group right_mg, brak
   right_mg.stop(brake_type);
 }
 
-void Auton::activate_piston(vex::digital_out dg, bool direction) {
-  dg.set(direction);
+void Auton::activate_piston(vex::triport::port &tp, bool direction) {
+    digital_out dg = led(tp);
+    dg.set(direction);
 }

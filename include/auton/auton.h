@@ -55,7 +55,7 @@ namespace auton {
     void group_stop(vex::motor_group left_mg, vex::motor_group right_mg, brakeType brake_type = brakeType::brake);
 
     // Moves piston
-    void activate_piston(vex::digital_out dg, bool direction);
+    void activate_piston(vex::triport::port &tp, bool direction);
     
     
     // void digital_assign(robot::DigitalOutGroup dg, bool val);//on hold
