@@ -21,72 +21,85 @@ void BigBot::driver(){
 void BigBot::auton() {
   //open ramp
   open_ramp();
-  task::sleep(PAUSE);
+  task::sleep(300);
 
   //move front to get 4 cubes
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
   move_base(35, 5.6);
-  task::sleep(1000);
-
+  task::sleep(800);
   aut.group_stop(rollers_l, rollers_r);
 
   //turn to face post
   rotate_base(40, -15);//these rotates can leverage the position object
-  task::sleep(100);
-
-  // //move back a bit
-  // move_base(20, -1.0);
-  // task::sleep(PAUSE);
+  task::sleep(50);
 
   //move front to get cubes on post
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
   move_base(50.0, 3.2);
-  task::sleep(PAUSE);
+  task::sleep(400);
 
   aut.group_stop(rollers_l, rollers_r);
 
   //mover un poco atras
   move_base(50, -2);
-  task::sleep(PAUSE);
+  task::sleep(100);
 
   //rota to other cube
   rotate_base(40,17);
-  task::sleep(500);
+  task::sleep(100);
 
   //coger cubo en frente
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
   move_base(50, 3.6);
-  task::sleep(1000);
+  task::sleep(500);
 
   aut.group_stop(rollers_l, rollers_r);
   //mover hacia atras
   move_base(50, -5.5);
-  task::sleep(350);
+  task::sleep(100);
 
   //rotate right
   rotate_base(35,45);
-  task::sleep(PAUSE);
+  task::sleep(200);
 
   //mover un poco atras
   move_base(50, -4);
-  task::sleep(PAUSE);
+  
 
   //rotate left
   rotate_base(35, -45);
   task::sleep(PAUSE);
 
   //crash with wall
-  move_base(50, -2.5);
-  task::sleep(PAUSE);
+  move_base(50, -2);
+  task::sleep(300);
 
   //move front to get 4 cubes
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
-  move_base(35, 5.6);
+  task::sleep(100);
+  move_base(40, 7);
   task::sleep(1000);
+
+  aut.group_stop(rollers_l, rollers_r);
+
+  //move back a bit
+  move_base(50, -2);
+  
+
+  //turn left facing pyramid
+  rotate_base(35,-40);
+  task::sleep(200);
+
+  //take cube from pyramid corner
+  aut.move_group(rollers_l, 100);
+  aut.move_group(rollers_r, -100);
+  task::sleep(100);
+  move_base(50, 3);
+  task::sleep(1200);
 
   aut.group_stop(rollers_l, rollers_r);
 }
