@@ -26,12 +26,14 @@ class BigBot : public robot::Bot{
   triport t = triport( PORT22 );
   triport::port bump_port = t.A;
   triport::port gyro_port = t.H;
-  triport::port sonar_l = t.C;
+  triport::port gyro_port2 = t.G;
+  // triport::port sonar_l = t.C;
   triport::port sonar_r = t.E;
 
   digital_out Piston = led(t.B);
+  digital_out ramp_piston = led(t.C);
   // bumper ramp_btn = bumper(t.A);
-  gyro g_sensor = gyro(t.H);
+  // gyro g_sensor = gyro(t.H);
 
   vex::motor_group base_left= motor_group(BaseLeft1, BaseLeft2, BaseLeft3);
   vex::motor_group base_right= motor_group(BaseRight1, BaseRight2, BaseRight3);
@@ -59,6 +61,7 @@ class BigBot : public robot::Bot{
     void grab(bool intake = true, float revs = 10.0) override;
     double gear_convert(double input);
     void move_ramp(double speed, velocityUnits vel = velocityUnits::pct);
+    void open_ramp();
 };
 
 #endif

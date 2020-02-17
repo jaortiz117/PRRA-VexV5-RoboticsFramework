@@ -21,10 +21,10 @@ namespace auton {
     };
     
   
-    void move_group(vex::motor_group mg, double pow, vex::velocityUnits units);
+    void move_group(vex::motor_group mg, double pow, vex::velocityUnits units = velocityUnits::pct);
 
     // autonomous movement of base indefinetely, speed sign dictates direction
-    void move_group_double(vex::motor_group left_mg, vex::motor_group right_mg, double speed, velocityUnits vel_units = velocityUnits::pct);
+    void move_group_double(vex::motor_group left_mg, vex::motor_group right_mg, double speed, velocityUnits vel_units = velocityUnits::pct, bool rotate = false);
     
     // Moves motor groups in the same direction using "rotateFor"
     void move_group_for(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units);

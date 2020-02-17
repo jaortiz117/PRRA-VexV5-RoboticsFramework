@@ -15,8 +15,10 @@ void Auton::move_group(vex::motor_group mg, double pow,
 
 void Auton::move_group_double(
     vex::motor_group left_mg, vex::motor_group right_mg, double pow,
-    velocityUnits vel) { // autonomous movement of base indefinetely
+    velocityUnits vel, bool rotate) { // autonomous movement of base indefinetely
   move_group(left_mg, pow, vel);
+  
+  if(rotate) pow = -pow;
   move_group(right_mg, pow, vel);
 }
 /*************************************

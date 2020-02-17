@@ -15,18 +15,20 @@ void BigBot::driver(){
   movement::mech(ramp_l, ramp_r, Controller1.Axis2);//ramp
   movement::mech(rollers_l, rollers_r, Controller1.ButtonR2, Controller1.ButtonR1);//rollers
   movement::digi_out(Piston, Controller1.ButtonUp, Controller1.ButtonDown);//transmission
+  movement::digi_out(ramp_piston, Controller1.ButtonX, Controller1.ButtonY);//ramp open
 }
 
 void BigBot::auton() {
   //open ramp
-  move_ramp(100);
-  move_ramp(-100);
+  open_ramp();
   task::sleep(PAUSE);
 
   //move front to get 4 cubes
-  move_base(100, 4.0);
+  move_base(100, 2.0);
   task::sleep(PAUSE);
-  aut.move_group_double(rollers_l, rollers_r, 100);
+  aut.move_group(rollers_l, 100);
+  aut.move_group(rollers_r, -100);
+
   for(int i=0; i<4; i++){
     move_base(30, 0.5);
     task::sleep(PAUSE);
@@ -52,7 +54,7 @@ void BigBot::auton() {
   //move front to grab 4 cubes
   move_base(100, 1.0);
   task::sleep(PAUSE);
-  aut.move_group_double(rollers_l, rollers_r, 100);
+  grab();
   for(int i=0; i<4; i++){
     move_base(30, 0.5);
     task::sleep(PAUSE);
@@ -105,7 +107,7 @@ void BigBot::rotate_base(double pow, float lim, velocityUnits vel) {
 }
 
 void BigBot::grab(bool intake, float revs) {
-  aut.move_group_for(rollers_l, rollers_r, revs, rotationUnits::rev, 100, velocityUnits::pct);
+  aut.mech_rotate(rollers_l, rollers_r, revs, rotationUnits::rev, 100, velocityUnits::pct);
 }
 
 double BigBot::gear_convert(double input){
@@ -133,4 +135,18 @@ void BigBot::move_ramp(double speed, velocityUnits vel) {
   // else { // hold lift
   //   aut.group_stop(ramp_l, ramp_r, brakeType::hold);
   // }
+}
+
+void BigBot::open_ramp(){
+  //set on toque the base
+  aut.activate_piston(Piston, true);
+  //intake out
+  aut.move_group(rollers_l,-100);
+  aut.move_group(rollers_r, 100);
+
+  //piston for ramp
+  aut.activate_piston(ramp_piston, true);
+  task::sleep(1000);
+
+  aut.group_stop(rollers_l, rollers_r);
 }
