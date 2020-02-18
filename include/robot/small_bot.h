@@ -31,17 +31,16 @@ class SmallBot : public robot::Bot{
   vex::motor_group rollers_left = motor_group(rollersLeft);
   vex::motor_group rollers_right = motor_group(rollersRight);
 
-  //TODO Comfigure piston ----------------------------------------------------------------------------
+  //Triports
   // Transmition port A
   // Shoot port B
   triport t = triport(PORT22);
   triport::port shift = t.A;
   triport::port shoot = t.B; 
+  triport::port g_sensor = t.C; 
 
-  //TODO Configure gyro -----------------------------------------------------------------------------
-  triport::port gyro_port = t.H;
   
-  auton::Auton aut = auton::Auton(pos, 5, 5, 5);
+  auton::Auton aut = auton::Auton(pos, 4.0, 2.0, 7.0);
 
   public:
     SmallBot(util::Position& _pos);

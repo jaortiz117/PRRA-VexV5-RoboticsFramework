@@ -35,7 +35,7 @@ void SmallBot::move_base(double pow, float lim, velocityUnits vel, rotationUnits
 }
 
 void SmallBot::rotate_base(double pow, velocityUnits vel) {
-  // TODO
+  aut.move_group_double(base_left, base_right, pow, vel, false);
 }
 
 void SmallBot::rotate_base(double pow, float lim, velocityUnits vel) {
@@ -49,7 +49,10 @@ void SmallBot::move_lift(double pow, float lim, velocityUnits vel, rotationUnits
 }
 
 void SmallBot::grab(bool intake, float revs) {
-  // TODO
+  if(!intake){
+    revs = -revs;
+  }
+  aut.mech_rotate(rollers_left, rollers_right, revs, rotationUnits::rev, 100, velocityUnits::pct);
 }
 
 double SmallBot::gear_convert(double input) {
