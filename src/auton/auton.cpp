@@ -21,11 +21,8 @@ void Auton::move_group_double(
   if(rotate) pow = -pow;
   move_group(right_mg, pow, vel);
 }
-/*************************************
-TODO these functions have been copy pasted from older projects,
-they still  need to be translated into this library's design language
-*************************************/
 
+//TODO make single motor_group function for this and turn this into a multithreaded function
 void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg,
                            double lim, vex::rotationUnits rot_units,
                            double speed, vex::velocityUnits vel_units) {

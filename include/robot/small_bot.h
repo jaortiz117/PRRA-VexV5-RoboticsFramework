@@ -15,7 +15,7 @@ class SmallBot : public robot::Bot{
   motor baseRight2 = motor(PORT2, ratio18_1, true);
   motor liftLeft = motor(PORT10, ratio18_1, true);
   motor liftRight = motor(PORT9, ratio18_1, false);
-  motor rampMotor = motor(PORT6, ratio18_1, true);
+  motor rampMotor = motor(PORT6, ratio18_1, false);
   motor rollersLeft = motor(PORT8, ratio18_1, false);
   motor rollersRight = motor(PORT7, ratio18_1, false);
 
@@ -40,7 +40,7 @@ class SmallBot : public robot::Bot{
   triport::port g_sensor = t.C; 
 
   
-  auton::Auton aut = auton::Auton(pos, 4.0, 2.0, 7.0);
+  auton::Auton aut = auton::Auton(pos, 5.0, 2.0, 7.0);
 
   public:
     SmallBot(util::Position& _pos);
@@ -54,6 +54,8 @@ class SmallBot : public robot::Bot{
     void grab(bool intake = true, float revs = 10.0) override;
     double gear_convert(double input);
     void score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right, vex::controller::button toggle, double pow = 50, velocityUnits v_units = velocityUnits::pct);
+    void move_ramp(double pow, directionType dir = directionType::fwd);
+    void top_down_sucker(double dist, double height);
 };
 
 #endif

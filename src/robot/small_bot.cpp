@@ -20,8 +20,8 @@ void SmallBot::driver() {
 }
 
 void SmallBot::auton() {
-  // TODO
-  move_base(50, 3);
+  //TODO
+  top_down_sucker(3, 3.5);
 }
 
 void SmallBot::move_base(double pow, velocityUnits vel) {
@@ -39,13 +39,13 @@ void SmallBot::rotate_base(double pow, velocityUnits vel) {
 }
 
 void SmallBot::rotate_base(double pow, float lim, velocityUnits vel) {
-  aut.mech_rotate_gyro(gyro_port, base_left, base_right, lim, pow, vel);
-  aut.group_stop(base_left, base_left);
+  aut.mech_rotate_gyro(g_sensor, base_left, base_right, lim, pow, vel);
+  // aut.group_stop(base_left, base_left);
 }
 
 void SmallBot::move_lift(double pow, float lim, velocityUnits vel, rotationUnits rot) {
-  aut.move_group_for(base_left, base_right, lim, rot, lim, vel);
-  aut.group_stop(lift_left, lift_right, hold);
+  aut.move_group_for(lift_left, lift_right, lim, rot, pow, vel);
+  // aut.group_stop(lift_left, lift_right, hold);
 }
 
 void SmallBot::grab(bool intake, float revs) {
@@ -77,4 +77,27 @@ void SmallBot::score(vex::motor_group b_left, vex::motor_group b_right, vex::mot
 
   }
   //since we are also calling these motor groups in other functions within the drive method we dont need to add brakes here
+}
+
+void SmallBot::move_ramp(double pow, directionType dir){
+  ramp.setVelocity(pow, velocityUnits::pct);
+
+  ramp.rotateFor(dir, 3, rotationUnits::rev);
+  ramp.setVelocity(100, velocityUnits::pct);
+}
+
+void SmallBot::top_down_sucker(double dist, double height){
+  //lift
+  move_lift(80, height);
+
+  //go front
+  move_base(60, dist);
+
+  //intake
+  aut.move_group_double(rollers_left, rollers_right, 80, velocityUnits::pct, true);
+
+  //slowly bring lift down until bottom out
+  move_lift(10, -height);
+
+  aut.group_stop(rollers_left, rollers_right);
 }
