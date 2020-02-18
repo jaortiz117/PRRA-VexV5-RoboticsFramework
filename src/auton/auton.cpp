@@ -207,14 +207,14 @@ void Auton::move_group_for_dual_sonar(vex::triport::port &sensor_port,
   vex::thread t_R(right_thunk, &right);
 }
 
-// Moves motor groups in separete directions, speed sing dictates direction
+// Moves motor groups in separete directions, sing dictates direction
 void Auton::mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, double lim, vex::rotationUnits rot_units, double speed, vex::velocityUnits vel_units) { 
 //   left_mg.resetRotation();
 // right_mg.resetRotation();
 //   if(lim < 0){
 //     speed = -speed;
 // }
-  left_mg.rotateFor(lim, rot_units, abs(speed), vel_units, false); //to change direction, change sign of input speed
+  left_mg.rotateFor(lim, rot_units, abs(speed), vel_units, false); //to change direction, change sign of lim
 
   right_mg.rotateFor(-lim, rot_units, abs(speed), vel_units);
 

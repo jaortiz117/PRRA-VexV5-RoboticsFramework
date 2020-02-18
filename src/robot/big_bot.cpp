@@ -67,7 +67,8 @@ void BigBot::auton() {
   move_base(50, -3);
 
   //rota to other cube
-  rotate_base(40,15);
+  rotate_base(40,13);
+  task::sleep(PAUSE);
 
   //coger cubo en frente
   aut.move_group(rollers_l, 100);
@@ -118,14 +119,15 @@ void BigBot::auton() {
   aut.group_stop(rollers_l, rollers_r);
 
   //turn right
-  rotate_base(35,-130);
+  rotate_base(35,-120);
   task::sleep(PAUSE);
 
   //move front a bit
   move_base(50, 2);
 
   //SCORE!!!
-  move_ramp(50);
+  grab(false, 2);
+  move_ramp(60);
   move_base(50, -2);
 }
 
@@ -155,6 +157,9 @@ void BigBot::rotate_base(double pow, float lim, velocityUnits vel) {
 }
 
 void BigBot::grab(bool intake, float revs) {
+  if(!intake){
+    revs = -revs;
+  }
   aut.mech_rotate(rollers_l, rollers_r, revs, rotationUnits::rev, 100, velocityUnits::pct);
 }
 
@@ -176,7 +181,7 @@ void BigBot::move_ramp(double speed, velocityUnits vel) {
     // else {
     //   aut.group_stop(ramp_l, ramp_r, brakeType::hold);
     // }
-    aut.move_group_for(ramp_l, ramp_r, 7, rotationUnits::rev, speed, vel);
+    aut.move_group_for(ramp_l, ramp_r, 6, rotationUnits::rev, speed, vel);
   } 
   else if(speed < 0) { // move backwards, stop with bumper
     aut.move_group_for_bumper(bump_port, ramp_l, ramp_r, speed, vel);
