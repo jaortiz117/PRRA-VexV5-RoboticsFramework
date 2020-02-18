@@ -9,8 +9,8 @@ class SmallBot : public robot::Bot{
   private:
 
   //TODO Configure rotation-------------------------------------------------------------------------
-  motor baseLeft1 = motor(PORT3, ratio18_1, true);
-  motor baseLeft2 = motor(PORT4, ratio18_1, false);
+  motor baseLeft1 = motor(PORT3, ratio18_1, false);
+  motor baseLeft2 = motor(PORT4, ratio18_1, true);
   motor baseRight1 = motor(PORT1, ratio18_1, false);
   motor baseRight2 = motor(PORT2, ratio18_1, true);
   motor liftLeft = motor(PORT10, ratio18_1, true);
@@ -35,13 +35,13 @@ class SmallBot : public robot::Bot{
   // Transmition port A
   // Shoot port B
   triport t = triport(PORT22);
-  digital_out shift = led(t.A);
-  digital_out shoot = led(t.B); 
+  triport::port shift = t.A;
+  triport::port shoot = t.B; 
 
   //TODO Configure gyro -----------------------------------------------------------------------------
   triport::port gyro_port = t.H;
   
-  auton::Auton aut = auton::Auton(pos, 1, 5, 3);
+  auton::Auton aut = auton::Auton(pos, 5, 5, 5);
 
   public:
     SmallBot(util::Position& _pos);

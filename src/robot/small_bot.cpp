@@ -10,28 +10,28 @@ using namespace vex;
 SmallBot::SmallBot(util::Position& _pos) : Bot(_pos){};
 
 void SmallBot::driver() {
-  movement::base_arcade(base_left, base_right, Controller1.Axis3, Controller1.Axis4, directionType::rev); //base
+  movement::base_arcade(base_left, base_right, Controller1.Axis4, Controller1.Axis3, directionType::fwd); //base
   movement::mech(lift_left, lift_right, Controller1.Axis2); //lift
   movement::mech(ramp, Controller1.ButtonL2, Controller1.ButtonL1); //ramp
   movement::mech(rollers_left, rollers_right, Controller1.ButtonR2, Controller1.ButtonR1); //rollers
   movement::digi_out(shift, Controller1.ButtonUp, Controller1.ButtonDown); //transmission
-  movement::digi_out(shoot, Controller1.ButtonX, Controller1.ButtonB); //shoot
+  movement::digi_out(shoot, Controller1.ButtonX); //shoot
   score(base_left, base_right, rollers_left, rollers_right, Controller1.ButtonA, 50);
 }
 
 void SmallBot::auton() {
   // TODO
-  aut.group_stop(base_left, base_right);
+  move_base(50, 3);
 }
 
 void SmallBot::move_base(double pow, velocityUnits vel) {
   aut.move_group_double(base_left, base_right, pow, vel);
-  aut.group_stop(base_left, base_right, brake);
+  // aut.group_stop(base_left, base_right, brake);
 }
 
 void SmallBot::move_base(double pow, float lim, velocityUnits vel, rotationUnits rot) {
   aut.move_group_for(base_left, base_right, lim, rot, pow, vel);
-  aut.group_stop(base_left, base_right, brake);
+  // aut.group_stop(base_left, base_right, brake);
 }
 
 void SmallBot::rotate_base(double pow, velocityUnits vel) {

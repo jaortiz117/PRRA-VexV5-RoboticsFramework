@@ -43,7 +43,7 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg,
   lim = abs(lim);
 
   PID pid = PID(kp, ki, kd);
-  float output = pid.compute(dir*(left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2, (float)lim);
+  float output = pid.compute(dir*(left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2.0, (float)lim);
   Brain.Screen.setCursor(2, 1);
   Brain.Screen.print(output);
   while(output != 0.0){
