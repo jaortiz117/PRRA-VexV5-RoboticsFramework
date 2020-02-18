@@ -5,7 +5,7 @@
 #include "vex.h"
 
 namespace robot {
-  const int PAUSE = 500;
+  const int PAUSE = 200;
 // class AbstractGroup{
 //   public:
 //     virtual T* getLeft() ;//return array of left side of group
