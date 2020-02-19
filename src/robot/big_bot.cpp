@@ -58,22 +58,22 @@ void BigBot::auton() {
   //move front to get cubes on post
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
-  move_base(50.0, 3.2);
-  task::sleep(200);
+  move_base(50.0, 2.3);
+  task::sleep(300);
 
   aut.group_stop(rollers_l, rollers_r);
 
   //mover un poco atras
-  move_base(50, -3);
+  move_base(50, -2.0);
+  task::sleep(PAUSE);
 
   //rota to other cube
-  rotate_base(40,13);
-  task::sleep(PAUSE);
+  rotate_base(30,8);
 
   //coger cubo en frente
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
-  move_base(50, 3.0);
+  move_base(50, 2.5);
   task::sleep(200);
 
   //mover hacia atras
@@ -81,7 +81,7 @@ void BigBot::auton() {
   aut.group_stop(rollers_l, rollers_r);
 
   //rotate right
-  rotate_base(35,45);
+  rotate_base(35,40);
   task::sleep(PAUSE);
 
   //mover un poco atras
@@ -141,12 +141,16 @@ void BigBot::move_base(double pow, float lim, velocityUnits vel, rotationUnits r
 
 
 void BigBot::rotate_base(double pow, velocityUnits vel) {
+  color_manage(default_color, pow);
+
   pow = gear_convert(pow);
   aut.move_group(base_left, pow, velocityUnits::pct);
   aut.move_group(base_right, -pow, velocityUnits::pct);
 }
 
 void BigBot::rotate_base(double pow, float lim, velocityUnits vel) {
+  color_manage(default_color, lim);
+  
   pow = gear_convert(pow);
   // aut.mech_rotate(base_left, base_right, lim, rotationUnits::rev, pow, vel);//using encoders
 
@@ -200,7 +204,7 @@ void BigBot::open_ramp(){
 
   //piston for ramp
   aut.activate_piston(ramp_piston, true);
-  task::sleep(2000);
+  task::sleep(1000);
 
   aut.activate_piston(ramp_piston, false);
 

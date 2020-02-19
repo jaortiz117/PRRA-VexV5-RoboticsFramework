@@ -3,12 +3,16 @@
 
 #include "robot.h"
 #include "movement.h"
+#include "util.h"
 #include "vex.h"
 
 //Whoever uses library only needs to make this file to create their robot instance (inheriting from robot class)
 class BigBot : public robot::Bot{
   private:
+  //default color
+  util::Color default_color = util::Color::blue;
 
+  //motors
   motor BaseLeft1 = motor(PORT5, ratio18_1, false);
   motor BaseLeft2 = motor(PORT12, ratio18_1, false);
   motor BaseLeft3 = motor(PORT15, ratio18_1, true);

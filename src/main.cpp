@@ -44,9 +44,9 @@ competition Competition;
 
 
 //Global instances of robot
-Position POS = Position(Side::top, Color::red);
-// BigBot BIGGIE = BigBot(POS);
-SmallBot KOBE = SmallBot(POS);
+Position POS = Position(Side::top, Color::blue);
+BigBot BIGGIE = BigBot(POS);
+// SmallBot KOBE = SmallBot(POS);
 
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
@@ -84,8 +84,8 @@ void autonomous(void) {
   // Insert autonomous user code here.
   // ..........................................................................
 
-  // BIGGIE.auton();
-  KOBE.auton();
+  BIGGIE.auton();
+  // KOBE.auton();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -112,8 +112,8 @@ void usercontrol(void) {
     // ........................................................................
 
 
-    // BIGGIE.driver();
-    KOBE.driver();
+    BIGGIE.driver();
+    // KOBE.driver();
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
