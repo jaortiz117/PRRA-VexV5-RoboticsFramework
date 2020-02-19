@@ -18,13 +18,13 @@ namespace pid{
     float kp;
     float ki;
     float kd;
-    float epsilon = 0.05;
+    float epsilon = 0.1;
 
     // unsigned int current_time, previous_time = vex::timer::system();
     // double elapsed_time;
-    float error;
+    float error = 0.0;
     float last_error = 0.0;
-    float cm_error= 0.0, rate_error;
+    float cm_error= 0.0, rate_error = 0.0;
 
     public:
     PID(float _kp = 1.0, float _ki = 1.0, float _kd = 1.0) : 
