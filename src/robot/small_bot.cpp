@@ -24,22 +24,23 @@ void SmallBot::driver() {
 void SmallBot::auton() {
   //TODO
   //top_down_sucker(3, 3.5);
-  /*
+  
   shift.set(false);
   grab(true, 2.5); //grab preload cube
   move_base(30, 2, velocityUnits::pct, rotationUnits::rev); //move to cube
   grab(true, 2.5); //grab cube
   top_down_sucker(4, 2.9); //grab cube tower
-  //rotate_base(30, 10, velocityUnits::pct); //turn robot towars pillar cube
-  move_base(30, 1, velocityUnits::pct, rotationUnits::rev); //move towards pillar cube
-  */
-  //grab(true, 2.5); //grab cube
-  //rotate_base(-30, 50, velocityUnits::pct); //turn robot towars goal cube
-  //move_base(30, 3, velocityUnits::pct, rotationUnits::rev); //move towards goal cube
-  //grab(true, 2.5); //grab cube
-  //move_base(30, 3, velocityUnits::pct, rotationUnits::rev); //move towards goal
-  //score
-  //move_base(30, 3, velocityUnits::pct, rotationUnits::rev); //reverse out of goal
+  rotate_base(70, -95); //turn robot towars pillar cube
+  move_base(30, 2.4, velocityUnits::pct, rotationUnits::rev); //move towards pillar cube
+  grab(true, 2.5); //grab cube
+  rotate_base(30, -5, velocityUnits::pct); //turn robot towars goal cube
+  aut.move_group_double(rollers_left, rollers_right, 65, velocityUnits::pct, true);
+  move_base(55, 4, velocityUnits::pct, rotationUnits::rev); //move towards goal cube
+  aut.group_stop(rollers_left, rollers_right);
+  grab(false, 0.3); //place tower on floor
+  move_ramp(25, fwd);
+  move_ramp(15, directionType::rev); 
+  score_auton(base_left, base_right, rollers_left, rollers_right);
 }
 
 void SmallBot::move_base(double pow, velocityUnits vel) {
@@ -97,17 +98,26 @@ void SmallBot::score(vex::motor_group b_left, vex::motor_group b_right, vex::mot
   //since we are also calling these motor groups in other functions within the drive method we dont need to add brakes here
 }
 
+void SmallBot::score_auton(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right) {
+  b_left.rotateFor(directionType::rev, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
+  b_right.rotateFor(directionType::rev, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
+
+  r_left.rotateFor(directionType::rev, 800, rotationUnits::deg, 15, velocityUnits::pct, false);
+  r_right.rotateFor(directionType::fwd, 800, rotationUnits::deg, 15, velocityUnits::pct);
+}
+
+
 void SmallBot::move_ramp(double pow, directionType dir){
   ramp.setVelocity(pow, velocityUnits::pct);
 
-  ramp.rotateFor(dir, 3, rotationUnits::rev);
+  ramp.rotateFor(dir, 2.8, rotationUnits::rev);
   ramp.setVelocity(100, velocityUnits::pct);
 }
 
 void SmallBot::top_down_sucker(double dist, double height){
   //lift
 
-  move_lift(20, height);
+  move_lift(60, height);
 
   //go front
   move_base(60, dist);
@@ -116,7 +126,8 @@ void SmallBot::top_down_sucker(double dist, double height){
   aut.move_group_double(rollers_left, rollers_right, 65, velocityUnits::pct, true);
 
   //slowly bring lift down until bottom out
-  move_lift(10, -(height-0.01));
+  move_lift(10, -(height-height*0.08));
+  task::sleep(1800);
 
   aut.group_stop(rollers_left, rollers_right);
 }
