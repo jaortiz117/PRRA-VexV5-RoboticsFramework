@@ -10,8 +10,11 @@ using namespace vex;
 SmallBot::SmallBot(util::Position& _pos) : Bot(_pos){};
 
 void SmallBot::driver() {
+<<<<<<< HEAD
   shift.set(false);
   shoot.set(false);
+=======
+>>>>>>> a7cf2139dac4a361250706defa2d76cb9cf717f8
   movement::base_arcade(base_left, base_right, Controller1.Axis4, Controller1.Axis3, directionType::fwd); //base
   movement::mech(lift_left, lift_right, Controller1.Axis2); //lift
   movement::mech(ramp, Controller1.ButtonL2, Controller1.ButtonL1); //ramp
@@ -23,6 +26,7 @@ void SmallBot::driver() {
 
 void SmallBot::auton() {
   //TODO
+<<<<<<< HEAD
   //top_down_sucker(3, 3.5);
   shift.set(false);
   grab(true, 2.5); //grab preload cube
@@ -38,6 +42,9 @@ void SmallBot::auton() {
   //move_base(30, 3, velocityUnits::pct, rotationUnits::rev); //move towards goal
   //score
   //move_base(30, 3, velocityUnits::pct, rotationUnits::rev); //reverse out of goal
+=======
+  top_down_sucker(3, 3.5);
+>>>>>>> a7cf2139dac4a361250706defa2d76cb9cf717f8
 }
 
 void SmallBot::move_base(double pow, velocityUnits vel) {
@@ -104,16 +111,27 @@ void SmallBot::move_ramp(double pow, directionType dir){
 
 void SmallBot::top_down_sucker(double dist, double height){
   //lift
+<<<<<<< HEAD
   move_lift(20, height);
+=======
+  move_lift(80, height);
+>>>>>>> a7cf2139dac4a361250706defa2d76cb9cf717f8
 
   //go front
   move_base(60, dist);
 
   //intake
+<<<<<<< HEAD
   aut.move_group_double(rollers_left, rollers_right, 65, velocityUnits::pct, true);
 
   //slowly bring lift down until bottom out
   move_lift(10, -(height-0.01));
+=======
+  aut.move_group_double(rollers_left, rollers_right, 80, velocityUnits::pct, true);
+
+  //slowly bring lift down until bottom out
+  move_lift(10, -height);
+>>>>>>> a7cf2139dac4a361250706defa2d76cb9cf717f8
 
   aut.group_stop(rollers_left, rollers_right);
 }
