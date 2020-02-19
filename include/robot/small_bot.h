@@ -9,13 +9,13 @@ class SmallBot : public robot::Bot{
   private:
 
   //TODO Configure rotation-------------------------------------------------------------------------
-  motor baseLeft1 = motor(PORT3, ratio18_1, true);
-  motor baseLeft2 = motor(PORT4, ratio18_1, false);
+  motor baseLeft1 = motor(PORT3, ratio18_1, false);
+  motor baseLeft2 = motor(PORT4, ratio18_1, true);
   motor baseRight1 = motor(PORT1, ratio18_1, false);
   motor baseRight2 = motor(PORT2, ratio18_1, true);
   motor liftLeft = motor(PORT10, ratio18_1, true);
   motor liftRight = motor(PORT9, ratio18_1, false);
-  motor rampMotor = motor(PORT6, ratio18_1, true);
+  motor rampMotor = motor(PORT6, ratio18_1, false);
   motor rollersLeft = motor(PORT8, ratio18_1, false);
   motor rollersRight = motor(PORT7, ratio18_1, false);
 
@@ -31,17 +31,16 @@ class SmallBot : public robot::Bot{
   vex::motor_group rollers_left = motor_group(rollersLeft);
   vex::motor_group rollers_right = motor_group(rollersRight);
 
-  //TODO Comfigure piston ----------------------------------------------------------------------------
+  //Triports
   // Transmition port A
   // Shoot port B
   triport t = triport(PORT22);
-  digital_out shift = led(t.A);
-  digital_out shoot = led(t.B); 
+  triport::port shift = t.A;
+  triport::port shoot = t.B; 
+  triport::port g_sensor = t.C; 
 
-  //TODO Configure gyro -----------------------------------------------------------------------------
-  triport::port gyro_port = t.H;
   
-  auton::Auton aut = auton::Auton(pos, 1, 5, 3);
+  auton::Auton aut = auton::Auton(pos, 5.0, 2.0, 7.0);
 
   public:
     SmallBot(util::Position& _pos);
@@ -55,6 +54,8 @@ class SmallBot : public robot::Bot{
     void grab(bool intake = true, float revs = 10.0) override;
     double gear_convert(double input);
     void score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right, vex::controller::button toggle, double pow = 50, velocityUnits v_units = velocityUnits::pct);
+    void move_ramp(double pow, directionType dir = directionType::fwd);
+    void top_down_sucker(double dist, double height);
 };
 
 #endif

@@ -10,46 +10,65 @@ using namespace vex;
 SmallBot::SmallBot(util::Position& _pos) : Bot(_pos){};
 
 void SmallBot::driver() {
-  movement::base_arcade(base_left, base_right, Controller1.Axis3, Controller1.Axis4, directionType::rev); //base
+  shift.set(false);
+  shoot.set(false);
+  movement::base_arcade(base_left, base_right, Controller1.Axis4, Controller1.Axis3, directionType::fwd); //base
   movement::mech(lift_left, lift_right, Controller1.Axis2); //lift
   movement::mech(ramp, Controller1.ButtonL2, Controller1.ButtonL1); //ramp
   movement::mech(rollers_left, rollers_right, Controller1.ButtonR2, Controller1.ButtonR1); //rollers
   movement::digi_out(shift, Controller1.ButtonUp, Controller1.ButtonDown); //transmission
-  movement::digi_out(shoot, Controller1.ButtonX, Controller1.ButtonB); //shoot
+  movement::digi_out(shoot, Controller1.ButtonX); //shoot
   score(base_left, base_right, rollers_left, rollers_right, Controller1.ButtonA, 50);
 }
 
 void SmallBot::auton() {
-  // TODO
-  aut.group_stop(base_left, base_right);
+  //TODO
+  //top_down_sucker(3, 3.5);
+  shift.set(false);
+  grab(true, 2.5); //grab preload cube
+  move_base(30, 2, velocityUnits::pct, rotationUnits::rev); //move to cube
+  grab(true, 2.5); //grab cube
+  top_down_sucker(4, 2.9); //grab cube tower
+  //rotate_base(30, 10, velocityUnits::pct); //turn robot towars pillar cube
+  move_base(30, 1, velocityUnits::pct, rotationUnits::rev); //move towards pillar cube
+  //grab(true, 2.5); //grab cube
+  //rotate_base(-30, 50, velocityUnits::pct); //turn robot towars goal cube
+  //move_base(30, 3, velocityUnits::pct, rotationUnits::rev); //move towards goal cube
+  //grab(true, 2.5); //grab cube
+  //move_base(30, 3, velocityUnits::pct, rotationUnits::rev); //move towards goal
+  //score
+  //move_base(30, 3, velocityUnits::pct, rotationUnits::rev); //reverse out of goal
 }
 
 void SmallBot::move_base(double pow, velocityUnits vel) {
   aut.move_group_double(base_left, base_right, pow, vel);
-  aut.group_stop(base_left, base_right, brake);
+  // aut.group_stop(base_left, base_right, brake);
 }
 
 void SmallBot::move_base(double pow, float lim, velocityUnits vel, rotationUnits rot) {
   aut.move_group_for(base_left, base_right, lim, rot, pow, vel);
-  aut.group_stop(base_left, base_right, brake);
+  // aut.group_stop(base_left, base_right, brake);
 }
 
 void SmallBot::rotate_base(double pow, velocityUnits vel) {
-  // TODO
+  aut.move_group_double(base_left, base_right, pow, vel, false);
 }
 
 void SmallBot::rotate_base(double pow, float lim, velocityUnits vel) {
-  aut.mech_rotate_gyro(gyro_port, base_left, base_right, lim, pow, vel);
-  aut.group_stop(base_left, base_left);
+  aut.mech_rotate_gyro(g_sensor, base_left, base_right, lim, pow, vel);
+  // aut.group_stop(base_left, base_left);
 }
 
 void SmallBot::move_lift(double pow, float lim, velocityUnits vel, rotationUnits rot) {
-  aut.move_group_for(base_left, base_right, lim, rot, lim, vel);
-  aut.group_stop(lift_left, lift_right, hold);
+  aut.move_group_for(lift_left, lift_right, lim, rot, pow, vel);
+  // aut.group_stop(lift_left, lift_right, hold);
 }
 
 void SmallBot::grab(bool intake, float revs) {
-  // TODO
+  if(!intake){
+    revs = -revs;
+  }
+  aut.mech_rotate(rollers_left, rollers_right, revs, rotationUnits::rev, 100, velocityUnits::pct);
 }
 
 double SmallBot::gear_convert(double input) {
@@ -74,4 +93,27 @@ void SmallBot::score(vex::motor_group b_left, vex::motor_group b_right, vex::mot
 
   }
   //since we are also calling these motor groups in other functions within the drive method we dont need to add brakes here
+}
+
+void SmallBot::move_ramp(double pow, directionType dir){
+  ramp.setVelocity(pow, velocityUnits::pct);
+
+  ramp.rotateFor(dir, 3, rotationUnits::rev);
+  ramp.setVelocity(100, velocityUnits::pct);
+}
+
+void SmallBot::top_down_sucker(double dist, double height){
+  //lift
+  move_lift(20, height);
+
+  //go front
+  move_base(60, dist);
+
+  //intake
+  aut.move_group_double(rollers_left, rollers_right, 65, velocityUnits::pct, true);
+
+  //slowly bring lift down until bottom out
+  move_lift(10, -(height-0.01));
+
+  aut.group_stop(rollers_left, rollers_right);
 }

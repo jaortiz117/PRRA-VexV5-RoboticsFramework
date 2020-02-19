@@ -21,11 +21,8 @@ void Auton::move_group_double(
   if(rotate) pow = -pow;
   move_group(right_mg, pow, vel);
 }
-/*************************************
-TODO these functions have been copy pasted from older projects,
-they still  need to be translated into this library's design language
-*************************************/
 
+//TODO make single motor_group function for this and turn this into a multithreaded function
 void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg,
                            double lim, vex::rotationUnits rot_units,
                            double speed, vex::velocityUnits vel_units) {
@@ -42,8 +39,11 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg,
 
   lim = abs(lim);
 
+  Brain.Screen.setCursor(8, 1);
+  Brain.Screen.print("aut.kp: %4.2f aut.ki: %4.2f aut.kd: %4.2f", kp, ki, kd);
+
   PID pid = PID(kp, ki, kd);
-  float output = pid.compute(dir*(left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2, (float)lim);
+  float output = pid.compute(dir*(left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2.0, (float)lim);
   Brain.Screen.setCursor(2, 1);
   Brain.Screen.print(output);
   while(output != 0.0){
@@ -224,7 +224,7 @@ void Auton::mech_rotate(vex::motor_group left_mg, vex::motor_group right_mg, dou
 void Auton::mech_rotate_gyro(vex::triport::port &sensor_port, vex::motor_group left_mg, vex::motor_group right_mg, double deg, double speed, vex::velocityUnits vel_units) {
   gyro sensor = gyro(sensor_port);
   util::gyro_calibrate(sensor);
-  task::sleep(500); // jic
+  task::sleep(200); // jic
   sensor.resetHeading();
   // sensor.setHeading(0.0, rot_units);
 
@@ -266,7 +266,7 @@ void Auton::mech_rotate_dual_gyro(vex::triport::port &sensor_port,vex::triport::
   gyro sensor_2 = gyro(sensor_port_2);
   util::gyro_calibrate(sensor);
   util::gyro_calibrate(sensor_2);
-  task::sleep(500); // jic
+  task::sleep(200); // jic
   sensor.resetHeading();
   sensor_2.resetHeading();
   // sensor.setHeading(0.0, rot_units);

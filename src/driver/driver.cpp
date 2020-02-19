@@ -71,10 +71,13 @@ void driver::mech(vex::motor_group mg, vex::controller::button cw, vex::controll
 
 void driver::digi_out(vex::digital_out dg, vex::controller::button toggle){
   if(toggle.pressing()) {
-    if(dg.value() == 1)
-      dg.set( false );
-    else
+    // if(dg.value() == 1)
+      // dg.set( false );
+    // else
       dg.set( true );
+  }
+  else{
+    dg.set(false);
   }
 }
 
