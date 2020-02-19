@@ -7,6 +7,13 @@ int util::arr_length(vex::digital_out *arr) {
   return sizeof(arr) / sizeof(*arr);
 }
 
+float util::floating_abs(float n){
+  if(n < 0.0)
+    return -1.0 * n;
+
+  return n;
+}
+
 util::Side util::Position::getSide() { return s; }
 
 util::Color util::Position::getColor() { return c; }

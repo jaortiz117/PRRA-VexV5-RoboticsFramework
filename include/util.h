@@ -7,6 +7,7 @@ namespace util
 {
   int arr_length(vex::motor* arr);
   int arr_length(vex::digital_out* arr);
+  float floating_abs(float n);
 //   template <typename T> 
 // int arr_length(T arr) {
 //   return sizeof(arr) / sizeof(*arr);
