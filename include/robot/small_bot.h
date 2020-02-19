@@ -55,6 +55,7 @@ class SmallBot : public robot::Bot{
     double gear_convert(double input);
     void score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right, vex::controller::button toggle, double pow = 50, velocityUnits v_units = velocityUnits::pct);
     void move_ramp(double pow, directionType dir = directionType::fwd);
+    void move_ramp(double pow, float lim, directionType dir = directionType::fwd);
     void top_down_sucker(double dist, double height);
     void score_auton(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right);
 };
