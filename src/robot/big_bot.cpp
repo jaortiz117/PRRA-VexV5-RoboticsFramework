@@ -100,19 +100,29 @@ void BigBot::auton() {
   task::sleep(500);
 
   aut.group_stop(rollers_l, rollers_r);
+  
+  //pyramid------------------------------
+  //move back a bit
+  move_base(50, -2);
 
-  // //move back a bit
-  // move_base(50, -2);
+  //turn left facing pyramid
+  rotate_base(35,-38);
+  task::sleep(PAUSE);
 
-  // //turn left facing pyramid
-  // rotate_base(35,-38);
-  // task::sleep(PAUSE);
+  //take cube from pyramid corner
+  aut.move_group(rollers_l, 100);
+  aut.move_group(rollers_r, -100);
+  move_base(30, 3);
+  task::sleep(500);
 
-  // //take cube from pyramid corner
-  // aut.move_group(rollers_l, 100);
-  // aut.move_group(rollers_r, -100);
-  // move_base(30, 3);
-  // task::sleep(900);
+  //move back a bit
+  move_base(50, -3.0);
+  aut.group_stop(rollers_l, rollers_r);
+
+  //turn right straight back home
+  rotate_base(35,32);
+
+  //pyramid------------------------------
 
   //move back
   move_base(50, -5.0);
