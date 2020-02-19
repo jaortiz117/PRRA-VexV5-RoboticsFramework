@@ -123,11 +123,13 @@ void BigBot::auton() {
   task::sleep(PAUSE);
 
   //move front a bit
-  move_base(60, 2);
+  move_base(40, 1.7);
+  // move_base(50, 1);
 
   //SCORE!!!
-  grab(false, 1);
+  grab(false, 0.5);
   move_ramp(60);
+  task::sleep(1000);
   move_base(40, -2);
 }
 
