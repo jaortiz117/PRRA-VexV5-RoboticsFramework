@@ -37,7 +37,7 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg,
   if (lim < 0)
     dir = -dir;
 
-  lim = abs(lim);
+  lim = util::floating_abs(lim);
 
   Brain.Screen.setCursor(8, 1);
   Brain.Screen.print("aut.kp: %4.2f aut.ki: %4.2f aut.kd: %4.2f", kp, ki, kd);
@@ -54,7 +54,7 @@ void Auton::move_group_for(vex::motor_group left_mg, vex::motor_group right_mg,
     Brain.Screen.print(curr_speed);
 
     if(dir<0){
-      curr_speed = -1 * abs(curr_speed);
+      curr_speed = -1 * util::floating_abs(curr_speed);
     }
     move_group_double(left_mg, right_mg, curr_speed, vel_units);
     output = pid.compute(dir*(left_mg.rotation(rot_units) + right_mg.rotation(rot_units)) /2, (float)lim);
@@ -132,7 +132,7 @@ void Auton::move_group_for_sonar(vex::triport::port &sensor_port,
     // Brain.Screen.print(output);
 
   // while (output != 0) {
-  while (abs(sensor.distance(units) - lim) > 0) {
+  while (util::floating_abs(sensor.distance(units) - lim) > 0) {
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print(sensor.distance(units));
 
@@ -159,7 +159,7 @@ void Auton::move_group_for_sonar(vex::triport::port &sensor_port,
                                  vex::velocityUnits vel_units) {
   vex::sonar sensor = vex::sonar(sensor_port);
 
-  while (abs(sensor.distance(units) - lim) > 0) {
+  while (util::floating_abs(sensor.distance(units) - lim) > 0) {
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print(sensor.distance(units));
 
