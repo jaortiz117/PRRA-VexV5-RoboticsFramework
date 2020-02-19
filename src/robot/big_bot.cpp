@@ -47,45 +47,45 @@ void BigBot::auton() {
   //move front to get 4 cubes
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
-  move_base(50, 6);
+  move_base(50, 7.5);
   task::sleep(900);
   aut.group_stop(rollers_l, rollers_r);
 
-  //turn to face post
-  rotate_base(40, -15);//these rotates can leverage the position object
-  task::sleep(PAUSE);
+  // //turn to face post
+  // rotate_base(40, -15);//these rotates can leverage the position object
+  // task::sleep(PAUSE);
 
-  //move front to get cubes on post
-  aut.move_group(rollers_l, 100);
-  aut.move_group(rollers_r, -100);
-  move_base(50.0, 2.3);
-  task::sleep(300);
+  // //move front to get cubes on post
+  // aut.move_group(rollers_l, 100);
+  // aut.move_group(rollers_r, -100);
+  // move_base(50.0, 2.5);
+  // task::sleep(300);
 
-  aut.group_stop(rollers_l, rollers_r);
+  // aut.group_stop(rollers_l, rollers_r);
 
-  //mover un poco atras
-  move_base(50, -2.0);
-  task::sleep(PAUSE);
+  // //mover un poco atras
+  // move_base(50, -2.0);
+  // task::sleep(PAUSE);
 
-  //rota to other cube
-  rotate_base(30,8);
+  // //rota to other cube
+  // rotate_base(25,15);
 
-  //coger cubo en frente
-  aut.move_group(rollers_l, 100);
-  aut.move_group(rollers_r, -100);
-  move_base(50, 2.5);
-  task::sleep(200);
+  // //coger cubo en frente
+  // aut.move_group(rollers_l, 100);
+  // aut.move_group(rollers_r, -100);
+  // move_base(50, 2.5);
+  // task::sleep(200);
 
   //mover hacia atras
-  move_base(60, -5.8);
+  move_base(60, -5);
   aut.group_stop(rollers_l, rollers_r);
 
   //rotate right
-  rotate_base(35,40);
+  rotate_base(35,50);
   task::sleep(PAUSE);
 
   //mover un poco atras
-  move_base(50, -4);
+  move_base(50, -4.5);
 
   //rotate left
   rotate_base(35, -45);
@@ -96,7 +96,7 @@ void BigBot::auton() {
   move_base(50, -2);
 
   //move front to get 4 cubes
-  move_base(40, 7);
+  move_base(40, 7.2);
   task::sleep(500);
 
   aut.group_stop(rollers_l, rollers_r);
@@ -114,8 +114,8 @@ void BigBot::auton() {
   // move_base(30, 3);
   // task::sleep(900);
 
-  //move back a bit
-  move_base(50, -5.8);
+  //move back
+  move_base(50, -5.0);
   aut.group_stop(rollers_l, rollers_r);
 
   //turn right
@@ -123,12 +123,12 @@ void BigBot::auton() {
   task::sleep(PAUSE);
 
   //move front a bit
-  move_base(50, 2);
+  move_base(60, 2);
 
   //SCORE!!!
-  grab(false, 2);
+  grab(false, 1);
   move_ramp(60);
-  move_base(50, -2);
+  move_base(40, -2);
 }
 
 void BigBot::move_base(double pow, velocityUnits vel) {
@@ -150,7 +150,7 @@ void BigBot::rotate_base(double pow, velocityUnits vel) {
 
 void BigBot::rotate_base(double pow, float lim, velocityUnits vel) {
   color_manage(default_color, lim);
-  
+
   pow = gear_convert(pow);
   // aut.mech_rotate(base_left, base_right, lim, rotationUnits::rev, pow, vel);//using encoders
 
