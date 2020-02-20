@@ -73,6 +73,17 @@ namespace robot {
 class Bot {
 protected:
   util::Position &pos;
+  //TODO add pos mngmnt function : if curr pos != default post chage lim to -lim (only on rotate)
+  void color_manage(util::Color def_color, double &val){//def_color is the color the function was originally programmed on
+    if(pos.getColor() != def_color){
+      val = -val;
+    }
+  }
+  void color_manage(util::Color def_color, float &val){
+    if(pos.getColor() != def_color){
+      val = -val;
+    }
+  }
 
 public:
   Bot(util::Position &_pos) : pos{_pos} {};
