@@ -69,6 +69,18 @@ void driver::mech(vex::motor_group mg, vex::controller::button cw, vex::controll
     }
 }
 
+void driver::mech_slower(vex::motor_group mg, vex::controller::button cw, vex::controller::button ccw){
+    if(cw.pressing()){
+      mg.spin(directionType::fwd, 50, velocityUnits::pct);
+    }
+    else if(ccw.pressing()){
+      mg.spin(directionType::rev, 50, velocityUnits::pct);
+    }
+    else{
+      mg.stop(brakeType::brake);
+    }
+}
+
 void driver::digi_out(vex::digital_out dg, vex::controller::button toggle){
   if(toggle.pressing()) {
     // if(dg.value() == 1)

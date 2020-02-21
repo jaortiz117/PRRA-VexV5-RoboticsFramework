@@ -15,10 +15,11 @@ void SmallBot::driver() {
   movement::base_arcade(base_left, base_right, Controller1.Axis4, Controller1.Axis3, directionType::fwd); //base
   movement::mech(lift_left, lift_right, Controller1.Axis2); //lift
   movement::mech(ramp, Controller1.ButtonL2, Controller1.ButtonL1); //ramp
+  movement::mech_slower(ramp, Controller1.ButtonLeft, Controller1.ButtonRight); //ramp slower
   movement::mech(rollers_left, rollers_right, Controller1.ButtonR2, Controller1.ButtonR1); //rollers
   movement::digi_out(shift, Controller1.ButtonUp, Controller1.ButtonDown); //transmission
   movement::digi_out(shoot, Controller1.ButtonX); //shoot
-  score(base_left, base_right, rollers_left, rollers_right, Controller1.ButtonA, 50);
+  score(base_left, base_right, rollers_left, rollers_right, Controller1.ButtonA, 50); 
 }
 
 void SmallBot::auton() {
@@ -38,7 +39,7 @@ void SmallBot::auton() {
   move_base(55, 3.6, velocityUnits::pct, rotationUnits::rev); //move towards goal cube
   aut.group_stop(rollers_left, rollers_right);
   grab(true, 1.2); //place tower on floor
-  move_ramp(35, 2.8, fwd); 
+  move_ramp(55, 2.8, fwd); 
   task::sleep(300);
   move_base(18, 0.8, velocityUnits::pct, rotationUnits::rev);
   grab(false, 0.7); //place tower on floor
@@ -94,8 +95,8 @@ void SmallBot::score(vex::motor_group b_left, vex::motor_group b_right, vex::mot
     b_left.spin(directionType::rev, pow, v_units);
     b_right.spin(directionType::rev, pow, v_units);
 
-    r_left.spin(directionType::fwd, 100, velocityUnits::pct);
-    r_right.spin(directionType::fwd, 100, velocityUnits::pct);
+    r_left.spin(directionType::fwd, 25, velocityUnits::pct); //100
+    r_right.spin(directionType::fwd, 25, velocityUnits::pct);
 
   }
   //since we are also calling these motor groups in other functions within the drive method we dont need to add brakes here
