@@ -46,9 +46,9 @@ void BigBot::auton() {
   // move_base(50, -2);
 
   //move front to get 4 cubes
-  aut.move_group(rollers_l, 100);
-  aut.move_group(rollers_r, -100);
-  move_base(80, 7.5);
+  aut.move_group(rollers_l, 80);
+  aut.move_group(rollers_r, -80);
+  move_base(100, 7.5);
   task::sleep(900);
   aut.group_stop(rollers_l, rollers_r);
 
@@ -78,90 +78,87 @@ void BigBot::auton() {
   // task::sleep(200);
 
   //mover hacia atras
-  move_base(80, -5);
+  move_base(100, -5);
   aut.group_stop(rollers_l, rollers_r);
 
   //rotate right
-  rotate_base(35,50);
+  rotate_base(40,50);
   task::sleep(PAUSE);
 
   //mover un poco atras
   move_base(75, -4.5);
 
   //rotate left
-  rotate_base(35, -45);
+  rotate_base(40, -45);
 
   //crash with wall
-  aut.move_group(rollers_l, 100);
-  aut.move_group(rollers_r, -100);
+  aut.move_group(rollers_l, 80);
+  aut.move_group(rollers_r, -80);
   move_base(80, -2);
 
   //move front to get 4 cubes
   move_base(60, 7.2);
+  // move_base(60, 5.2);//if grab center post is enabled, enable this and disable line above
   task::sleep(500);
 
   aut.group_stop(rollers_l, rollers_r);
 
-  //grab center post cube------------------------
-  //TODO
+  // //grab center post cube------------------------
   // //turn to face post
-  // rotate_base(40, -15);//these rotates can leverage the position object
-  // task::sleep(PAUSE);
+  // rotate_base(30, 15);//these rotates can leverage the position object
 
   // //move front to get cubes on post
   // aut.move_group(rollers_l, 100);
   // aut.move_group(rollers_r, -100);
-  // move_base(50.0, 2.5);
-  // task::sleep(300);
+  // move_base(50.0, 1.5);
+  // task::sleep(PAUSE);
 
   // aut.group_stop(rollers_l, rollers_r);
 
   // //mover un poco atras
-  // move_base(50, -2.0);
-  // task::sleep(PAUSE);
+  // move_base(50, -1.5);
 
   // //rota to other cube
-  // rotate_base(25,15);
-  //center post cube-----------------------------
+  // rotate_base(25,-15);
+  // //center post cube-----------------------------
   
   //pyramid------------------------------
   //move back a bit
-  move_base(50, -2);
+  move_base(70, -2);
 
   //turn left facing pyramid
-  rotate_base(35,-38);
+  rotate_base(40,-38);
   task::sleep(PAUSE);
 
   //take cube from pyramid corner
-  aut.move_group(rollers_l, 100);
-  aut.move_group(rollers_r, -100);
-  move_base(30, 2.5);
+  aut.move_group(rollers_l, 80);
+  aut.move_group(rollers_r, -80);
+  move_base(50, 2.5);
   task::sleep(500);
 
   //move back a bit
-  move_base(50, -3.5);
+  move_base(70, -3.5);
   aut.group_stop(rollers_l, rollers_r);
 
   //turn right straight back home
-  rotate_base(35,32);
+  rotate_base(40,32);
 
   //pyramid------------------------------
 
   //move to goal
-  move_base(50, -3.5);
+  move_base(50, -3.3);
   aut.group_stop(rollers_l, rollers_r);
 
   //turn left
-  rotate_base(35, -123);
-  task::sleep(PAUSE);
+  rotate_base(40, -123);
 
   //move front a bit
-  move_base(40, 1.7);
+  move_base(40, 1.8);
   // move_base(50, 1);
 
   //SCORE!!!
   grab(false, 0.5);
-  move_ramp(60);
+  move_ramp(55);
   task::sleep(1000);
   move_base(40, -2);
 }
@@ -220,7 +217,7 @@ void BigBot::move_ramp(double speed, velocityUnits vel) {
     // else {
     //   aut.group_stop(ramp_l, ramp_r, brakeType::hold);
     // }
-    aut.move_group_for(ramp_l, ramp_r, 6, rotationUnits::rev, speed, vel);
+    aut.move_group_for(ramp_l, ramp_r, 5.8, rotationUnits::rev, speed, vel);
   } 
   else if(speed < 0) { // move backwards, stop with bumper
     aut.move_group_for_bumper(bump_port, ramp_l, ramp_r, speed, vel);
