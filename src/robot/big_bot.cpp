@@ -18,6 +18,83 @@ void BigBot::driver(){
   movement::digi_out(ramp_piston, Controller1.ButtonX, Controller1.ButtonY);//ramp open
 }
 
+void BigBot::skills_auton(){
+  //open ramp
+  open_ramp();
+  task::sleep(1000);
+
+  //coger filas de 4 cubos-----
+  aut.move_group(rollers_l, 100);
+  aut.move_group(rollers_r, -100);
+  move_base(100, 7.0);
+  task::sleep(PAUSE);
+  //coger filas de 4 cubos-----
+
+  //get rid of obstructions------
+  aut.group_stop(rollers_l, rollers_r);
+  move_base(80, 3.0);
+  // rotate_base(60,-10);
+  // rotate_base(60,20);
+  // rotate_base(60,-10);
+  aut.move_group(rollers_l, 100);
+  aut.move_group(rollers_r, -100);
+  //get rid of obstructions------
+
+  //grab line on other side-----
+  move_base(80, 7.2);
+  task::sleep(PAUSE);
+  aut.group_stop(rollers_l, rollers_r);
+  //grab line on other side-----
+
+
+  //score
+  rotate_base(45,-40);
+  move_base(70,5.3);
+  task::sleep(300);
+
+  //SCORE!!!
+  grab(false, 0.5);
+  move_ramp(55);
+  task::sleep(1000);
+  move_base(40, -2.7);
+
+  
+  //acomodarse flias de 4-----
+  rotate_base(45,-122);
+  move_base(100,-1.0);
+  task::sleep(300);
+
+  //crash with wall
+  move_base(100, -2);
+
+  //ramp down
+  move_ramp(-50);
+
+  //acomodarse filas de 4-----
+
+  //get remaining cube line
+  //coger filas de 4 cubos-----
+  aut.move_group(rollers_l, 100);
+  aut.move_group(rollers_r, -100);
+  move_base(100, 7.0);
+  task::sleep(PAUSE);
+  //coger filas de 4 cubos-----
+
+  //get rid of obstructions------
+  aut.group_stop(rollers_l, rollers_r);
+  move_base(80, 3.0);
+  aut.move_group(rollers_l, 100);
+  aut.move_group(rollers_r, -100);
+  //get rid of obstructions------
+
+  //grab line on other side-----
+  move_base(100, 7.2);
+  task::sleep(900);
+  aut.group_stop(rollers_l, rollers_r);
+  //grab line on other side-----
+
+}
+
 void BigBot::auton() {
   //open ramp
   open_ramp();
@@ -205,22 +282,12 @@ double BigBot::gear_convert(double input){
 
 void BigBot::move_ramp(double speed, velocityUnits vel) {
   if(speed >= 0) { // move forward, stop with encoder
-    // if(ramp_l.rotation(rotationUnits::rev) < 2) {
-    //   aut.move_group_double(ramp_l, ramp_r, speed);
-    // } 
-    // else if(ramp_l.rotation(rotationUnits::rev) < 3) {
-    //   aut.move_group_double(ramp_l, ramp_r, speed/2);
-    // } 
-    // else if(ramp_l.rotation(rotationUnits::rev) <= 4) {
-    //   aut.move_group_double(ramp_l, ramp_r, speed/4);
-    // } 
-    // else {
-    //   aut.group_stop(ramp_l, ramp_r, brakeType::hold);
-    // }
+
     aut.move_group_for(ramp_l, ramp_r, 5.8, rotationUnits::rev, speed, vel);
   } 
   else if(speed < 0) { // move backwards, stop with bumper
-    aut.move_group_for_bumper(bump_port, ramp_l, ramp_r, speed, vel);
+    // aut.move_group_for_bumper(bump_port, ramp_l, ramp_r, speed, vel);//not currently working
+    aut.move_group_for(ramp_l, ramp_r, -5.8, rotationUnits::rev, speed, vel);
   } 
   // else { // hold lift
   //   aut.group_stop(ramp_l, ramp_r, brakeType::hold);

@@ -67,6 +67,7 @@ class BigBot : public robot::Bot{
     double gear_convert(double input);
     void move_ramp(double speed, velocityUnits vel = velocityUnits::pct);
     void open_ramp();
+    void skills_auton();
 };
 
 #endif
