@@ -28,21 +28,22 @@ void SmallBot::auton() {
   
   shift.set(false);
   grab(true, 2.5); //grab preload cube
-  move_base(30, 2, velocityUnits::pct, rotationUnits::rev); //move to cube
-  grab(true, 2.5); //grab cube
-  top_down_sucker(4, 2.9); //grab cube tower
+  move_base(29, 2, velocityUnits::pct, rotationUnits::rev); //move to cube
+  grab(true, 2); //grab cube
+  top_down_sucker(4, 2.6); //grab cube tower
   rotate_base(70, -95); //turn robot towars pillar cube
-  move_base(30, 2.4, velocityUnits::pct, rotationUnits::rev); //move towards pillar cube
-  grab(true, 2.5); //grab cube
-  rotate_base(30, -5, velocityUnits::pct); //turn robot towars goal cube
-  aut.move_group_double(rollers_left, rollers_right, 30, velocityUnits::pct, true);
+  move_base(30, 2.6, velocityUnits::pct, rotationUnits::rev); //move towards pillar cube
+  grab(true, 2.3); //grab cube
+  rotate_base(30, -7, velocityUnits::pct); //turn robot towars goal cube
+  aut.move_group_double(rollers_left, rollers_right, 50, velocityUnits::pct, true);
   move_base(55, 3.6, velocityUnits::pct, rotationUnits::rev); //move towards goal cube
   aut.group_stop(rollers_left, rollers_right);
-  grab(true, 1.2); //place tower on floor
-  move_ramp(55, 2.8, fwd); 
-  task::sleep(300);
+  task::sleep(1500);
+  grab(true, .9); //place tower on floor
+  move_ramp(25, 3, fwd); 
+  task::sleep(2000);
   move_base(18, 0.8, velocityUnits::pct, rotationUnits::rev);
-  grab(false, 0.7); //place tower on floor
+  grab(false, 1.2); //place tower on floor
   move_ramp(15, 1.4, directionType::rev); 
   score_auton(base_left, base_right, rollers_left, rollers_right);
 }
