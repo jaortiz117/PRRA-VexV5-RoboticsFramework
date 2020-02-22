@@ -21,6 +21,7 @@ void BigBot::driver(){
 void BigBot::auton() {
   //open ramp
   open_ramp();
+  task::sleep(1000);
 
   // //turn right towards single cube
   // rotate_base(35,38);
@@ -47,7 +48,7 @@ void BigBot::auton() {
   //move front to get 4 cubes
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
-  move_base(65, 7.5);
+  move_base(80, 7.5);
   task::sleep(900);
   aut.group_stop(rollers_l, rollers_r);
 
@@ -77,7 +78,7 @@ void BigBot::auton() {
   // task::sleep(200);
 
   //mover hacia atras
-  move_base(60, -5);
+  move_base(80, -5);
   aut.group_stop(rollers_l, rollers_r);
 
   //rotate right
@@ -85,7 +86,7 @@ void BigBot::auton() {
   task::sleep(PAUSE);
 
   //mover un poco atras
-  move_base(50, -4.5);
+  move_base(75, -4.5);
 
   //rotate left
   rotate_base(35, -45);
@@ -93,13 +94,35 @@ void BigBot::auton() {
   //crash with wall
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
-  move_base(50, -2);
+  move_base(80, -2);
 
   //move front to get 4 cubes
-  move_base(40, 7.2);
+  move_base(60, 7.2);
   task::sleep(500);
 
   aut.group_stop(rollers_l, rollers_r);
+
+  //grab center post cube------------------------
+  //TODO
+  // //turn to face post
+  // rotate_base(40, -15);//these rotates can leverage the position object
+  // task::sleep(PAUSE);
+
+  // //move front to get cubes on post
+  // aut.move_group(rollers_l, 100);
+  // aut.move_group(rollers_r, -100);
+  // move_base(50.0, 2.5);
+  // task::sleep(300);
+
+  // aut.group_stop(rollers_l, rollers_r);
+
+  // //mover un poco atras
+  // move_base(50, -2.0);
+  // task::sleep(PAUSE);
+
+  // //rota to other cube
+  // rotate_base(25,15);
+  //center post cube-----------------------------
   
   //pyramid------------------------------
   //move back a bit
@@ -112,11 +135,11 @@ void BigBot::auton() {
   //take cube from pyramid corner
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
-  move_base(30, 3);
+  move_base(30, 2.5);
   task::sleep(500);
 
   //move back a bit
-  move_base(50, -3.0);
+  move_base(50, -3.5);
   aut.group_stop(rollers_l, rollers_r);
 
   //turn right straight back home
@@ -124,12 +147,12 @@ void BigBot::auton() {
 
   //pyramid------------------------------
 
-  //move back
-  move_base(50, -5.0);
+  //move to goal
+  move_base(50, -3.5);
   aut.group_stop(rollers_l, rollers_r);
 
-  //turn right
-  rotate_base(35,-120);
+  //turn left
+  rotate_base(35, -123);
   task::sleep(PAUSE);
 
   //move front a bit
