@@ -32,40 +32,38 @@ void BigBot::skills_auton(){
 
   //get rid of obstructions------
   aut.group_stop(rollers_l, rollers_r);
-  move_base(80, 3.0);
-  // rotate_base(60,-10);
-  // rotate_base(60,20);
-  // rotate_base(60,-10);
+  move_base(70, 3.0);
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
   //get rid of obstructions------
 
   //grab line on other side-----
-  move_base(80, 7.2);
-  task::sleep(PAUSE);
+  move_base(60, 7.2);
+  task::sleep(600);
   aut.group_stop(rollers_l, rollers_r);
   //grab line on other side-----
 
 
   //score
-  rotate_base(45,-40);
-  move_base(70,5.3);
+  rotate_base(45,-40);//towards corner
+  move_base(70, 5.1);
   task::sleep(300);
 
   //SCORE!!!
   grab(false, 0.5);
-  move_ramp(55);
+  move_ramp(50);
   task::sleep(1000);
-  move_base(40, -2.7);
+  move_base(40, -3.2);
 
   
-  //acomodarse flias de 4-----
-  rotate_base(45,-122);
-  move_base(100,-1.0);
-  task::sleep(300);
+  //acomodarse filas de 4-----
+  rotate_base(45,-115);
 
+  move_base(100, 2);
+  
   //crash with wall
-  move_base(100, -2);
+  move_base(100,-4.0);
+  task::sleep(300);
 
   //ramp down
   move_ramp(-50);
@@ -82,7 +80,7 @@ void BigBot::skills_auton(){
 
   //get rid of obstructions------
   aut.group_stop(rollers_l, rollers_r);
-  move_base(80, 3.0);
+  move_base(60, 3.0);
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
   //get rid of obstructions------
