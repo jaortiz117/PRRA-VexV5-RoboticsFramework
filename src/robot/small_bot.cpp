@@ -25,34 +25,36 @@ void SmallBot::driver() {
 void SmallBot::auton() {
   
   shift.set(false);
-  // move_lift(50, -0.3); //lower arm to unlock ramp
-  // task::sleep(500);
-  // move_lift(50, 0.3);
-  // task::sleep(100);
-  // move_lift(50, -0.3);
-  // // grab(false, 0.1); //unlock rollers
-  // // grab(true, 0.1); //unlock rollers
-  // // task::sleep(500);
-  grab(true, 2.5); //grab preload cube
-  move_base(29, 2, velocityUnits::pct, rotationUnits::rev); //move to cube
-  grab(true, 2); //grab cube
-  top_down_sucker(4, 2.6); //grab cube tower
-  rotate_base(70, -95); //turn robot towars pillar cube
-  move_base(30, 2.6, velocityUnits::pct, rotationUnits::rev); //move towards pillar cube
-  grab(true, 2.1); //grab cube
-  rotate_base(30, -7, velocityUnits::pct); //turn robot towars goal cube
-  //aut.move_group_double(rollers_left, rollers_right, 60, velocityUnits::pct, true);
-  move_base(55, 3.6, velocityUnits::pct, rotationUnits::rev); //move towards goal cube
-  //aut.group_stop(rollers_left, rollers_right);
+  shoot.set(false);
+  unlock_ramp();
+  task::sleep(500);
+  aut.move_group_double(rollers_left, rollers_right, 60, velocityUnits::pct, true);
+  move_base(30, 2.5, velocityUnits::pct, rotationUnits::rev); //move to cube
+  aut.group_stop(rollers_left, rollers_right);
+  grab(true, 1.5); //grab cube
+  top_down_sucker(3.5, 2.6); //grab cube tower (dist, height)
+  rotate_base(70, -95); //turn robot towars score cube
+  //aut.move_group_double(rollers_left, rollers_right, 60);
+  move_base(30, 2.9, velocityUnits::pct, rotationUnits::rev); //move towards score cube
+  //aut.group_stop(rollers_left, rollers_left);
+  grab(true, 3); //grab score cube
+  rotate_base(30, -7.1, velocityUnits::pct); //turn robot towars goal
+  move_base(55, 3.55, velocityUnits::pct, rotationUnits::rev); //move towards goal
   task::sleep(1500);
-  grab(true, 0.4); //place tower on floor
-  grab(false, 0.55);
-  move_ramp(25, 2.75, fwd); 
+  
+  move_ramp(25, 2.85, fwd); //tilt ramp forward
   task::sleep(2000);
-  move_base(18, 0.8, velocityUnits::pct, rotationUnits::rev);
-  grab(false, 0.7);
-  move_ramp(15, 1.4, directionType::rev); 
-  score_auton(base_left, base_right, rollers_left, rollers_right);
+  move_base(18, 0.8, velocityUnits::pct, rotationUnits::rev); //place tower
+  grab(false, 0.7); //let go of tower
+  //move_ramp(15, 1.4, directionType::rev); //tilt ramp backwards
+  score_auton(base_left, base_right, rollers_left, rollers_right); //move back and reverse rollers
+  
+  // grab(false, 4);
+  // move_lift(50, 1);
+  // grab(false, 4);
+  // move_lift(50, 1);
+  // grab(false, 4);
+  // move_lift(50, 1);
 }
 
 void SmallBot::move_base(double pow, velocityUnits vel) {
@@ -70,6 +72,7 @@ void SmallBot::rotate_base(double pow, velocityUnits vel) {
 }
 
 void SmallBot::rotate_base(double pow, float lim, velocityUnits vel) {
+  color_manage(util::Color::red, lim);
   aut.mech_rotate_gyro(g_sensor, base_left, base_right, lim, pow, vel);
   // aut.group_stop(base_left, base_left);
 }
@@ -149,4 +152,11 @@ void SmallBot::top_down_sucker(double dist, double height){
   task::sleep(1580);
 
   aut.group_stop(rollers_left, rollers_right);
+}
+
+void SmallBot::unlock_ramp() {
+  aut.move_group(lift_left, -85);
+  aut.move_group(lift_right, -85);
+  task::sleep(1800);
+  aut.group_stop(lift_left, lift_right);
 }

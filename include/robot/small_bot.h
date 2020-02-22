@@ -58,6 +58,7 @@ class SmallBot : public robot::Bot{
     void move_ramp(double pow, float lim, directionType dir = directionType::fwd);
     void top_down_sucker(double dist, double height);
     void score_auton(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right);
+    void unlock_ramp();
 };
 
 #endif
