@@ -272,9 +272,14 @@ void Auton::mech_rotate_dual_gyro(vex::triport::port &sensor_port,vex::triport::
   // sensor.setHeading(0.0, rot_units);
 
   if (deg < 0) { // ccw
-    deg = 360 + deg;
+    //temporarily disabled
+    //deg = 360 + deg;
     sensor.setHeading(359.0, rotationUnits::deg);
     sensor_2.setHeading(359.0, rotationUnits::deg);
+
+    //temp------------------
+    deg = ((sensor.heading(rotationUnits::deg) + sensor_2.heading(rotationUnits::deg))/2) + deg;//its a negative num so we add
+    //temp------------------
 
     while ((sensor.heading(rotationUnits::deg) + sensor_2.heading(rotationUnits::deg))/2 >= deg) {
       move_group(left_mg, -speed, vel_units);
@@ -289,6 +294,9 @@ void Auton::mech_rotate_dual_gyro(vex::triport::port &sensor_port,vex::triport::
     }
   } else { // cw
     // if(rot_units == rotationUnits::deg) sensor.setHeading(359.0, rot_units);
+    //temp------------------
+    deg = ((sensor.heading(rotationUnits::deg) + sensor_2.heading(rotationUnits::deg))/2) + deg;
+    //temp------------------
     while ((sensor.heading(rotationUnits::deg) + sensor_2.heading(rotationUnits::deg))/2 <= deg) {
       move_group(left_mg, speed, vel_units);
       move_group(right_mg, -speed, vel_units);

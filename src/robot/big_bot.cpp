@@ -127,7 +127,7 @@ void BigBot::auton() {
   move_base(70, -2);
 
   //turn left facing pyramid
-  rotate_base(40,-38);
+  rotate_base(40,-35);
   task::sleep(PAUSE);
 
   //take cube from pyramid corner
