@@ -47,7 +47,7 @@ void BigBot::auton() {
   //move front to get 4 cubes
   aut.move_group(rollers_l, 100);
   aut.move_group(rollers_r, -100);
-  move_base(50, 7.5);
+  move_base(65, 7.5);
   task::sleep(900);
   aut.group_stop(rollers_l, rollers_r);
 

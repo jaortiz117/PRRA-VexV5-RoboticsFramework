@@ -21,10 +21,10 @@ class BigBot : public robot::Bot{
   motor BaseRight3 = motor(PORT10, ratio18_1, true);
   motor RampL = motor(PORT14, ratio18_1, true);
   motor RampR = motor(PORT20, ratio18_1, false);
-  motor RollerL1 = motor(PORT1, ratio18_1, false);
-  motor RollerL2 = motor(PORT2, ratio18_1, false);
-  motor RollerR1 = motor(PORT18, ratio18_1, false);
-  motor RollerR2 = motor(PORT19, ratio18_1, false);
+  motor RollerL1 = motor(PORT1, ratio18_1, true);
+  motor RollerL2 = motor(PORT2, ratio18_1, true);
+  motor RollerR1 = motor(PORT18, ratio18_1, true);
+  motor RollerR2 = motor(PORT19, ratio18_1, true);
 
   //triports
   triport t = triport( PORT22 );
