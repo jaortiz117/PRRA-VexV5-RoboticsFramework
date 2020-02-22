@@ -79,10 +79,12 @@ protected:
       val = -val;
     }
   }
-  void color_manage(util::Color def_color, float &val){
+  float color_manage(util::Color def_color, float val){
     if(pos.getColor() != def_color){
       val = -val;
     }
+
+    return val;
   }
 
 public:

@@ -86,7 +86,7 @@ void BigBot::auton() {
   task::sleep(PAUSE);
 
   //mover un poco atras
-  move_base(75, -4.5);
+  move_base(75, -4.2);
 
   //rotate left
   rotate_base(40, -45);
@@ -153,7 +153,7 @@ void BigBot::auton() {
   rotate_base(40, -123);
 
   //move front a bit
-  move_base(40, 1.8);
+  move_base(40, 1.9);
   // move_base(50, 1);
 
   //SCORE!!!
@@ -173,7 +173,7 @@ void BigBot::move_base(double pow, float lim, velocityUnits vel, rotationUnits r
 
 
 void BigBot::rotate_base(double pow, velocityUnits vel) {
-  color_manage(default_color, pow);
+  pow = color_manage(default_color, pow);
 
   pow = gear_convert(pow);
   aut.move_group(base_left, pow, velocityUnits::pct);
@@ -181,7 +181,7 @@ void BigBot::rotate_base(double pow, velocityUnits vel) {
 }
 
 void BigBot::rotate_base(double pow, float lim, velocityUnits vel) {
-  color_manage(default_color, lim);
+  lim = color_manage(default_color, lim);
 
   pow = gear_convert(pow);
   // aut.mech_rotate(base_left, base_right, lim, rotationUnits::rev, pow, vel);//using encoders
