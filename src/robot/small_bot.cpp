@@ -23,27 +23,34 @@ void SmallBot::driver() {
 }
 
 void SmallBot::auton() {
-  //TODO
-  //top_down_sucker(3, 3.5);
   
   shift.set(false);
+  // move_lift(50, -0.3); //lower arm to unlock ramp
+  // task::sleep(500);
+  // move_lift(50, 0.3);
+  // task::sleep(100);
+  // move_lift(50, -0.3);
+  // // grab(false, 0.1); //unlock rollers
+  // // grab(true, 0.1); //unlock rollers
+  // // task::sleep(500);
   grab(true, 2.5); //grab preload cube
   move_base(29, 2, velocityUnits::pct, rotationUnits::rev); //move to cube
   grab(true, 2); //grab cube
   top_down_sucker(4, 2.6); //grab cube tower
   rotate_base(70, -95); //turn robot towars pillar cube
   move_base(30, 2.6, velocityUnits::pct, rotationUnits::rev); //move towards pillar cube
-  grab(true, 2.3); //grab cube
+  grab(true, 2.1); //grab cube
   rotate_base(30, -7, velocityUnits::pct); //turn robot towars goal cube
-  aut.move_group_double(rollers_left, rollers_right, 50, velocityUnits::pct, true);
+  //aut.move_group_double(rollers_left, rollers_right, 60, velocityUnits::pct, true);
   move_base(55, 3.6, velocityUnits::pct, rotationUnits::rev); //move towards goal cube
-  aut.group_stop(rollers_left, rollers_right);
+  //aut.group_stop(rollers_left, rollers_right);
   task::sleep(1500);
-  grab(true, .9); //place tower on floor
-  move_ramp(25, 3, fwd); 
+  grab(true, 0.4); //place tower on floor
+  grab(false, 0.55);
+  move_ramp(25, 2.75, fwd); 
   task::sleep(2000);
   move_base(18, 0.8, velocityUnits::pct, rotationUnits::rev);
-  grab(false, 1.2); //place tower on floor
+  grab(false, 0.7);
   move_ramp(15, 1.4, directionType::rev); 
   score_auton(base_left, base_right, rollers_left, rollers_right);
 }
@@ -135,11 +142,11 @@ void SmallBot::top_down_sucker(double dist, double height){
   move_base(60, dist);
 
   //intake
-  aut.move_group_double(rollers_left, rollers_right, 65, velocityUnits::pct, true);
+  aut.move_group_double(rollers_left, rollers_right, 60, velocityUnits::pct, true);
 
   //slowly bring lift down until bottom out
   move_lift(10, -(height-height*0.08));
-  task::sleep(1750);
+  task::sleep(1580);
 
   aut.group_stop(rollers_left, rollers_right);
 }
