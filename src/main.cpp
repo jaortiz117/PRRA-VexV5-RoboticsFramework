@@ -44,7 +44,7 @@ competition Competition;
 
 
 //Global instances of robot
-Position POS = Position(Side::top, Color::red);
+Position POS = Position(Side::top, Color::blue);
 //BigBot BIGGIE = BigBot(POS);
 SmallBot KOBE = SmallBot(POS);
 

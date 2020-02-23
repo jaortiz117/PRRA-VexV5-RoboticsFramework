@@ -33,12 +33,12 @@ void SmallBot::auton() {
   aut.group_stop(rollers_left, rollers_right);
   grab(true, 1.5); //grab cube
   top_down_sucker(3.5, 2.6); //grab cube tower (dist, height)
-  rotate_base(70, -95); //turn robot towars score cube
+  rotate_base(70, -98); //turn robot towars score cube 95
   //aut.move_group_double(rollers_left, rollers_right, 60);
   move_base(30, 2.9, velocityUnits::pct, rotationUnits::rev); //move towards score cube
   //aut.group_stop(rollers_left, rollers_left);
   grab(true, 3); //grab score cube
-  rotate_base(30, -7.1, velocityUnits::pct); //turn robot towars goal
+  rotate_base(30, -7, velocityUnits::pct); //turn robot towars goal 7.1
   move_base(55, 3.55, velocityUnits::pct, rotationUnits::rev); //move towards goal
   task::sleep(1500);
   
@@ -48,13 +48,6 @@ void SmallBot::auton() {
   grab(false, 0.7); //let go of tower
   //move_ramp(15, 1.4, directionType::rev); //tilt ramp backwards
   score_auton(base_left, base_right, rollers_left, rollers_right); //move back and reverse rollers
-  
-  // grab(false, 4);
-  // move_lift(50, 1);
-  // grab(false, 4);
-  // move_lift(50, 1);
-  // grab(false, 4);
-  // move_lift(50, 1);
 }
 
 void SmallBot::move_base(double pow, velocityUnits vel) {
@@ -72,7 +65,7 @@ void SmallBot::rotate_base(double pow, velocityUnits vel) {
 }
 
 void SmallBot::rotate_base(double pow, float lim, velocityUnits vel) {
-  color_manage(util::Color::red, lim);
+  lim = color_manage(util::Color::red, lim);
   aut.mech_rotate_gyro(g_sensor, base_left, base_right, lim, pow, vel);
   // aut.group_stop(base_left, base_left);
 }
@@ -96,17 +89,11 @@ double SmallBot::gear_convert(double input) {
 
 void SmallBot::score(vex::motor_group b_left, vex::motor_group b_right, vex::motor_group r_left, vex::motor_group r_right, vex::controller::button toggle, double pow, velocityUnits v_units) {
   if (toggle.pressing()) {
-    
-    // b_left.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
-    // b_right.rotateFor(directionType::fwd, 400, rotationUnits::deg, 20, velocityUnits::pct, false);
-
-    // r_left.rotateFor(directionType::rev, 800, rotationUnits::deg, 20, velocityUnits::pct, false);
-    // r_right.rotateFor(directionType::fwd, 800, rotationUnits::deg, 20, velocityUnits::pct);
 
     b_left.spin(directionType::rev, pow, v_units);
     b_right.spin(directionType::rev, pow, v_units);
 
-    r_left.spin(directionType::fwd, 25, velocityUnits::pct); //100
+    r_left.spin(directionType::fwd, 25, velocityUnits::pct); 
     r_right.spin(directionType::fwd, 25, velocityUnits::pct);
 
   }
@@ -159,4 +146,9 @@ void SmallBot::unlock_ramp() {
   aut.move_group(lift_right, -85);
   task::sleep(1800);
   aut.group_stop(lift_left, lift_right);
+}
+
+void SmallBot::programming_skills() {
+  shift.set(false);
+  shoot.set(false);
 }
