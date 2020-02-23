@@ -39,6 +39,8 @@ class SmallBot : public robot::Bot{
   triport::port shoot = t.B; 
   triport::port g_sensor = t.C; 
 
+  util::Color default_color = util::Color::red;
+
   
   auton::Auton aut = auton::Auton(pos, 5.0, 2.0, 7.0);
 

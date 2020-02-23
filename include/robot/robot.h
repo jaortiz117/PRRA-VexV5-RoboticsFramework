@@ -75,17 +75,37 @@ protected:
   util::Position &pos;
   //TODO add pos mngmnt function : if curr pos != default post chage lim to -lim (only on rotate)
   double color_manage(util::Color def_color, double &val){//def_color is the color the function was originally programmed on
+  //debug
+  Brain.Screen.clearScreen();
+  Brain.Screen.setCursor(2, 1);
+  Brain.Screen.print("val: %d", val);
+  Brain.Screen.print(" | pos color: %d", pos.getColor());
+  Brain.Screen.print(" | def color: %d", def_color);
     if(pos.getColor() != def_color){
-      val = -val;
+      val = -1.0 * val;
     }
+
+    //debug
+    Brain.Screen.setCursor(4, 1);
+  Brain.Screen.print("post val: %d", val);
 
     return val;
   }
-  float color_manage(util::Color def_color, float val){
+  float color_manage(util::Color def_color, float &val){
+    //debug
+  Brain.Screen.clearScreen();
+  Brain.Screen.setCursor(2, 1);
+  Brain.Screen.print("val: %d", val);
+  Brain.Screen.print(" | pos color: %d", pos.getColor());
+  Brain.Screen.print(" | def color: %d", def_color);
+
     if(pos.getColor() != def_color){
-      val = -val;
+      val = -1.0 * val;
     }
 
+    //debug
+    Brain.Screen.setCursor(4, 1);
+  Brain.Screen.print("post val: %d", val);
     return val;
   }
 
