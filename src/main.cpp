@@ -44,7 +44,7 @@ competition Competition;
 
 
 //Global instances of robot
-Position POS = Position(Side::top, Color::blue);
+Position POS = Position(Side::top, Color::red);
 //BigBot BIGGIE = BigBot(POS);
 SmallBot KOBE = SmallBot(POS);
 
@@ -85,8 +85,8 @@ void autonomous(void) {
   // ..........................................................................
 
   //BIGGIE.auton();
-  //KOBE.auton();
-  KOBE.programming_skills();
+  KOBE.auton();
+  //KOBE.programming_skills();
 }
 
 /*---------------------------------------------------------------------------*/

@@ -152,33 +152,36 @@ void SmallBot::unlock_ramp() {
 void SmallBot::programming_skills() {
   shift.set(false);
   shoot.set(false);
-  //unlock_ramp();
+  unlock_ramp();
   move_base(50, 2.5, velocityUnits::pct, rotationUnits::rev); //move towards first cube
   grab(true, 3); //grab cube
   move_base(50, 1.8, velocityUnits::pct, rotationUnits::rev); //move slightly forward
   rotate_base(50, 77); //rotate towards first post
   move_base(50, 2.9, velocityUnits::pct, rotationUnits::rev); //move towards center cube
-  grab(true, 3); //grab center cube
+  grab(true, 3.3); //grab center cube
   move_base(50, 3, velocityUnits::pct, rotationUnits::rev); //move towards post cube
   grab(true, 3); //grab post base cube
   move_lift(60, 2.8); //lift arm
   move_base(30, 2, velocityUnits::pct, rotationUnits::rev); //move forward
-  grab(false, 1.3); //score cube
+  grab(false, 1.2); //score cube
   move_base(30, -2, velocityUnits::pct, rotationUnits::rev); //move backwards
   move_lift(60, -2.6); //lower arm
   move_base(50, -3.5, velocityUnits::pct, rotationUnits::rev); //move backwards
-  rotate_base(50, -80.0); //rotate 90
-  move_base(50, 6, velocityUnits::pct, rotationUnits::rev); //move towards second post
+  rotate_base(50, 273); //rotate 90
+  move_base(50, 4.55, velocityUnits::pct, rotationUnits::rev); //move towards second post
   grab(true, 3); //grab post base cube
-  move_lift(60, 2.8); //lift arm
-  move_base(30, 2, velocityUnits::pct, rotationUnits::rev); //move forward
-  grab(false, 1.3); //score cube
-  move_base(30, -2, velocityUnits::pct, rotationUnits::rev); //move backwards
-  move_lift(60, -2.6); //lower arm
-  // rotate_base(70, 90); //rotate 90
-  // move_base(30, 3, velocityUnits::pct, rotationUnits::rev); //move towards third post
-  // move_lift(60, 2);//lift arm
-  // grab(false, 3); //score cube
-  // move_base(30, -0.5, velocityUnits::pct, rotationUnits::rev); //move backwards
-  // move_lift(60, -1.9); //lower arm
+  move_lift(60, 2.2); //lift arm
+  move_base(50, 2, velocityUnits::pct, rotationUnits::rev); //move forward
+  grab(false, 1.2); //score cube
+  move_base(50, -2, velocityUnits::pct, rotationUnits::rev); //move backwards
+  move_lift(60, -2); //lower arm
+  rotate_base(50, 80); //rotate 90
+  move_base(50, -4, velocityUnits::pct, rotationUnits::rev); //move towards wall
+  rotate_base(50, 80); //rotate towards cube
+  move_base(50, -10, velocityUnits::pct, rotationUnits::rev); //move towards final post
+  // move_lift(60, 2.2); //lift arm
+  // move_base(50, 2, velocityUnits::pct, rotationUnits::rev); //move forward
+  // grab(false, 1.2); //score cube
+  // move_base(50, -2, velocityUnits::pct, rotationUnits::rev); //move backwards
+  // move_lift(60, -2); //lower arm
 }
