@@ -74,15 +74,19 @@ class Bot {
 protected:
   util::Position &pos;
   //TODO add pos mngmnt function : if curr pos != default post chage lim to -lim (only on rotate)
-  void color_manage(util::Color def_color, double &val){//def_color is the color the function was originally programmed on
+  double color_manage(util::Color def_color, double &val){//def_color is the color the function was originally programmed on
     if(pos.getColor() != def_color){
       val = -val;
     }
+
+    return val;
   }
-  void color_manage(util::Color def_color, float &val){
+  float color_manage(util::Color def_color, float val){
     if(pos.getColor() != def_color){
       val = -val;
     }
+
+    return val;
   }
 
 public:
